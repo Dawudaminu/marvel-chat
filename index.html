@@ -98,6 +98,133 @@
     }
 
     /* =========================
+   FIREBASE AUTH
+========================= */
+
+.auth-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      #6D28D922,
+      transparent 40%
+    ),
+    var(--background);
+
+  overflow-y: auto;
+}
+
+.auth-card {
+  width: min(430px, 100%);
+
+  padding: 28px 22px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+  border-radius: 24px;
+
+  box-shadow: var(--shadow);
+
+  text-align: center;
+}
+
+.auth-logo {
+  width: 68px;
+  height: 68px;
+
+  display: grid;
+  place-items: center;
+
+  margin: 0 auto 14px;
+
+  border-radius: 20px;
+
+  background: var(--primary);
+  color: white;
+
+  font-size: 21px;
+  font-weight: 900;
+
+  box-shadow:
+    0 12px 28px rgba(109, 40, 217, 0.25);
+}
+
+.auth-card h1 {
+  font-size: 26px;
+}
+
+.auth-card h2 {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.auth-subtitle {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.auth-help {
+  margin-bottom: 15px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.auth-card .input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.auth-button {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.auth-link {
+  margin-top: 13px;
+
+  background: transparent;
+  color: var(--primary);
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.auth-switch {
+  margin-top: 18px;
+
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.auth-switch button {
+  background: transparent;
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.auth-message {
+  margin-top: 15px;
+  padding: 11px;
+
+  border-radius: 12px;
+
+  background: var(--primary-soft);
+  color: var(--primary);
+
+  font-size: 13px;
+      }
+
+    /* =========================
        HEADER
     ========================== */
 
@@ -778,6 +905,175 @@
 </head>
 
 <body>
+
+
+  <!-- =========================
+     FIREBASE AUTH SCREEN
+========================= -->
+
+<div id="authScreen" class="auth-screen">
+
+  <div class="auth-card">
+
+    <div class="auth-logo">MC</div>
+
+    <h1>Marvel Chat</h1>
+
+    <p class="auth-subtitle">
+      Chat. Connect. Trade Your Time.
+    </p>
+
+    <!-- LOGIN -->
+    <div id="loginForm">
+
+      <h2>Welcome back</h2>
+
+      <p class="auth-help">
+        Login to continue to Marvel Chat.
+      </p>
+
+      <input
+        id="loginEmail"
+        class="input"
+        type="email"
+        placeholder="Email address"
+        autocomplete="email"
+      />
+
+      <input
+        id="loginPassword"
+        class="input"
+        type="password"
+        placeholder="Password"
+        autocomplete="current-password"
+      />
+
+      <button
+        class="btn btn-purple auth-button"
+        onclick="loginUser()"
+      >
+        Login
+      </button>
+
+      <button
+        class="auth-link"
+        onclick="showForgotPassword()"
+      >
+        Forgot password?
+      </button>
+
+      <p class="auth-switch">
+        Don't have an account?
+        <button onclick="showSignup()">
+          Create one
+        </button>
+      </p>
+
+    </div>
+
+
+    <!-- SIGN UP -->
+    <div id="signupForm" style="display:none;">
+
+      <h2>Create account</h2>
+
+      <p class="auth-help">
+        Join the Marvel Chat community.
+      </p>
+
+      <input
+        id="signupName"
+        class="input"
+        type="text"
+        placeholder="Your name"
+        autocomplete="name"
+      />
+
+      <input
+        id="signupEmail"
+        class="input"
+        type="email"
+        placeholder="Email address"
+        autocomplete="email"
+      />
+
+      <input
+        id="signupPassword"
+        class="input"
+        type="password"
+        placeholder="Password"
+        autocomplete="new-password"
+      />
+
+      <input
+        id="signupPasswordConfirm"
+        class="input"
+        type="password"
+        placeholder="Confirm password"
+        autocomplete="new-password"
+      />
+
+      <button
+        class="btn btn-purple auth-button"
+        onclick="signupUser()"
+      >
+        Create Account
+      </button>
+
+      <p class="auth-switch">
+        Already have an account?
+        <button onclick="showLogin()">
+          Login
+        </button>
+      </p>
+
+    </div>
+
+
+    <!-- FORGOT PASSWORD -->
+    <div id="forgotForm" style="display:none;">
+
+      <h2>Reset password</h2>
+
+      <p class="auth-help">
+        Enter your email and we'll send you
+        a password-reset email.
+      </p>
+
+      <input
+        id="resetEmail"
+        class="input"
+        type="email"
+        placeholder="Email address"
+        autocomplete="email"
+      />
+
+      <button
+        class="btn btn-purple auth-button"
+        onclick="resetPassword()"
+      >
+        Send Reset Email
+      </button>
+
+      <p class="auth-switch">
+        Remember your password?
+        <button onclick="showLogin()">
+          Login
+        </button>
+      </p>
+
+    </div>
+
+
+    <div
+      id="authMessage"
+      class="auth-message"
+      style="display:none;"
+    ></div>
+
+  </div>
+
+</div>
 
   <div class="app">
 
@@ -1932,6 +2228,13 @@
             🌍 Languages
           </button>
 
+          <button
+  class="btn btn-danger"
+  onclick="logoutUser()"
+>
+  🚪 Log Out
+</button>
+
         </div>
 
 
@@ -2961,6 +3264,548 @@
   }
 })();
      </script> 
+
+
+  <script type="module">
+
+  import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+  import {
+    getAuth,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    signOut,
+    sendPasswordResetEmail,
+    updateProfile
+  }
+  from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+  import {
+    getFirestore,
+    doc,
+    setDoc,
+    getDoc,
+    serverTimestamp
+  }
+  from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+
+  /* ==========================================
+     FIREBASE CONFIG
+     USE YOUR REAL VALUES HERE
+  ========================================== */
+
+  const firebaseConfig = {
+
+    apiKey: "YOUR_REAL_API_KEY",
+
+    authDomain: "YOUR_REAL_AUTH_DOMAIN",
+
+    projectId: "YOUR_REAL_PROJECT_ID",
+
+    storageBucket: "YOUR_REAL_STORAGE_BUCKET",
+
+    messagingSenderId:
+      "YOUR_REAL_MESSAGING_SENDER_ID",
+
+    appId: "YOUR_REAL_APP_ID",
+
+    measurementId:
+      "YOUR_REAL_MEASUREMENT_ID"
+
+  };
+
+
+  /* ==========================================
+     INITIALIZE FIREBASE
+  ========================================== */
+
+  const firebaseApp =
+    initializeApp(firebaseConfig);
+
+  const auth =
+    getAuth(firebaseApp);
+
+  const db =
+    getFirestore(firebaseApp);
+
+
+  /* ==========================================
+     AUTH SCREEN HELPERS
+  ========================================== */
+
+  const authScreen =
+    document.getElementById("authScreen");
+
+  const mainApp =
+    document.querySelector(".app");
+
+
+  function showAuthMessage(message) {
+
+    const box =
+      document.getElementById("authMessage");
+
+    if (!box) return;
+
+    box.textContent = message;
+
+    box.style.display = "block";
+
+  }
+
+
+  function hideAuthMessage() {
+
+    const box =
+      document.getElementById("authMessage");
+
+    if (!box) return;
+
+    box.textContent = "";
+
+    box.style.display = "none";
+
+  }
+
+
+  function showLogin() {
+
+    document.getElementById("loginForm")
+      .style.display = "block";
+
+    document.getElementById("signupForm")
+      .style.display = "none";
+
+    document.getElementById("forgotForm")
+      .style.display = "none";
+
+    hideAuthMessage();
+
+  }
+
+
+  function showSignup() {
+
+    document.getElementById("loginForm")
+      .style.display = "none";
+
+    document.getElementById("signupForm")
+      .style.display = "block";
+
+    document.getElementById("forgotForm")
+      .style.display = "none";
+
+    hideAuthMessage();
+
+  }
+
+
+  function showForgotPassword() {
+
+    document.getElementById("loginForm")
+      .style.display = "none";
+
+    document.getElementById("signupForm")
+      .style.display = "none";
+
+    document.getElementById("forgotForm")
+      .style.display = "block";
+
+    hideAuthMessage();
+
+  }
+
+
+  /* ==========================================
+     SIGN UP
+  ========================================== */
+
+  window.signupUser = async function () {
+
+    const name =
+      document
+        .getElementById("signupName")
+        .value
+        .trim();
+
+    const email =
+      document
+        .getElementById("signupEmail")
+        .value
+        .trim();
+
+    const password =
+      document
+        .getElementById("signupPassword")
+        .value;
+
+    const confirmPassword =
+      document
+        .getElementById("signupPasswordConfirm")
+        .value;
+
+
+    if (!name || !email || !password) {
+
+      showAuthMessage(
+        "Please complete all required fields."
+      );
+
+      return;
+
+    }
+
+
+    if (password !== confirmPassword) {
+
+      showAuthMessage(
+        "The passwords do not match."
+      );
+
+      return;
+
+    }
+
+
+    if (password.length < 6) {
+
+      showAuthMessage(
+        "Password must contain at least 6 characters."
+      );
+
+      return;
+
+    }
+
+
+    try {
+
+      showAuthMessage(
+        "Creating your Marvel Chat account..."
+      );
+
+
+      const credential =
+        await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+
+      const user =
+        credential.user;
+
+
+      await updateProfile(
+        user,
+        {
+          displayName: name
+        }
+      );
+
+
+      await setDoc(
+        doc(db, "users", user.uid),
+        {
+          uid: user.uid,
+          name: name,
+          email: user.email,
+          createdAt: serverTimestamp()
+        }
+      );
+
+
+      showAuthMessage(
+        "Account created successfully!"
+      );
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      showAuthMessage(
+        getFriendlyAuthError(error)
+      );
+
+    }
+
+  };
+
+
+  /* ==========================================
+     LOGIN
+  ========================================== */
+
+  window.loginUser = async function () {
+
+    const email =
+      document
+        .getElementById("loginEmail")
+        .value
+        .trim();
+
+    const password =
+      document
+        .getElementById("loginPassword")
+        .value;
+
+
+    if (!email || !password) {
+
+      showAuthMessage(
+        "Enter your email and password."
+      );
+
+      return;
+
+    }
+
+
+    try {
+
+      showAuthMessage(
+        "Logging you in..."
+      );
+
+
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      showAuthMessage(
+        getFriendlyAuthError(error)
+      );
+
+    }
+
+  };
+
+
+  /* ==========================================
+     FORGOT PASSWORD
+  ========================================== */
+
+  window.resetPassword = async function () {
+
+    const email =
+      document
+        .getElementById("resetEmail")
+        .value
+        .trim();
+
+
+    if (!email) {
+
+      showAuthMessage(
+        "Enter your email address."
+      );
+
+      return;
+
+    }
+
+
+    try {
+
+      await sendPasswordResetEmail(
+        auth,
+        email
+      );
+
+
+      showAuthMessage(
+        "Password reset email sent. Check your inbox."
+      );
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      showAuthMessage(
+        getFriendlyAuthError(error)
+      );
+
+    }
+
+  };
+
+
+  /* ==========================================
+     LOGOUT
+  ========================================== */
+
+  window.logoutUser = async function () {
+
+    try {
+
+      await signOut(auth);
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert(
+        "Unable to log out right now."
+      );
+
+    }
+
+  };
+
+
+  /* ==========================================
+     AUTH STATE
+  ========================================== */
+
+  onAuthStateChanged(
+    auth,
+    async (user) => {
+
+      if (user) {
+
+        console.log(
+          "Marvel Chat user:",
+          user.uid
+        );
+
+
+        authScreen.style.display =
+          "none";
+
+        mainApp.style.display =
+          "block";
+
+
+        /*
+         * Make the existing Marvel Chat
+         * profile use Firebase user's name.
+         */
+
+        if (user.displayName) {
+
+          state.name =
+            user.displayName;
+
+          localStorage.setItem(
+            STORAGE.name,
+            state.name
+          );
+
+        }
+
+
+        /*
+         * Load profile from Firestore.
+         */
+
+        try {
+
+          const profile =
+            await getDoc(
+              doc(db, "users", user.uid)
+            );
+
+
+          if (profile.exists()) {
+
+            const data =
+              profile.data();
+
+            if (data.name) {
+
+              state.name =
+                data.name;
+
+              localStorage.setItem(
+                STORAGE.name,
+                state.name
+              );
+
+            }
+
+          }
+
+        } catch (error) {
+
+          console.error(
+            "Profile loading error:",
+            error
+          );
+
+        }
+
+
+        render();
+
+
+      } else {
+
+        authScreen.style.display =
+          "flex";
+
+        mainApp.style.display =
+          "none";
+
+      }
+
+    }
+  );
+
+
+  /* ==========================================
+     FRIENDLY ERRORS
+  ========================================== */
+
+  function getFriendlyAuthError(error) {
+
+    switch (error.code) {
+
+      case "auth/invalid-email":
+        return "Please enter a valid email address.";
+
+      case "auth/user-not-found":
+        return "No account was found with this email.";
+
+      case "auth/wrong-password":
+      case "auth/invalid-credential":
+        return "Email or password is incorrect.";
+
+      case "auth/email-already-in-use":
+        return "An account already exists with this email.";
+
+      case "auth/weak-password":
+        return "Your password is too weak.";
+
+      case "auth/too-many-requests":
+        return "Too many attempts. Please try again later.";
+
+      default:
+        return error.message
+          || "Something went wrong. Please try again.";
+
+    }
+
+  }
+
+
+  console.log(
+    "🔥 Marvel Chat Firebase authentication loaded."
+  );
+
+  </script>
 
 </body>
 </html>
