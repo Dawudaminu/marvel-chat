@@ -1,0 +1,44 @@
+{
+  "name": "Marvel Chat",
+  "short_name": "Marvel Chat",
+  "description": "Chat. Connect. Trade Your Time.",
+  "start_url": "/marvel-chat/",
+  "scope": "/marvel-chat/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0F0A14",
+  "theme_color": "#6D28D9",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": [
+    "social",
+    "communication",
+    "business"
+  ],
+  "icons": [
+    {
+      "src": "/marvel-chat/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/marvel-chat/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/marvel-chat/icons/icon-192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/marvel-chat/icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
