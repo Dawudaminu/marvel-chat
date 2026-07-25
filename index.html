@@ -1,0 +1,2937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+  <meta name="theme-color" content="#6D28D9" />
+  <meta
+    name="description"
+    content="Marvel Chat — Chat. Connect. Trade Your Time."
+  />
+
+  <title>Marvel Chat</title>
+
+  <style>
+    :root {
+      --primary: #6D28D9;
+      --primary-dark: #4C1D95;
+      --primary-soft: #F0E9FF;
+
+      --background: #F7F7FB;
+      --surface: #FFFFFF;
+      --surface-2: #F0EEF5;
+
+      --text: #17131F;
+      --muted: #756E80;
+      --border: #E6E1ED;
+
+      --success: #16803C;
+      --danger: #C62828;
+      --warning: #B77900;
+
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+
+      --shadow: 0 10px 30px rgba(25, 15, 45, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .app {
+      min-height: 100vh;
+      padding-bottom: 88px;
+    }
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      padding:
+        12px
+        max(16px, env(safe-area-inset-left))
+        12px
+        max(16px, env(safe-area-inset-right));
+
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      width: 44px;
+      height: 44px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 14px;
+
+      background: var(--primary);
+      color: white;
+
+      font-weight: 900;
+      letter-spacing: -1px;
+
+      box-shadow: 0 8px 20px rgba(109, 40, 217, 0.25);
+    }
+
+    .brand {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 17px;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .top-action {
+      width: 42px;
+      height: 42px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 13px;
+      background: var(--surface-2);
+      color: var(--text);
+
+      font-size: 18px;
+    }
+
+    /* =========================
+       MAIN
+    ========================== */
+
+    main {
+      width: min(760px, 100%);
+      margin: auto;
+      padding: 18px 14px 30px;
+    }
+
+    .page {
+      animation: pageIn 0.2s ease;
+    }
+
+    @keyframes pageIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero {
+      padding: 24px;
+      border-radius: var(--radius-lg);
+
+      color: white;
+
+      background:
+        radial-gradient(circle at 90% 10%, #ffffff2b, transparent 30%),
+        linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+
+      box-shadow:
+        0 18px 45px rgba(109, 40, 217, 0.22);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 6px 10px;
+
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
+
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+    }
+
+    .hero h1 {
+      margin: 12px 0 8px;
+      font-size: clamp(28px, 8vw, 42px);
+      line-height: 1.05;
+    }
+
+    .hero p {
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 20px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* =========================
+       BUTTONS
+    ========================== */
+
+    .btn {
+      min-height: 44px;
+      padding: 10px 15px;
+
+      border-radius: 13px;
+
+      background: var(--surface-2);
+      color: var(--text);
+
+      font-weight: 700;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--primary);
+    }
+
+    .btn-purple {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-danger {
+      background: #FFE8E8;
+      color: var(--danger);
+    }
+
+    .btn-small {
+      min-height: 36px;
+      padding: 7px 11px;
+      border-radius: 10px;
+      font-size: 13px;
+    }
+
+    /* =========================
+       CARDS
+    ========================== */
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+
+      margin: 24px 0 12px;
+    }
+
+    .section-title h2 {
+      font-size: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+
+      padding: 16px;
+      margin-bottom: 12px;
+
+      box-shadow: var(--shadow);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .grid .card {
+      margin: 0;
+    }
+
+    .feature-card {
+      min-height: 130px;
+    }
+
+    .feature-icon {
+      width: 42px;
+      height: 42px;
+
+      display: grid;
+      place-items: center;
+
+      margin-bottom: 10px;
+
+      border-radius: 13px;
+      background: var(--primary-soft);
+      color: var(--primary);
+
+      font-size: 20px;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 3px;
+      font-size: 15px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* =========================
+       PROFILE ROW
+    ========================== */
+
+    .profile-row {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+
+      display: grid;
+      place-items: center;
+
+      flex: 0 0 auto;
+
+      border-radius: 50%;
+
+      background: var(--primary-soft);
+      color: var(--primary);
+
+      font-weight: 900;
+    }
+
+    .avatar-large {
+      width: 78px;
+      height: 78px;
+      font-size: 26px;
+    }
+
+    .profile-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .profile-info strong {
+      display: block;
+    }
+
+    .profile-info small {
+      display: block;
+      color: var(--muted);
+    }
+
+    /* =========================
+       FEED
+    ========================== */
+
+    .post-text {
+      margin: 15px 0;
+      white-space: pre-wrap;
+    }
+
+    .post-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .post-action {
+      padding: 8px 10px;
+      border-radius: 10px;
+
+      background: var(--surface-2);
+      color: var(--text);
+
+      font-size: 13px;
+    }
+
+    /* =========================
+       SEARCH
+    ========================== */
+
+    .search-box {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .input {
+      width: 100%;
+      min-height: 46px;
+
+      padding: 10px 13px;
+
+      border: 1px solid var(--border);
+      border-radius: 13px;
+
+      background: var(--surface);
+      color: var(--text);
+
+      outline: none;
+    }
+
+    .input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-soft);
+    }
+
+    textarea.input {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    /* =========================
+       TIMETRUST
+    ========================== */
+
+    .time-balance {
+      padding: 22px;
+
+      border-radius: var(--radius-lg);
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+
+      color: white;
+    }
+
+    .time-balance small {
+      color: #ffffffaa;
+      font-weight: 700;
+    }
+
+    .time-number {
+      margin: 5px 0;
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .time-number span {
+      font-size: 15px;
+      font-weight: 500;
+      opacity: 0.8;
+    }
+
+    .progress {
+      width: 100%;
+      height: 9px;
+
+      overflow: hidden;
+
+      margin-top: 15px;
+
+      border-radius: 999px;
+      background: #ffffff2c;
+    }
+
+    .progress i {
+      display: block;
+      height: 100%;
+      width: 35%;
+
+      border-radius: inherit;
+      background: white;
+    }
+
+    .skill-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .skill-main {
+      flex: 1;
+    }
+
+    .skill-main strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .skill-meta {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* =========================
+       CHAT
+    ========================== */
+
+    .chat-message {
+      max-width: 82%;
+      margin-bottom: 10px;
+      padding: 11px 13px;
+
+      border-radius: 16px;
+
+      background: var(--surface-2);
+    }
+
+    .chat-message.me {
+      margin-left: auto;
+
+      background: var(--primary);
+      color: white;
+    }
+
+    .chat-message small {
+      display: block;
+      margin-top: 4px;
+      opacity: 0.65;
+      font-size: 10px;
+    }
+
+    .chat-compose {
+      display: flex;
+      gap: 8px;
+
+      position: sticky;
+      bottom: 90px;
+
+      padding-top: 10px;
+    }
+
+    /* =========================
+       PROFILE
+    ========================== */
+
+    .profile-center {
+      text-align: center;
+    }
+
+    .profile-center .avatar {
+      margin: auto;
+    }
+
+    /* =========================
+       MODAL
+    ========================== */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+
+      display: none;
+      align-items: flex-end;
+
+      background: rgba(0,0,0,0.55);
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-sheet {
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+
+      padding: 20px;
+
+      background: var(--surface);
+
+      border-radius: 24px 24px 0 0;
+    }
+
+    .modal-sheet h2 {
+      margin-bottom: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    /* =========================
+       NOTICE
+    ========================== */
+
+    .notice {
+      padding: 12px;
+
+      border-radius: 13px;
+
+      background: var(--primary-soft);
+      color: var(--primary);
+
+      font-size: 13px;
+    }
+
+    .empty {
+      padding: 35px 15px;
+
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .badge {
+      display: inline-flex;
+      padding: 5px 8px;
+
+      border-radius: 999px;
+
+      background: var(--primary-soft);
+      color: var(--primary);
+
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    /* =========================
+       BOTTOM NAVIGATION
+    ========================== */
+
+    .bottom-nav {
+      position: fixed;
+      z-index: 80;
+
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+
+      padding:
+        7px
+        max(7px, env(safe-area-inset-left))
+        calc(7px + env(safe-area-inset-bottom))
+        max(7px, env(safe-area-inset-right));
+
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(14px);
+
+      border-top: 1px solid var(--border);
+    }
+
+    .nav-button {
+      min-height: 58px;
+
+      background: transparent;
+      color: var(--muted);
+
+      border-radius: 13px;
+
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .nav-button span {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 19px;
+    }
+
+    .nav-button.active {
+      color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    /* =========================
+       DARK MODE
+    ========================== */
+
+    body.dark {
+      --background: #0E0B13;
+      --surface: #18131F;
+      --surface-2: #241D2D;
+
+      --text: #F8F5FC;
+      --muted: #AAA0B5;
+      --border: #332A3B;
+
+      --primary-soft: #2A1949;
+    }
+
+    body.dark .topbar,
+    body.dark .bottom-nav {
+      background: rgba(24,19,31,0.95);
+    }
+
+    /* =========================
+       DESKTOP
+    ========================== */
+
+    @media (min-width: 760px) {
+      .modal {
+        align-items: center;
+      }
+
+      .modal-sheet {
+        width: min(560px, 92%);
+        border-radius: 24px;
+      }
+
+      .bottom-nav {
+        width: 600px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+
+        margin-bottom: 10px;
+
+        border: 1px solid var(--border);
+        border-radius: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="logo">MC</div>
+
+      <div class="brand">
+        <strong>Marvel Chat</strong>
+        <span>Chat. Connect. Trade Your Time.</span>
+      </div>
+
+      <button
+        class="top-action"
+        onclick="toggleTheme()"
+        aria-label="Toggle theme"
+      >
+        ☼
+      </button>
+
+      <button
+        class="top-action"
+        onclick="showNotifications()"
+        aria-label="Notifications"
+      >
+        🔔
+      </button>
+    </header>
+
+    <!-- CONTENT -->
+    <main id="main"></main>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-nav">
+
+      <button
+        class="nav-button active"
+        data-tab="home"
+        onclick="navigate('home')"
+      >
+        <span>⌂</span>
+        Home
+      </button>
+
+      <button
+        class="nav-button"
+        data-tab="chat"
+        onclick="navigate('chat')"
+      >
+        <span>◌</span>
+        Chat
+      </button>
+
+      <button
+        class="nav-button"
+        data-tab="time"
+        onclick="navigate('time')"
+      >
+        <span>◷</span>
+        TimeTrust
+      </button>
+
+      <button
+        class="nav-button"
+        data-tab="market"
+        onclick="navigate('market')"
+      >
+        <span>▣</span>
+        Market
+      </button>
+
+      <button
+        class="nav-button"
+        data-tab="profile"
+        onclick="navigate('profile')"
+      >
+        <span>●</span>
+        Profile
+      </button>
+
+    </nav>
+
+  </div>
+
+  <!-- MODAL -->
+  <div
+    class="modal"
+    id="modal"
+    onclick="closeModalOutside(event)"
+  >
+    <div class="modal-sheet" id="modalContent"></div>
+  </div>
+
+  <script>
+
+    /* ==========================================
+       MARVEL CHAT — STAGE 1
+       Local-first prototype
+    ========================================== */
+
+    const STORAGE = {
+      theme: "marvel_theme",
+      name: "marvel_name",
+      balance: "marvel_time_balance",
+      posts: "marvel_posts",
+      messages: "marvel_messages",
+      skills: "marvel_skills",
+      listings: "marvel_listings"
+    };
+
+    const state = {
+      tab: "home",
+
+      dark:
+        localStorage.getItem(STORAGE.theme) === "dark",
+
+      name:
+        localStorage.getItem(STORAGE.name)
+        || "Marvel User",
+
+      balance:
+        Number(
+          localStorage.getItem(STORAGE.balance)
+          || 0
+        ),
+
+      posts:
+        JSON.parse(
+          localStorage.getItem(STORAGE.posts)
+          || "[]"
+        ),
+
+      messages:
+        JSON.parse(
+          localStorage.getItem(STORAGE.messages)
+          || "[]"
+        ),
+
+      skills:
+        JSON.parse(
+          localStorage.getItem(STORAGE.skills)
+          || "[]"
+        ),
+
+      listings:
+        JSON.parse(
+          localStorage.getItem(STORAGE.listings)
+          || "[]"
+        )
+    };
+
+
+    /* ==========================================
+       HELPERS
+    ========================================== */
+
+    function escapeHTML(value) {
+
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+
+    function saveState() {
+
+      localStorage.setItem(
+        STORAGE.theme,
+        state.dark ? "dark" : "light"
+      );
+
+      localStorage.setItem(
+        STORAGE.name,
+        state.name
+      );
+
+      localStorage.setItem(
+        STORAGE.balance,
+        state.balance
+      );
+
+      localStorage.setItem(
+        STORAGE.posts,
+        JSON.stringify(state.posts)
+      );
+
+      localStorage.setItem(
+        STORAGE.messages,
+        JSON.stringify(state.messages)
+      );
+
+      localStorage.setItem(
+        STORAGE.skills,
+        JSON.stringify(state.skills)
+      );
+
+      localStorage.setItem(
+        STORAGE.listings,
+        JSON.stringify(state.listings)
+      );
+    }
+
+
+    function initials(name) {
+
+      const parts =
+        String(name)
+          .trim()
+          .split(/\s+/)
+          .slice(0, 2);
+
+      return parts
+        .map(word => word[0])
+        .join("")
+        .toUpperCase();
+    }
+
+
+    function applyTheme() {
+
+      document.body.classList.toggle(
+        "dark",
+        state.dark
+      );
+    }
+
+
+    /* ==========================================
+       NAVIGATION
+    ========================================== */
+
+    function navigate(tab) {
+
+      state.tab = tab;
+
+      render();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+
+    function updateNavigation() {
+
+      document
+        .querySelectorAll(".nav-button")
+        .forEach(button => {
+
+          button.classList.toggle(
+            "active",
+            button.dataset.tab === state.tab
+          );
+
+        });
+    }
+
+
+    /* ==========================================
+       RENDER
+    ========================================== */
+
+    function render() {
+
+      applyTheme();
+
+      const main =
+        document.getElementById("main");
+
+      const pages = {
+        home: renderHome,
+        chat: renderChat,
+        time: renderTimeTrust,
+        market: renderMarketplace,
+        profile: renderProfile
+      };
+
+      main.innerHTML =
+        `<section class="page">
+          ${pages[state.tab]()}
+        </section>`;
+
+      updateNavigation();
+    }
+
+
+    /* ==========================================
+       HOME
+    ========================================== */
+
+    function renderHome() {
+
+      const defaultPosts = [
+        {
+          id: "welcome",
+          name: "Marvel Community",
+          text:
+            "Welcome to Marvel Chat. " +
+            "Chat, connect and trade your time.",
+          likes: 0
+        }
+      ];
+
+      const posts =
+        state.posts.length
+          ? state.posts
+          : defaultPosts;
+
+
+      return `
+
+        <section class="hero">
+
+          <span class="eyebrow">
+            GLOBAL SOCIAL + SKILLS
+          </span>
+
+          <h1>
+            Connect. Trade. Grow.
+          </h1>
+
+          <p>
+            Meet people, exchange skills,
+            discover businesses and turn
+            your time into opportunities.
+          </p>
+
+          <div class="hero-buttons">
+
+            <button
+              class="btn btn-primary"
+              onclick="navigate('time')"
+            >
+              Explore TimeTrust
+            </button>
+
+            <button
+              class="btn"
+              onclick="openCreatePost()"
+            >
+              Create Post
+            </button>
+
+          </div>
+
+        </section>
+
+
+        <div class="section-title">
+          <h2>Community</h2>
+
+          <button
+            class="btn btn-purple btn-small"
+            onclick="openCreatePost()"
+          >
+            + Post
+          </button>
+        </div>
+
+
+        ${posts.map(renderPost).join("")}
+
+
+        <div class="section-title">
+          <h2>Discover</h2>
+        </div>
+
+
+        <div class="grid">
+
+          <div class="card feature-card">
+            <div class="feature-icon">⏱</div>
+            <h3>TimeTrust</h3>
+            <p>
+              Exchange skills using time.
+            </p>
+          </div>
+
+          <div class="card feature-card">
+            <div class="feature-icon">🤝</div>
+            <h3>Smart Match</h3>
+            <p>
+              Find people who need what
+              you can offer.
+            </p>
+          </div>
+
+          <div class="card feature-card">
+            <div class="feature-icon">🏢</div>
+            <h3>Businesses</h3>
+            <p>
+              Discover businesses and
+              their services.
+            </p>
+          </div>
+
+          <div class="card feature-card">
+            <div class="feature-icon">🏆</div>
+            <h3>Achievements</h3>
+            <p>
+              Build your community reputation.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="section-title">
+          <h2>Built for real people</h2>
+        </div>
+
+        <div class="card">
+
+          <div class="notice">
+
+            📶 Low-data mode, multilingual
+            support and local-first discovery
+            are planned for the next stages.
+
+          </div>
+
+        </div>
+
+      `;
+    }
+
+
+    function renderPost(post, index) {
+
+      return `
+
+        <article class="card">
+
+          <div class="profile-row">
+
+            <div class="avatar">
+              ${escapeHTML(initials(post.name))}
+            </div>
+
+            <div class="profile-info">
+
+              <strong>
+                ${escapeHTML(post.name)}
+              </strong>
+
+              <small>
+                Community member · Public
+              </small>
+
+            </div>
+
+          </div>
+
+
+          <p class="post-text">
+            ${escapeHTML(post.text)}
+          </p>
+
+
+          <div class="post-actions">
+
+            <button
+              class="post-action"
+              onclick="likePost(${index})"
+            >
+              ♡ Like ${post.likes || 0}
+            </button>
+
+            <button
+              class="post-action"
+              onclick="openComment(${index})"
+            >
+              💬 Comment
+            </button>
+
+            <button
+              class="post-action"
+              onclick="sharePost(${index})"
+            >
+              ↗ Share
+            </button>
+
+            <button
+              class="post-action"
+              onclick="savePost(${index})"
+            >
+              🔖 Save
+            </button>
+
+          </div>
+
+        </article>
+
+      `;
+    }
+
+
+    /* ==========================================
+       CHAT
+    ========================================== */
+
+    function renderChat() {
+
+      return `
+
+        <div class="section-title">
+          <h2>Messages</h2>
+
+          <span class="badge">
+            Local demo
+          </span>
+        </div>
+
+
+        <div class="card">
+
+          <div class="profile-row">
+
+            <div class="avatar">
+              AI
+            </div>
+
+            <div class="profile-info">
+
+              <strong>
+                Marvel Assistant
+              </strong>
+
+              <small>
+                Online · Smart help
+              </small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div id="chatMessages">
+
+          ${
+            state.messages.length
+              ? state.messages.map(renderMessage).join("")
+              : `
+                <div class="empty">
+
+                  <div style="font-size:40px">
+                    💬
+                  </div>
+
+                  <p>
+                    Your conversations will
+                    appear here.
+                  </p>
+
+                </div>
+              `
+          }
+
+        </div>
+
+
+        <div class="chat-compose">
+
+          <input
+            id="messageInput"
+            class="input"
+            placeholder="Write a message..."
+            onkeydown="handleMessageKey(event)"
+          />
+
+          <button
+            class="btn btn-purple"
+            onclick="sendMessage()"
+          >
+            Send
+          </button>
+
+        </div>
+
+
+        <div class="card" style="margin-top:20px">
+
+          <strong>
+            Coming in the backend stage
+          </strong>
+
+          <p style="color:var(--muted);margin-top:6px">
+
+            Real-time messages · groups ·
+            channels · typing indicator ·
+            online status · seen receipts ·
+            files · voice notes · voice calls
+
+          </p>
+
+        </div>
+
+      `;
+    }
+
+
+    function renderMessage(message) {
+
+      const mine =
+        message.sender === state.name;
+
+      return `
+
+        <div class="chat-message ${mine ? "me" : ""}">
+
+          ${escapeHTML(message.text)}
+
+          <small>
+            ${escapeHTML(message.time)}
+          </small>
+
+        </div>
+
+      `;
+    }
+
+
+    function handleMessageKey(event) {
+
+      if (
+        event.key === "Enter"
+        && !event.shiftKey
+      ) {
+
+        event.preventDefault();
+
+        sendMessage();
+      }
+    }
+
+
+    function sendMessage() {
+
+      const input =
+        document.getElementById("messageInput");
+
+      if (!input) return;
+
+      const text =
+        input.value.trim();
+
+      if (!text) return;
+
+      state.messages.push({
+
+        sender: state.name,
+
+        text,
+
+        time:
+          new Date()
+            .toLocaleTimeString(
+              [],
+              {
+                hour: "2-digit",
+                minute: "2-digit"
+              }
+            )
+
+      });
+
+      saveState();
+
+      render();
+    }
+
+
+    /* ==========================================
+       TIMETRUST
+    ========================================== */
+
+    function renderTimeTrust() {
+
+      const percent =
+        Math.min(
+          100,
+          state.balance * 10
+        );
+
+
+      return `
+
+        <div class="section-title">
+          <h2>TimeTrust</h2>
+
+          <span class="badge">
+            Skills economy
+          </span>
+        </div>
+
+
+        <section class="time-balance">
+
+          <small>
+            YOUR TIME BALANCE
+          </small>
+
+          <div class="time-number">
+
+            ${state.balance.toFixed(1)}
+
+            <span>
+              hours
+            </span>
+
+          </div>
+
+          <p>
+            Your time balance represents
+            hours earned through completed
+            skill exchanges.
+          </p>
+
+          <div class="progress">
+            <i
+              style="width:${percent}%"
+            ></i>
+          </div>
+
+        </section>
+
+
+        <div class="section-title">
+          <h2>Trade skills</h2>
+        </div>
+
+
+        <div class="grid">
+
+          <div class="card feature-card">
+
+            <div class="feature-icon">
+              🛠
+            </div>
+
+            <h3>
+              Offer a Skill
+            </h3>
+
+            <p>
+              Tell the community what
+              you can do.
+            </p>
+
+            <br />
+
+            <button
+              class="btn btn-purple btn-small"
+              onclick="openSkillForm()"
+            >
+              List Skill
+            </button>
+
+          </div>
+
+
+          <div class="card feature-card">
+
+            <div class="feature-icon">
+              🔎
+            </div>
+
+            <h3>
+              Need a Skill?
+            </h3>
+
+            <p>
+              Tell people what you need.
+            </p>
+
+            <br />
+
+            <button
+              class="btn btn-small"
+              onclick="openRequestForm()"
+            >
+              Request
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="section-title">
+          <h2>Skill offers</h2>
+        </div>
+
+
+        ${
+          state.skills.length
+            ? state.skills.map(renderSkill).join("")
+            : `
+              <div class="card empty">
+
+                <div style="font-size:38px">
+                  🛠️
+                </div>
+
+                <p>
+                  No skill offers yet.
+                </p>
+
+                <br />
+
+                <button
+                  class="btn btn-purple"
+                  onclick="openSkillForm()"
+                >
+                  Be the first
+                </button>
+
+              </div>
+            `
+        }
+
+
+        <div class="section-title">
+          <h2>Smart features</h2>
+        </div>
+
+
+        <div class="card">
+
+          <h3>
+            🤖 AI Match of the Day
+          </h3>
+
+          <p style="color:var(--muted);margin:8px 0">
+
+            The future matching engine will
+            consider skills, location,
+            availability, trust and requests.
+
+          </p>
+
+          <div class="notice">
+
+            Example:
+            “Dawud offers coding.
+            Aisha needs coding.
+            Potential match found.”
+
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <h3>
+            🛡 Trust & Safety
+          </h3>
+
+          <p style="color:var(--muted);margin:8px 0">
+
+            Trades will eventually use a
+            confirmation flow: request →
+            accept → work → both confirm →
+            time transfer.
+
+          </p>
+
+          <span class="badge">
+            Escrow architecture planned
+          </span>
+
+        </div>
+
+      `;
+    }
+
+
+    function renderSkill(skill, index) {
+
+      return `
+
+        <div class="card">
+
+          <div class="skill-row">
+
+            <div class="feature-icon">
+              🛠
+            </div>
+
+            <div class="skill-main">
+
+              <strong>
+                ${escapeHTML(skill.skill)}
+              </strong>
+
+              <div class="skill-meta">
+
+                ${escapeHTML(skill.hours)}
+                hour(s)
+                ·
+                ${escapeHTML(skill.location || "Global")}
+
+              </div>
+
+              <br />
+
+              <button
+                class="btn btn-purple btn-small"
+                onclick="requestTrade(${index})"
+              >
+                Request Trade
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+    }
+
+
+    /* ==========================================
+       MARKETPLACE
+    ========================================== */
+
+    function renderMarketplace() {
+
+      return `
+
+        <div class="section-title">
+
+          <h2>
+            Marketplace
+          </h2>
+
+          <button
+            class="btn btn-purple btn-small"
+            onclick="openListingForm()"
+          >
+            + Sell
+          </button>
+
+        </div>
+
+
+        <div class="search-box">
+
+          <input
+            class="input"
+            id="marketSearch"
+            placeholder="Search products..."
+            oninput="filterMarketplace()"
+          />
+
+        </div>
+
+
+        <div id="marketResults">
+
+          ${
+            state.listings.length
+              ? state.listings
+                  .map(renderListing)
+                  .join("")
+              : `
+                <div class="card empty">
+
+                  <div style="font-size:40px">
+                    🛍️
+                  </div>
+
+                  <p>
+                    No marketplace listings yet.
+                  </p>
+
+                  <br />
+
+                  <button
+                    class="btn btn-purple"
+                    onclick="openListingForm()"
+                  >
+                    Create first listing
+                  </button>
+
+                </div>
+              `
+          }
+
+        </div>
+
+
+        <div class="grid">
+
+          <div class="card feature-card">
+
+            <div class="feature-icon">
+              🏢
+            </div>
+
+            <h3>
+              Business Pages
+            </h3>
+
+            <p>
+              Business profiles, catalogues,
+              analytics and boosted posts.
+            </p>
+
+          </div>
+
+
+          <div class="card feature-card">
+
+            <div class="feature-icon">
+              📈
+            </div>
+
+            <h3>
+              Business Growth
+            </h3>
+
+            <p>
+              Paid promotion will be connected
+              later using Paystack.
+            </p>
+
+          </div>
+
+        </div>
+
+      `;
+    }
+
+
+    function renderListing(listing) {
+
+      return `
+
+        <article class="card market-item">
+
+          <span class="badge">
+            ${escapeHTML(
+              listing.location || "Nigeria"
+            )}
+          </span>
+
+          <h3 style="margin-top:9px">
+            ${escapeHTML(listing.title)}
+          </h3>
+
+          <p style="color:var(--muted)">
+            ${escapeHTML(listing.description)}
+          </p>
+
+          <br />
+
+          <button
+            class="btn btn-purple btn-small"
+            onclick="alert('Secure purchase flow will be added after backend/payment integration.')"
+          >
+            Contact Seller
+          </button>
+
+        </article>
+
+      `;
+    }
+
+
+    /* ==========================================
+       PROFILE
+    ========================================== */
+
+    function renderProfile() {
+
+      return `
+
+        <div class="section-title">
+          <h2>Profile</h2>
+        </div>
+
+
+        <div class="card profile-center">
+
+          <div class="avatar avatar-large">
+
+            ${escapeHTML(
+              initials(state.name)
+            )}
+
+          </div>
+
+          <h2 style="margin-top:12px">
+            ${escapeHTML(state.name)}
+          </h2>
+
+          <p style="color:var(--muted)">
+            Marvel Chat member
+          </p>
+
+          <br />
+
+          <button
+            class="btn btn-purple"
+            onclick="openProfileForm()"
+          >
+            Edit Profile
+          </button>
+
+        </div>
+
+
+        <div class="card">
+
+          <h3>
+            ⚙ Settings
+          </h3>
+
+          <br />
+
+          <button
+            class="btn"
+            onclick="toggleTheme()"
+          >
+            ☼ Dark / Light Mode
+          </button>
+
+          <br /><br />
+
+          <button
+            class="btn"
+            onclick="showLowData()"
+          >
+            📶 Low-data Mode
+          </button>
+
+          <br /><br />
+
+          <button
+            class="btn"
+            onclick="showLanguages()"
+          >
+            🌍 Languages
+          </button>
+
+        </div>
+
+
+        <div class="card">
+
+          <h3>
+            🔗 Invite System
+          </h3>
+
+          <p style="color:var(--muted);margin:8px 0">
+
+            Every registered user will
+            eventually receive a unique
+            invite link.
+
+          </p>
+
+          <button
+            class="btn btn-purple btn-small"
+            onclick="copyInvite()"
+          >
+            Copy Demo Invite
+          </button>
+
+        </div>
+
+
+        <div class="card">
+
+          <h3>
+            🏆 Your Progress
+          </h3>
+
+          <br />
+
+          <span class="badge">
+            New Member
+          </span>
+
+          <p style="color:var(--muted);margin-top:10px">
+
+            Complete your first TimeTrust
+            exchange to unlock more
+            achievements.
+
+          </p>
+
+        </div>
+
+      `;
+    }
+
+
+    /* ==========================================
+       MODALS
+    ========================================== */
+
+    function openModal(content) {
+
+      document.getElementById(
+        "modalContent"
+      ).innerHTML = content;
+
+      document
+        .getElementById("modal")
+        .classList.add("open");
+    }
+
+
+    function closeModal() {
+
+      document
+        .getElementById("modal")
+        .classList.remove("open");
+    }
+
+
+    function closeModalOutside(event) {
+
+      if (
+        event.target.id === "modal"
+      ) {
+        closeModal();
+      }
+
+    }
+
+
+    /* ==========================================
+       CREATE POST
+    ========================================== */
+
+    function openCreatePost() {
+
+      openModal(`
+
+        <h2>
+          Create Post
+        </h2>
+
+        <div class="form-group">
+
+          <label>
+            What do you want to share?
+          </label>
+
+          <textarea
+            id="postInput"
+            class="input"
+            placeholder="Write something..."
+          ></textarea>
+
+        </div>
+
+        <div class="modal-actions">
+
+          <button
+            class="btn"
+            onclick="closeModal()"
+          >
+            Cancel
+          </button>
+
+          <button
+            class="btn btn-purple"
+            onclick="createPost()"
+          >
+            Publish
+          </button>
+
+        </div>
+
+      `);
+
+    }
+
+
+    function createPost() {
+
+      const input =
+        document.getElementById(
+          "postInput"
+        );
+
+      const text =
+        input.value.trim();
+
+      if (!text) {
+
+        alert(
+          "Please write something first."
+        );
+
+        return;
+      }
+
+
+      state.posts.unshift({
+
+        id: Date.now(),
+
+        name: state.name,
+
+        text,
+
+        likes: 0
+
+      });
+
+
+      saveState();
+
+      closeModal();
+
+      render();
+
+    }
+
+
+    function likePost(index) {
+
+      if (!state.posts[index]) return;
+
+      state.posts[index].likes =
+        (state.posts[index].likes || 0) + 1;
+
+      saveState();
+
+      render();
+    }
+
+
+    function openComment(index) {
+
+      openModal(`
+
+        <h2>
+          Comment
+        </h2>
+
+        <p style="color:var(--muted)">
+          ${escapeHTML(
+            state.posts[index]?.text || ""
+          )}
+        </p>
+
+        <br />
+
+        <input
+          class="input"
+          id="commentInput"
+          placeholder="Write a comment..."
+        />
+
+        <div class="modal-actions">
+
+          <button
+            class="btn"
+            onclick="closeModal()"
+          >
+            Cancel
+          </button>
+
+          <button
+            class="btn btn-purple"
+            onclick="sendComment()"
+          >
+            Comment
+          </button>
+
+        </div>
+
+      `);
+
+    }
+
+
+    function sendComment() {
+
+      const input =
+        document.getElementById(
+          "commentInput"
+        );
+
+      if (!input.value.trim()) return;
+
+      alert(
+        "Comment saved in the local demo."
+      );
+
+      closeModal();
+    }
+
+
+    function sharePost(index) {
+
+      const text =
+        state.posts[index]?.text
+        || "Marvel Chat";
+
+      if (
+        navigator.share
+      ) {
+
+        navigator.share({
+          title: "Marvel Chat",
+          text
+        });
+
+      } else {
+
+        navigator.clipboard
+          ?.writeText(text);
+
+        alert(
+          "Post text copied."
+        );
+
+      }
+
+    }
+
+
+    function savePost() {
+
+      alert(
+        "Saved locally in this prototype."
+      );
+
+    }
+
+
+    /* ==========================================
+       SKILLS
+    ========================================== */
+
+    function openSkillForm() {
+
+      openModal(`
+
+        <h2>
+          Offer a Skill
+        </h2>
+
+        <div class="form-group">
+
+          <label>
+            Skill
+          </label>
+
+          <input
+            class="input"
+            id="skillName"
+            placeholder="e.g. Graphic Design"
+          />
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Time
+          </label>
+
+          <input
+            class="input"
+            id="skillHours"
+            type="number"
+            min="0.5"
+            step="0.5"
+            placeholder="e.g. 2"
+          />
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Location
+          </label>
+
+          <input
+            class="input"
+            id="skillLocation"
+            placeholder="e.g. Kano or Global"
+          />
+
+        </div>
+
+
+        <div class="modal-actions">
+
+          <button
+            class="btn"
+            onclick="closeModal()"
+          >
+            Cancel
+          </button>
+
+          <button
+            class="btn btn-purple"
+            onclick="createSkill()"
+          >
+            Publish
+          </button>
+
+        </div>
+
+      `);
+
+    }
+
+
+    function createSkill() {
+
+      const skill =
+        document
+          .getElementById("skillName")
+          .value
+          .trim();
+
+      const hours =
+        Number(
+          document
+            .getElementById("skillHours")
+            .value
+        );
+
+      const location =
+        document
+          .getElementById("skillLocation")
+          .value
+          .trim();
+
+
+      if (
+        !skill
+        || !hours
+        || hours <= 0
+      ) {
+
+        alert(
+          "Enter a skill and valid hours."
+        );
+
+        return;
+      }
+
+
+      state.skills.unshift({
+
+        skill,
+
+        hours,
+
+        location:
+          location || "Global",
+
+        owner:
+          state.name
+
+      });
+
+
+      saveState();
+
+      closeModal();
+
+      render();
+
+    }
+
+
+    function requestTrade(index) {
+
+      const skill =
+        state.skills[index];
+
+      if (!skill) return;
+
+      openModal(`
+
+        <h2>
+          Request Trade
+        </h2>
+
+        <p>
+          You are requesting:
+        </p>
+
+        <br />
+
+        <div class="notice">
+
+          <strong>
+            ${escapeHTML(skill.skill)}
+          </strong>
+
+          <br />
+
+          ${escapeHTML(skill.hours)}
+          hour(s)
+
+        </div>
+
+        <br />
+
+        <p style="color:var(--muted)">
+
+          In the production version,
+          the request will enter a secure
+          trade workflow.
+
+        </p>
+
+        <div class="modal-actions">
+
+          <button
+            class="btn"
+            onclick="closeModal()"
+          >
+            Cancel
+          </button>
+
+          <button
+            class="btn btn-purple"
+            onclick="confirmTradeRequest()"
+          >
+            Send Request
+          </button>
+
+        </div>
+
+      `);
+
+    }
+
+
+    function confirmTradeRequest() {
+
+      alert(
+        "Trade request created in demo mode."
+      );
+
+      closeModal();
+
+    }
+
+
+    function openRequestForm() {
+
+      openModal(`
+
+        <h2>
+          Request a Skill
+        </h2>
+
+        <input
+          class="input"
+          id="requestSkill"
+          placeholder="What do you need?"
+        />
+
+        <br /><br />
+
+        <input
+          class="input"
+          id="requestHours"
+          type="number"
+          min="0.5"
+          step="0.5"
+          placeholder="How many hours?"
+        />
+
+        <br /><br />
+
+        <input
+          class="input"
+          id="requestLocation"
+          placeholder="Location or Global"
+        />
+
+        <div class="modal-actions">
+
+          <button
+            class="btn"
+            onclick="closeModal()"
+          >
+            Cancel
+          </button>
+
+          <button
+            class="btn btn-purple"
+            onclick="createRequest()"
+          >
+            Publish Request
+          </button>
+
+        </div>
+
+      `);
+
+    }
+
+
+    function createRequest() {
+
+      const skill =
+        document
+          .getElementById("requestSkill")
+          .value
+          .trim();
+
+      if (!skill) {
+
+        alert(
+          "Enter the skill you need."
+        );
+
+        return;
+      }
+
+      alert(
+        "Request created in demo mode."
+      );
+
+      closeModal();
+
+    }
+
+
+    /* ==========================================
+       MARKETPLACE
+    ========================================== */
+
+    function openListingForm() {
+
+      openModal(`
+
+        <h2>
+          Sell an Item
+        </h2>
+
+        <input
+          class="input"
+          id="listingTitle"
+          placeholder="Product name"
+        />
+
+        <br /><br />
+
+        <textarea
+          class="input"
+          id="listingDescription"
+          placeholder="Describe the product..."
+        ></textarea>
+
+        <br /><br />
+
+        <input
+          class="input"
+          id="listingLocation"
+          placeholder="Location"
+        />
+
+        <div class="modal-actions">
+
+          <button
+            class="btn"
+            onclick="closeModal()"
+          >
+            Cancel
+          </button>
+
+          <button
+            class="btn btn-purple"
+            onclick="createListing()"
+          >
+            Publish
+          </button>
+
+        </div>
+
+      `);
+
+    }
+
+
+    function createListing() {
+
+      const title =
+        document
+          .getElementById("listingTitle")
+          .value
+          .trim();
+
+      const description =
+        document
+          .getElementById("listingDescription")
+          .value
+          .trim();
+
+      const location =
+        document
+          .getElementById("listingLocation")
+          .value
+          .trim();
+
+
+      if (!title) {
+
+        alert(
+          "Enter a product name."
+        );
+
+        return;
+      }
+
+
+      state.listings.unshift({
+
+        title,
+
+        description,
+
+        location:
+          location || "Nigeria",
+
+        seller:
+          state.name
+
+      });
+
+
+      saveState();
+
+      closeModal();
+
+      render();
+
+    }
+
+
+    function filterMarketplace() {
+
+      const query =
+        document
+          .getElementById(
+            "marketSearch"
+          )
+          ?.value
+          .toLowerCase()
+          .trim();
+
+      document
+        .querySelectorAll(
+          ".market-item"
+        )
+        .forEach(item => {
+
+          item.style.display =
+            item.innerText
+              .toLowerCase()
+              .includes(query)
+                ? ""
+                : "none";
+
+        });
+
+    }
+
+
+    /* ==========================================
+       PROFILE
+    ========================================== */
+
+    function openProfileForm() {
+
+      openModal(`
+
+        <h2>
+          Edit Profile
+        </h2>
+
+        <label>
+          Name
+        </label>
+
+        <input
+          class="input"
+          id="profileName"
+          value="${escapeHTML(state.name)}"
+        />
+
+        <br /><br />
+
+        <label>
+          Bio
+        </label>
+
+        <textarea
+          class="input"
+          placeholder="Tell people about yourself..."
+        ></textarea>
+
+        <div class="modal-actions">
+
+          <button
+            class="btn"
+            onclick="closeModal()"
+          >
+            Cancel
+          </button>
+
+          <button
+            class="btn btn-purple"
+            onclick="saveProfile()"
+          >
+            Save Profile
+          </button>
+
+        </div>
+
+      `);
+
+    }
+
+
+    function saveProfile() {
+
+      const name =
+        document
+          .getElementById("profileName")
+          .value
+          .trim();
+
+      if (name) {
+
+        state.name = name;
+
+        saveState();
+
+      }
+
+      closeModal();
+
+      render();
+
+    }
+
+
+    /* ==========================================
+       THEME
+    ========================================== */
+
+    function toggleTheme() {
+
+      state.dark =
+        !state.dark;
+
+      saveState();
+
+      applyTheme();
+
+    }
+
+
+    /* ==========================================
+       NOTIFICATIONS
+    ========================================== */
+
+    function showNotifications() {
+
+      openModal(`
+
+        <h2>
+          Notifications
+        </h2>
+
+        <div class="notice">
+
+          🔔 You have no new notifications
+          in the local prototype.
+
+        </div>
+
+        <br />
+
+        <p style="color:var(--muted)">
+
+          Real notifications will be
+          powered by the backend later.
+
+        </p>
+
+      `);
+
+    }
+
+
+    /* ==========================================
+       LOW DATA
+    ========================================== */
+
+    function showLowData() {
+
+      openModal(`
+
+        <h2>
+          📶 Low-data Mode
+        </h2>
+
+        <div class="notice">
+
+          Marvel Chat will be designed
+          to minimise unnecessary data
+          usage.
+
+        </div>
+
+        <br />
+
+        <ul style="padding-left:20px;color:var(--muted)">
+
+          <li>Compressed images</li>
+          <li>Lazy-loaded media</li>
+          <li>Reduced video previews</li>
+          <li>Offline-first shell</li>
+          <li>Lightweight requests</li>
+
+        </ul>
+
+      `);
+
+    }
+
+
+    /* ==========================================
+       LANGUAGES
+    ========================================== */
+
+    function showLanguages() {
+
+      openModal(`
+
+        <h2>
+          🌍 Languages
+        </h2>
+
+        <select class="input">
+
+          <option>
+            English
+          </option>
+
+          <option>
+            Hausa
+          </option>
+
+          <option>
+            Yoruba
+          </option>
+
+          <option>
+            Igbo
+          </option>
+
+          <option>
+            Arabic
+          </option>
+
+          <option>
+            French
+          </option>
+
+        </select>
+
+        <br /><br />
+
+        <div class="notice">
+
+          The translation system will be
+          connected globally in a later stage.
+
+        </div>
+
+      `);
+
+    }
+
+
+    /* ==========================================
+       INVITE
+    ========================================== */
+
+    function copyInvite() {
+
+      const code =
+        "MARVEL-" +
+        Math.random()
+          .toString(36)
+          .slice(2, 9)
+          .toUpperCase();
+
+      const invite =
+        window.location.href
+        + "?invite="
+        + code;
+
+
+      if (
+        navigator.clipboard
+      ) {
+
+        navigator.clipboard
+          .writeText(invite);
+
+        alert(
+          "Demo invite link copied."
+        );
+
+      } else {
+
+        alert(invite);
+
+      }
+
+    }
+
+
+    /* ==========================================
+       INITIALISE
+    ========================================== */
+
+    saveState();
+
+    applyTheme();
+
+    render();
+
+  </script>
+
+</body>
+</html>
