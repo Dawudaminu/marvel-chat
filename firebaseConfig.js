@@ -1,5 +1,5 @@
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyDx0PKX6TXpd2BPOZaNCtkRCqD8qw34gL0",
   authDomain: "marvel-chat-49f23.firebaseapp.com",
   projectId: "marvel-chat-49f23",
