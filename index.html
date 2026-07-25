@@ -2934,5 +2934,19 @@
 
   </script>
 
+  <script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./serviceworker.js")
+      .then(registration => {
+        console.log("Marvel Chat service worker registered:", registration.scope);
+      })
+      .catch(error => {
+        console.error("Marvel Chat service worker registration failed:", error);
+      });
+  });
+}
+    </script>
+
 </body>
 </html>
