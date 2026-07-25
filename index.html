@@ -3296,28 +3296,28 @@
      FIREBASE CONFIG
      USE YOUR REAL VALUES HERE
   ========================================== */
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-  const firebaseConfig = {
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDx0PKX6TXpd2BPOZaNCtkRCqD8qw34gL0",
+  authDomain: "marvel-chat-49f23.firebaseapp.com",
+  projectId: "marvel-chat-49f23",
+  storageBucket: "marvel-chat-49f23.firebasestorage.app",
+  messagingSenderId: "93489441194",
+  appId: "1:93489441194:web:761b0830d025633d5823d3",
+  measurementId: "G-QDYWQ78M14"
+};
 
-    apiKey: "YOUR_REAL_API_KEY",
-
-    authDomain: "YOUR_REAL_AUTH_DOMAIN",
-
-    projectId: "YOUR_REAL_PROJECT_ID",
-
-    storageBucket: "YOUR_REAL_STORAGE_BUCKET",
-
-    messagingSenderId:
-      "YOUR_REAL_MESSAGING_SENDER_ID",
-
-    appId: "YOUR_REAL_APP_ID",
-
-    measurementId:
-      "YOUR_REAL_MEASUREMENT_ID"
-
-  };
-
-
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+  
   /* ==========================================
      INITIALIZE FIREBASE
   ========================================== */
