@@ -3,11 +3,12 @@ const CACHE_NAME = "marvel-chat-v4";
 const APP_SHELL = [
   "/marvel-chat/",
   "/marvel-chat/index.html",
+  "/marvel-chat/firebaseConfig.js",
   "/marvel-chat/manifest.json",
   "/marvel-chat/serviceworker.js",
   "/marvel-chat/icons/icon-192.png",
   "/marvel-chat/icons/icon-512.png"
-];
+]; 
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
