@@ -1237,11 +1237,8 @@
 
       <h1>Marvel Chat</h1>
 
-      <p>
-        Loading your account…
-      </p>
-
-      <div class="loader"></div>
+      <p id="startupStatus">Starting Marvel Chat…</p>
+<div class="loader"></div>
 
     </div>
 
@@ -1343,6 +1340,14 @@
   const auth = getAuth(app);
 
   const db = getFirestore(app);
+
+  console.log("🔥 Firebase initialized successfully");
+
+const startupStatus = document.getElementById("startupStatus");
+
+if (startupStatus) {
+  startupStatus.textContent = "Firebase initialized. Checking authentication…";
+}
 
 
   /* ============================================================
@@ -6899,6 +6904,7 @@
   onAuthStateChanged(
     auth,
     async user => {
+      console.log("🔥 Auth state resolved:", user ? user.uid : "No user");
 
       state.user =
         user;
