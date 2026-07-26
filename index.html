@@ -2,14 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1,viewport-fit=cover"
+  >
+
   <meta name="theme-color" content="#6D28D9">
-  <meta name="description" content="Marvel Chat — Chat. Connect. Trade Your Time.">
+
+  <meta
+    name="description"
+    content="Marvel Chat — Chat. Connect. Trade Your Time."
+  >
+
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="default"
+  >
 
-  <!-- GitHub Pages /marvel-chat/ compatible PWA paths -->
   <link rel="manifest" href="./manifest.json">
   <link rel="apple-touch-icon" href="./icons/icon-192.png">
 
@@ -20,18 +32,24 @@
       --primary:#6D28D9;
       --primary-2:#8B5CF6;
       --primary-dark:#4C1D95;
+
       --soft:#F0E9FF;
       --bg:#F7F7FB;
       --surface:#FFFFFF;
       --surface-2:#F0EEF5;
+
       --text:#17131F;
       --muted:#756E80;
       --border:#E5E0EA;
+
       --success:#16803C;
       --danger:#C62828;
       --warning:#A16207;
+
       --shadow:0 10px 30px rgba(40,20,80,.08);
-      --radius:18px;
+      --shadow-lg:0 20px 55px rgba(40,20,80,.13);
+
+      --radius:20px;
     }
 
     *{
@@ -46,7 +64,14 @@
     body{
       margin:0;
       min-height:100vh;
-      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
       background:var(--bg);
       color:var(--text);
     }
@@ -60,6 +85,11 @@
 
     button{
       cursor:pointer;
+    }
+
+    button:disabled{
+      opacity:.55;
+      cursor:not-allowed;
     }
 
     a{
@@ -77,17 +107,26 @@
       flex-direction:column;
     }
 
+    /* =========================================================
+       TOP BAR
+    ========================================================= */
+
     .topbar{
       position:sticky;
       top:0;
       z-index:100;
-      height:64px;
+
+      height:66px;
+
       background:rgba(255,255,255,.94);
       backdrop-filter:blur(18px);
+
       border-bottom:1px solid var(--border);
+
       display:flex;
       align-items:center;
       justify-content:space-between;
+
       padding:0 14px;
     }
 
@@ -99,15 +138,28 @@
     }
 
     .brand-logo{
-      width:40px;
-      height:40px;
-      border-radius:13px;
-      background:linear-gradient(135deg,var(--primary),var(--primary-2));
+      width:42px;
+      height:42px;
+
+      border-radius:14px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-2)
+        );
+
       color:white;
+
       display:grid;
       place-items:center;
+
       font-weight:900;
-      box-shadow:0 8px 20px rgba(109,40,217,.25);
+      font-size:18px;
+
+      box-shadow:
+        0 8px 20px rgba(109,40,217,.25);
     }
 
     .brand-name{
@@ -119,6 +171,7 @@
     .brand-sub{
       color:var(--muted);
       font-size:11px;
+      margin-top:1px;
     }
 
     .top-actions{
@@ -130,11 +183,15 @@
     .icon-btn{
       width:40px;
       height:40px;
+
       border:1px solid var(--border);
       background:var(--surface);
+
       border-radius:13px;
+
       display:grid;
       place-items:center;
+
       color:var(--text);
     }
 
@@ -142,10 +199,19 @@
       background:var(--soft);
     }
 
+    /* =========================================================
+       MAIN
+    ========================================================= */
+
     .main{
       width:min(1100px,100%);
       margin:0 auto;
-      padding:18px 14px 100px;
+
+      padding:
+        18px
+        14px
+        105px;
+
       flex:1;
     }
 
@@ -154,30 +220,61 @@
     }
 
     @keyframes fadeIn{
-      from{opacity:0;transform:translateY(4px)}
-      to{opacity:1;transform:none}
+      from{
+        opacity:0;
+        transform:translateY(4px);
+      }
+
+      to{
+        opacity:1;
+        transform:none;
+      }
     }
 
+    /* =========================================================
+       HERO
+    ========================================================= */
+
     .hero{
-      background:linear-gradient(135deg,#6D28D9,#8B5CF6);
+      background:
+        linear-gradient(
+          135deg,
+          #6D28D9,
+          #8B5CF6
+        );
+
       color:white;
-      border-radius:26px;
-      padding:24px;
-      box-shadow:0 18px 45px rgba(76,29,149,.22);
+
+      border-radius:27px;
+
+      padding:25px;
+
+      box-shadow:
+        0 18px 45px rgba(76,29,149,.22);
+
       margin-bottom:18px;
     }
 
     .hero h1{
       margin:0 0 7px;
-      font-size:clamp(24px,6vw,36px);
+
+      font-size:
+        clamp(25px,6vw,38px);
+
       line-height:1.05;
     }
 
     .hero p{
       margin:0;
-      opacity:.9;
+
+      opacity:.91;
+
       line-height:1.55;
     }
+
+    /* =========================================================
+       GRID / CARDS
+    ========================================================= */
 
     .grid{
       display:grid;
@@ -185,29 +282,38 @@
     }
 
     .grid-2{
-      grid-template-columns:repeat(2,minmax(0,1fr));
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
     }
 
     .grid-3{
-      grid-template-columns:repeat(3,minmax(0,1fr));
+      grid-template-columns:
+        repeat(3,minmax(0,1fr));
     }
 
     .card{
       background:var(--surface);
+
       border:1px solid var(--border);
+
       border-radius:var(--radius);
+
       box-shadow:var(--shadow);
+
       padding:17px;
     }
 
     .card h2,
     .card h3{
-      margin:0 0 8px;
+      margin:
+        0 0 8px;
     }
 
     .small{
       color:var(--muted);
+
       font-size:13px;
+
       line-height:1.5;
     }
 
@@ -219,8 +325,13 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
+
       gap:10px;
-      margin:22px 0 11px;
+
+      margin:
+        22px
+        0
+        11px;
     }
 
     .section-title h2{
@@ -228,11 +339,21 @@
       font-size:19px;
     }
 
+    /* =========================================================
+       BUTTONS
+    ========================================================= */
+
     .btn{
       border:0;
+
       border-radius:13px;
-      padding:11px 15px;
+
+      padding:
+        11px
+        15px;
+
       font-weight:800;
+
       transition:.15s;
     }
 
@@ -262,22 +383,39 @@
     .btn-ghost{
       background:transparent;
       color:var(--primary);
-      border:1px solid var(--border);
+
+      border:
+        1px solid
+        var(--border);
     }
 
     .btn-block{
       width:100%;
     }
 
+    /* =========================================================
+       FORMS
+    ========================================================= */
+
     .input,
     .textarea,
     .select{
       width:100%;
-      border:1px solid var(--border);
+
+      border:
+        1px solid
+        var(--border);
+
       background:#fff;
+
       border-radius:13px;
-      padding:12px 13px;
+
+      padding:
+        12px
+        13px;
+
       outline:none;
+
       color:var(--text);
     }
 
@@ -285,12 +423,15 @@
     .textarea:focus,
     .select:focus{
       border-color:var(--primary-2);
-      box-shadow:0 0 0 3px rgba(139,92,246,.12);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(139,92,246,.12);
     }
 
     .textarea{
       resize:vertical;
-      min-height:100px;
+      min-height:105px;
     }
 
     .field{
@@ -299,42 +440,70 @@
 
     .field label{
       display:block;
+
       font-size:13px;
+
       font-weight:800;
+
       margin-bottom:6px;
     }
 
+    /* =========================================================
+       BOTTOM NAV
+    ========================================================= */
+
     .bottom-nav{
       position:fixed;
+
       left:0;
       right:0;
       bottom:0;
+
       z-index:110;
-      height:70px;
-      background:rgba(255,255,255,.96);
+
+      height:72px;
+
+      background:
+        rgba(255,255,255,.97);
+
       backdrop-filter:blur(18px);
-      border-top:1px solid var(--border);
+
+      border-top:
+        1px solid
+        var(--border);
+
       display:flex;
       justify-content:center;
     }
 
     .bottom-inner{
       width:min(700px,100%);
+
       display:grid;
-      grid-template-columns:repeat(5,1fr);
+
+      grid-template-columns:
+        repeat(5,1fr);
+
       align-items:center;
     }
 
     .nav-btn{
       border:0;
+
       background:transparent;
+
       color:var(--muted);
+
       height:100%;
+
       display:flex;
       flex-direction:column;
+
       align-items:center;
       justify-content:center;
+
       gap:4px;
+
       font-size:11px;
       font-weight:700;
     }
@@ -348,54 +517,103 @@
       line-height:1;
     }
 
+    /* =========================================================
+       AUTH
+    ========================================================= */
+
     .auth-shell{
       min-height:100vh;
+
       display:grid;
       place-items:center;
+
       padding:20px;
+
       background:
-        radial-gradient(circle at top left,rgba(139,92,246,.2),transparent 40%),
-        radial-gradient(circle at bottom right,rgba(109,40,217,.16),transparent 40%),
+        radial-gradient(
+          circle at top left,
+          rgba(139,92,246,.20),
+          transparent 40%
+        ),
+        radial-gradient(
+          circle at bottom right,
+          rgba(109,40,217,.16),
+          transparent 40%
+        ),
         var(--bg);
     }
 
     .auth-card{
-      width:min(460px,100%);
+      width:min(470px,100%);
+
       background:#fff;
-      border:1px solid var(--border);
-      border-radius:28px;
-      padding:24px;
-      box-shadow:0 25px 70px rgba(35,20,60,.12);
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:29px;
+
+      padding:25px;
+
+      box-shadow:
+        0 25px 70px
+        rgba(35,20,60,.12);
     }
 
     .auth-logo{
-      width:66px;
-      height:66px;
-      border-radius:21px;
-      background:linear-gradient(135deg,var(--primary),var(--primary-2));
+      width:68px;
+      height:68px;
+
+      border-radius:22px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-2)
+        );
+
       color:#fff;
+
       display:grid;
       place-items:center;
-      font-size:28px;
+
+      font-size:29px;
       font-weight:900;
+
       margin-bottom:16px;
     }
 
     .auth-card h1{
-      margin:0 0 7px;
-      font-size:28px;
+      margin:
+        0 0 7px;
+
+      font-size:29px;
     }
 
     .auth-card p{
       color:var(--muted);
+
       line-height:1.5;
     }
 
+    /* =========================================================
+       STATUS
+    ========================================================= */
+
     .status{
       border-radius:12px;
-      padding:11px 13px;
+
+      padding:
+        11px
+        13px;
+
       font-size:13px;
-      margin:10px 0;
+
+      margin:
+        10px
+        0;
     }
 
     .status.error{
@@ -409,31 +627,44 @@
     }
 
     .status.info{
-      background:#F0E9FF;
+      background:var(--soft);
       color:var(--primary-dark);
     }
 
+    /* =========================================================
+       PROFILE
+    ========================================================= */
+
     .profile-row{
       display:flex;
+
       align-items:center;
+
       gap:12px;
     }
 
     .avatar{
       width:48px;
       height:48px;
+
       border-radius:50%;
+
       background:var(--soft);
+
       color:var(--primary);
+
       display:grid;
       place-items:center;
+
       font-weight:900;
+
       flex:none;
     }
 
     .avatar-lg{
-      width:76px;
-      height:76px;
+      width:78px;
+      height:78px;
+
       font-size:24px;
     }
 
@@ -444,10 +675,17 @@
 
     .profile-meta strong{
       display:block;
+
       overflow:hidden;
+
       text-overflow:ellipsis;
+
       white-space:nowrap;
     }
+
+    /* =========================================================
+       POSTS
+    ========================================================= */
 
     .post{
       margin-bottom:14px;
@@ -455,33 +693,53 @@
 
     .post-head{
       display:flex;
+
       align-items:center;
+
       gap:10px;
+
       margin-bottom:12px;
     }
 
     .post-body{
       line-height:1.6;
+
       white-space:pre-wrap;
+
       word-break:break-word;
     }
 
     .post-actions{
       display:flex;
+
       gap:8px;
+
       flex-wrap:wrap;
+
       margin-top:12px;
+
       padding-top:11px;
-      border-top:1px solid var(--border);
+
+      border-top:
+        1px solid
+        var(--border);
     }
 
     .action{
       border:0;
+
       background:var(--surface-2);
+
       color:var(--text);
+
       border-radius:11px;
-      padding:8px 11px;
+
+      padding:
+        8px
+        11px;
+
       font-size:12px;
+
       font-weight:700;
     }
 
@@ -489,6 +747,10 @@
       background:var(--soft);
       color:var(--primary);
     }
+
+    /* =========================================================
+       CHAT
+    ========================================================= */
 
     .chat-list{
       display:flex;
@@ -498,12 +760,21 @@
 
     .chat-item{
       display:flex;
+
       align-items:center;
+
       gap:11px;
+
       padding:12px;
-      border:1px solid var(--border);
+
+      border:
+        1px solid
+        var(--border);
+
       border-radius:15px;
+
       background:#fff;
+
       cursor:pointer;
     }
 
@@ -519,23 +790,33 @@
     .chat-content strong,
     .chat-content p{
       overflow:hidden;
+
       text-overflow:ellipsis;
+
       white-space:nowrap;
+
       display:block;
     }
 
     .chat-content p{
       margin:4px 0 0;
+
       font-size:12px;
+
       color:var(--muted);
     }
 
     .message-box{
       display:flex;
+
       gap:8px;
+
       position:sticky;
+
       bottom:78px;
+
       background:var(--bg);
+
       padding-top:10px;
     }
 
@@ -545,70 +826,113 @@
 
     .messages{
       min-height:350px;
+
       max-height:60vh;
+
       overflow:auto;
+
       display:flex;
+
       flex-direction:column;
+
       gap:8px;
+
       padding:4px 0;
     }
 
     .bubble{
       max-width:82%;
-      padding:10px 12px;
+
+      padding:
+        10px
+        12px;
+
       border-radius:16px;
+
       background:#fff;
-      border:1px solid var(--border);
+
+      border:
+        1px solid
+        var(--border);
+
       align-self:flex-start;
+
       line-height:1.45;
     }
 
     .bubble.mine{
       align-self:flex-end;
+
       background:var(--primary);
+
       color:#fff;
+
       border-color:var(--primary);
     }
 
     .bubble-time{
       font-size:10px;
+
       opacity:.65;
+
       margin-top:4px;
     }
 
+    /* =========================================================
+       LISTS / STATS
+    ========================================================= */
+
     .list{
       display:flex;
+
       flex-direction:column;
+
       gap:9px;
     }
 
     .list-item{
-      border:1px solid var(--border);
+      border:
+        1px solid
+        var(--border);
+
       border-radius:14px;
+
       padding:13px;
+
       background:#fff;
     }
 
     .list-item strong{
       display:block;
+
       margin-bottom:3px;
     }
 
     .stat{
       padding:15px;
+
       border-radius:16px;
+
       background:var(--soft);
     }
 
     .stat strong{
       display:block;
+
       font-size:25px;
+
       color:var(--primary-dark);
     }
 
+    /* =========================================================
+       SEARCH
+    ========================================================= */
+
     .search{
       display:flex;
+
       gap:8px;
+
       margin-bottom:14px;
     }
 
@@ -616,125 +940,233 @@
       flex:1;
     }
 
+    /* =========================================================
+       EMPTY
+    ========================================================= */
+
     .empty{
       text-align:center;
+
       padding:35px 15px;
+
       color:var(--muted);
     }
 
+    /* =========================================================
+       MODAL
+    ========================================================= */
+
     .modal-backdrop{
       position:fixed;
+
       inset:0;
-      background:rgba(15,10,25,.5);
+
+      background:
+        rgba(15,10,25,.5);
+
       z-index:500;
+
       display:grid;
+
       place-items:center;
+
       padding:15px;
     }
 
     .modal{
-      width:min(520px,100%);
+      width:min(540px,100%);
+
       max-height:90vh;
+
       overflow:auto;
+
       background:#fff;
+
       border-radius:24px;
+
       padding:20px;
-      box-shadow:0 30px 100px rgba(0,0,0,.25);
+
+      box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.25);
     }
 
     .modal-head{
       display:flex;
+
       justify-content:space-between;
+
       gap:10px;
+
       align-items:center;
+
       margin-bottom:15px;
     }
 
     .modal-head h2{
       margin:0;
+
       font-size:20px;
     }
 
+    /* =========================================================
+       TOAST
+    ========================================================= */
+
     .toast{
       position:fixed;
+
       left:50%;
+
       bottom:85px;
+
       transform:translateX(-50%);
+
       z-index:700;
+
       background:#17131F;
+
       color:#fff;
+
       border-radius:12px;
-      padding:11px 15px;
+
+      padding:
+        11px
+        15px;
+
       font-size:13px;
-      box-shadow:0 12px 30px rgba(0,0,0,.2);
+
+      box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.2);
+
       max-width:90%;
+
       text-align:center;
     }
 
+    /* =========================================================
+       LOADER
+    ========================================================= */
+
     .loader{
-      width:25px;
-      height:25px;
-      border:3px solid #ddd;
-      border-top-color:var(--primary);
+      width:27px;
+      height:27px;
+
+      border:
+        3px solid
+        #ddd;
+
+      border-top-color:
+        var(--primary);
+
       border-radius:50%;
-      animation:spin .7s linear infinite;
+
+      animation:
+        spin .7s
+        linear
+        infinite;
+
       margin:auto;
     }
 
     @keyframes spin{
-      to{transform:rotate(360deg)}
+      to{
+        transform:rotate(360deg);
+      }
     }
 
-    .online{
-      width:9px;
-      height:9px;
-      border-radius:50%;
-      background:var(--success);
-      display:inline-block;
-    }
+    /* =========================================================
+       STATUS DOTS
+    ========================================================= */
 
+    .online,
     .offline{
       width:9px;
       height:9px;
+
       border-radius:50%;
-      background:#999;
+
       display:inline-block;
     }
 
+    .online{
+      background:var(--success);
+    }
+
+    .offline{
+      background:#999;
+    }
+
+    /* =========================================================
+       BADGES
+    ========================================================= */
+
     .badge{
       display:inline-flex;
+
       align-items:center;
+
       gap:4px;
-      padding:4px 8px;
+
+      padding:
+        4px
+        8px;
+
       border-radius:999px;
+
       background:var(--soft);
+
       color:var(--primary-dark);
+
       font-size:11px;
+
       font-weight:800;
     }
 
+    /* =========================================================
+       COUNTRY
+    ========================================================= */
+
     .country-grid{
       display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
+
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
       gap:8px;
     }
 
     .country-option{
-      border:1px solid var(--border);
+      border:
+        1px solid
+        var(--border);
+
       background:#fff;
+
       border-radius:13px;
+
       padding:12px;
+
       text-align:left;
+
       font-weight:700;
     }
 
     .country-option.selected{
       border-color:var(--primary);
+
       background:var(--soft);
+
       color:var(--primary-dark);
     }
 
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
     @media(max-width:650px){
+
       .grid-3{
         grid-template-columns:1fr;
       }
@@ -751,20 +1183,38 @@
         padding-left:11px;
         padding-right:11px;
       }
+
+      .top-actions .icon-btn:nth-child(1){
+        display:none;
+      }
     }
 
     @media(min-width:700px){
+
       .bottom-nav{
         position:fixed;
-        width:calc(100% - 28px);
+
+        width:
+          calc(100% - 28px);
+
         left:14px;
         right:14px;
         bottom:12px;
+
         max-width:1100px;
+
         margin:auto;
-        border:1px solid var(--border);
+
+        border:
+          1px solid
+          var(--border);
+
         border-radius:20px;
-        box-shadow:0 15px 40px rgba(20,10,40,.12);
+
+        box-shadow:
+          0 15px 40px
+          rgba(20,10,40,.12);
+
         overflow:hidden;
       }
 
@@ -778,43 +1228,77 @@
 <body>
 
 <div id="root">
+
   <div class="auth-shell">
+
     <div class="auth-card">
+
       <div class="auth-logo">M</div>
+
       <h1>Marvel Chat</h1>
-      <p>Loading your account…</p>
+
+      <p>
+        Loading your account…
+      </p>
+
       <div class="loader"></div>
+
     </div>
+
   </div>
+
 </div>
 
 <div id="modalRoot"></div>
 <div id="toastRoot"></div>
 
+
 <script type="module">
+
   /*
    * ============================================================
    * MARVEL CHAT
-   * Production frontend
    *
-   * Firebase services used:
-   *   - Authentication
-   *   - Cloud Firestore
+   * Firebase:
+   *   Authentication
+   *   Cloud Firestore
    *
-   * Firebase Storage is intentionally NOT used.
+   * NO Firebase Storage
    *
-   * External project files:
-   *   ./firebaseconfig.js
-   *   ./manifest.json
-   *   ./serviceworker.js
+   * Collections used by this frontend:
+   *
+   * users
+   * users/{uid}/savedPosts
+   * users/{uid}/likedPosts
+   * users/{uid}/notifications
+   *
+   * posts
+   * posts/{postId}/likes
+   * posts/{postId}/comments
+   *
+   * conversations
+   * conversations/{conversationId}/messages
+   *
+   * skills
+   * skillRequests
+   * listings
    * ============================================================
    */
 
-  import { firebaseConfig } from "./firebaseconfig.js";
+
+  /* ============================================================
+     FIREBASE IMPORTS
+  ============================================================ */
+
+  import { firebaseConfig }
+    from "./firebaseconfig.js";
+
 
   import {
     initializeApp
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  } from
+    "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 
   import {
     getAuth,
@@ -823,7 +1307,9 @@
     signOut,
     onAuthStateChanged,
     updateProfile
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  } from
+    "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 
   import {
     getFirestore,
@@ -841,191 +1327,492 @@
     getDocs,
     onSnapshot,
     serverTimestamp,
-    increment
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    increment,
+    arrayUnion,
+    arrayRemove
+  } from
+    "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  /*
-   * IMPORTANT:
-   * There is deliberately NO:
-   *
-   * import { getStorage } ...
-   * getStorage()
-   * uploadBytes()
-   * getDownloadURL()
-   *
-   * This application does not depend on Firebase Storage.
-   */
+
+  /* ============================================================
+     FIREBASE INITIALIZATION
+  ============================================================ */
 
   const app = initializeApp(firebaseConfig);
+
   const auth = getAuth(app);
+
   const db = getFirestore(app);
 
+
+  /* ============================================================
+     APPLICATION STATE
+  ============================================================ */
+
   const state = {
-    user: null,
-    profile: null,
-    page: "home",
-    posts: [],
-    chats: [],
-    activeChat: null,
-    messages: [],
-    unsubscribePosts: null,
-    unsubscribeMessages: null,
-    unsubscribeChats: null,
-    loading: false,
-    search: "",
-    lowData: localStorage.getItem("marvel_low_data") === "1",
-    theme: localStorage.getItem("marvel_theme") || "light"
+
+    user:null,
+
+    profile:null,
+
+    page:"home",
+
+    posts:[],
+
+    conversations:[],
+
+    activeConversation:null,
+
+    messages:[],
+
+    skills:[],
+
+    listings:[],
+
+    unsubscribePosts:null,
+
+    unsubscribeConversations:null,
+
+    unsubscribeMessages:null,
+
+    unsubscribeSkills:null,
+
+    unsubscribeListings:null,
+
+    loading:false,
+
+    search:"",
+
+    lowData:
+      localStorage.getItem("marvel_low_data") === "1",
+
+    theme:
+      localStorage.getItem("marvel_theme") || "light"
+
   };
 
-  const root = document.getElementById("root");
-  const modalRoot = document.getElementById("modalRoot");
-  const toastRoot = document.getElementById("toastRoot");
+
+  /* ============================================================
+     DOM
+  ============================================================ */
+
+  const root =
+    document.getElementById("root");
+
+  const modalRoot =
+    document.getElementById("modalRoot");
+
+  const toastRoot =
+    document.getElementById("toastRoot");
+
+
+  /* ============================================================
+     COUNTRIES
+  ============================================================ */
 
   const countries = [
+
     ["NG","🇳🇬 Nigeria"],
+
     ["GH","🇬🇭 Ghana"],
+
     ["KE","🇰🇪 Kenya"],
+
     ["ZA","🇿🇦 South Africa"],
+
     ["US","🇺🇸 United States"],
+
     ["GB","🇬🇧 United Kingdom"],
+
     ["CA","🇨🇦 Canada"],
+
     ["IN","🇮🇳 India"],
+
     ["OTHER","🌍 Other"]
+
   ];
 
+
+  /* ============================================================
+     HELPERS
+  ============================================================ */
+
   function escapeHtml(value){
+
     return String(value ?? "")
+
       .replaceAll("&","&amp;")
+
       .replaceAll("<","&lt;")
+
       .replaceAll(">","&gt;")
+
       .replaceAll('"',"&quot;")
+
       .replaceAll("'","&#039;");
+
   }
+
 
   function initials(name){
-    const text = String(name || "User").trim();
+
+    const text =
+      String(name || "User").trim();
+
     return text
+
       .split(/\s+/)
+
       .slice(0,2)
-      .map(x => x[0]?.toUpperCase() || "")
+
+      .map(
+        x =>
+          x[0]?.toUpperCase() || ""
+      )
+
       .join("") || "U";
+
   }
+
 
   function formatDate(value){
-    if(!value) return "";
-    const date = value?.toDate ? value.toDate() : new Date(value);
-    if(Number.isNaN(date.getTime())) return "";
-    return date.toLocaleString([],{
-      day:"numeric",
-      month:"short",
-      hour:"2-digit",
-      minute:"2-digit"
-    });
+
+    if(!value){
+      return "";
+    }
+
+    const date =
+      value?.toDate
+        ? value.toDate()
+        : new Date(value);
+
+    if(
+      Number.isNaN(
+        date.getTime()
+      )
+    ){
+      return "";
+    }
+
+    return date.toLocaleString(
+      [],
+      {
+        day:"numeric",
+        month:"short",
+        hour:"2-digit",
+        minute:"2-digit"
+      }
+    );
   }
+
 
   function toast(message){
-    toastRoot.innerHTML = `<div class="toast">${escapeHtml(message)}</div>`;
-    setTimeout(() => {
-      toastRoot.innerHTML = "";
-    },2800);
-  }
 
-  function showModal(title, body){
-    modalRoot.innerHTML = `
-      <div class="modal-backdrop" id="modalBackdrop">
-        <div class="modal">
-          <div class="modal-head">
-            <h2>${escapeHtml(title)}</h2>
-            <button class="icon-btn" id="closeModal">✕</button>
-          </div>
-          ${body}
-        </div>
+    toastRoot.innerHTML = `
+
+      <div class="toast">
+
+        ${escapeHtml(message)}
+
       </div>
+
     `;
 
-    document.getElementById("closeModal")?.addEventListener("click",closeModal);
-
-    document.getElementById("modalBackdrop")?.addEventListener("click",e=>{
-      if(e.target.id === "modalBackdrop") closeModal();
-    });
+    setTimeout(
+      () => {
+        toastRoot.innerHTML = "";
+      },
+      2800
+    );
   }
+
+
+  function showModal(title,body){
+
+    modalRoot.innerHTML = `
+
+      <div
+        class="modal-backdrop"
+        id="modalBackdrop"
+      >
+
+        <div class="modal">
+
+          <div class="modal-head">
+
+            <h2>
+              ${escapeHtml(title)}
+            </h2>
+
+            <button
+              class="icon-btn"
+              id="closeModal"
+            >
+              ✕
+            </button>
+
+          </div>
+
+          ${body}
+
+        </div>
+
+      </div>
+
+    `;
+
+
+    document
+      .getElementById("closeModal")
+      ?.addEventListener(
+        "click",
+        closeModal
+      );
+
+
+    document
+      .getElementById("modalBackdrop")
+      ?.addEventListener(
+        "click",
+        event => {
+
+          if(
+            event.target.id ===
+            "modalBackdrop"
+          ){
+            closeModal();
+          }
+
+        }
+      );
+
+  }
+
 
   function closeModal(){
+
     modalRoot.innerHTML = "";
+
   }
 
-  function setLoading(value){
-    state.loading = value;
-  }
 
   function applyTheme(){
-    document.documentElement.dataset.theme = state.theme;
+
+    document.documentElement.dataset.theme =
+      state.theme;
+
 
     if(state.theme === "dark"){
-      document.documentElement.style.setProperty("--bg","#111016");
-      document.documentElement.style.setProperty("--surface","#191720");
-      document.documentElement.style.setProperty("--surface-2","#25212D");
-      document.documentElement.style.setProperty("--text","#F8F5FC");
-      document.documentElement.style.setProperty("--muted","#B4ACBF");
-      document.documentElement.style.setProperty("--border","#342D3E");
+
+      document.documentElement.style
+        .setProperty(
+          "--bg",
+          "#111016"
+        );
+
+      document.documentElement.style
+        .setProperty(
+          "--surface",
+          "#191720"
+        );
+
+      document.documentElement.style
+        .setProperty(
+          "--surface-2",
+          "#25212D"
+        );
+
+      document.documentElement.style
+        .setProperty(
+          "--text",
+          "#F8F5FC"
+        );
+
+      document.documentElement.style
+        .setProperty(
+          "--muted",
+          "#B4ACBF"
+        );
+
+      document.documentElement.style
+        .setProperty(
+          "--border",
+          "#342D3E"
+        );
+
     }else{
-      document.documentElement.style.setProperty("--bg","#F7F7FB");
-      document.documentElement.style.setProperty("--surface","#FFFFFF");
-      document.documentElement.style.setProperty("--surface-2","#F0EEF5");
-      document.documentElement.style.setProperty("--text","#17131F");
-      document.documentElement.style.setProperty("--muted","#756E80");
-      document.documentElement.style.setProperty("--border","#E5E0EA");
+
+      document.documentElement.style
+        .setProperty(
+          "--bg",
+          "#F7F7FB"
+        );
+
+      document.documentElement.style
+        .setProperty(
+          "--surface",
+          "#FFFFFF"
+        );
+
+      document.documentElement.style
+        .setProperty(
+          "--surface-2",
+          "#F0EEF5"
+        );
+
+      document.documentElement.style
+        .setProperty(
+          "--text",
+          "#17131F"
+        );
+
+      document.documentElement.style
+        .setProperty(
+          "--muted",
+          "#756E80"
+        );
+
+      document.documentElement.style
+        .setProperty(
+          "--border",
+          "#E5E0EA"
+        );
+
     }
+
   }
+
 
   applyTheme();
 
+
   function saveTheme(theme){
+
     state.theme = theme;
-    localStorage.setItem("marvel_theme",theme);
+
+    localStorage.setItem(
+      "marvel_theme",
+      theme
+    );
+
     applyTheme();
+
+    closeModal();
+
     render();
+
   }
+
 
   function saveLowData(value){
+
     state.lowData = value;
-    localStorage.setItem("marvel_low_data",value ? "1" : "0");
+
+    localStorage.setItem(
+      "marvel_low_data",
+      value ? "1" : "0"
+    );
+
   }
+
+
+  /* ============================================================
+     FIREBASE ERROR HANDLING
+  ============================================================ */
 
   function friendlyFirebaseError(error){
-    const code = error?.code || "";
+
+    const code =
+      error?.code || "";
+
 
     const messages = {
-      "auth/email-already-in-use":"This email is already registered.",
-      "auth/invalid-email":"Please enter a valid email address.",
-      "auth/weak-password":"Password must be at least 6 characters.",
-      "auth/invalid-credential":"Incorrect email or password.",
-      "auth/user-not-found":"No account was found with this email.",
-      "auth/wrong-password":"Incorrect password.",
-      "auth/network-request-failed":"Network connection failed. Check your internet.",
-      "auth/too-many-requests":"Too many attempts. Please wait and try again."
+
+      "auth/email-already-in-use":
+        "This email is already registered.",
+
+      "auth/invalid-email":
+        "Please enter a valid email address.",
+
+      "auth/weak-password":
+        "Password must be at least 6 characters.",
+
+      "auth/invalid-credential":
+        "Incorrect email or password.",
+
+      "auth/user-not-found":
+        "No account was found with this email.",
+
+      "auth/wrong-password":
+        "Incorrect password.",
+
+      "auth/network-request-failed":
+        "Network connection failed. Check your internet.",
+
+      "auth/too-many-requests":
+        "Too many attempts. Please wait and try again.",
+
+      "permission-denied":
+        "Firestore permission denied. Check your Firestore Rules."
+
     };
 
-    return messages[code] || error?.message || "Something went wrong.";
+
+    return (
+      messages[code] ||
+      error?.message ||
+      "Something went wrong."
+    );
+
   }
 
-  function renderAuth(mode="login",message=""){
-    root.innerHTML = `
-      <div class="auth-shell">
-        <div class="auth-card">
-          <div class="auth-logo">M</div>
 
-          <h1>Marvel Chat</h1>
+  /* ============================================================
+     AUTH SCREEN
+  ============================================================ */
+
+  function renderAuth(
+    mode="login",
+    message=""
+  ){
+
+    root.innerHTML = `
+
+      <div class="auth-shell">
+
+        <div class="auth-card">
+
+          <div class="auth-logo">
+            M
+          </div>
+
+          <h1>
+            Marvel Chat
+          </h1>
+
           <p>
-            Connect with people, chat, trade your time and discover opportunities.
+            Connect with people,
+            chat, trade your time
+            and discover opportunities.
           </p>
 
-          ${message ? `
-            <div class="status error">${escapeHtml(message)}</div>
-          ` : ""}
+          ${
+            message
+              ? `
+                <div class="status error">
+                  ${escapeHtml(message)}
+                </div>
+              `
+              : ""
+          }
+
 
           <div class="field">
-            <label>Email</label>
+
+            <label>
+              Email
+            </label>
+
             <input
               id="authEmail"
               class="input"
@@ -1033,181 +1820,456 @@
               autocomplete="email"
               placeholder="you@example.com"
             >
+
           </div>
 
+
           <div class="field">
-            <label>Password</label>
+
+            <label>
+              Password
+            </label>
+
             <input
               id="authPassword"
               class="input"
               type="password"
-              autocomplete="${mode === "login" ? "current-password" : "new-password"}"
+              autocomplete="${
+                mode === "login"
+                  ? "current-password"
+                  : "new-password"
+              }"
               placeholder="••••••••"
             >
+
           </div>
 
-          ${mode === "register" ? `
-            <div class="field">
-              <label>Username</label>
-              <input
-                id="authUsername"
-                class="input"
-                type="text"
-                autocomplete="username"
-                placeholder="Choose a username"
-              >
-            </div>
 
-            <div class="field">
-              <label>Phone number</label>
-              <input
-                id="authPhone"
-                class="input"
-                type="tel"
-                autocomplete="tel"
-                placeholder="+234..."
-              >
-            </div>
-          ` : ""}
+          ${
+            mode === "register"
+              ? `
 
-          <button class="btn btn-primary btn-block" id="authSubmit">
-            ${mode === "login" ? "Sign in" : "Create account"}
+                <div class="field">
+
+                  <label>
+                    Username
+                  </label>
+
+                  <input
+                    id="authUsername"
+                    class="input"
+                    type="text"
+                    maxlength="40"
+                    autocomplete="username"
+                    placeholder="Choose a username"
+                  >
+
+                </div>
+
+
+                <div class="field">
+
+                  <label>
+                    Phone number
+                  </label>
+
+                  <input
+                    id="authPhone"
+                    class="input"
+                    type="tel"
+                    autocomplete="tel"
+                    placeholder="+234..."
+                  >
+
+                </div>
+
+              `
+              : ""
+          }
+
+
+          <button
+            class="btn btn-primary btn-block"
+            id="authSubmit"
+          >
+
+            ${
+              mode === "login"
+                ? "Sign in"
+                : "Create account"
+            }
+
           </button>
+
 
           <div style="height:10px"></div>
 
-          <button class="btn btn-ghost btn-block" id="authSwitch">
-            ${mode === "login"
-              ? "Create a new account"
-              : "I already have an account"}
+
+          <button
+            class="btn btn-ghost btn-block"
+            id="authSwitch"
+          >
+
+            ${
+              mode === "login"
+                ? "Create a new account"
+                : "I already have an account"
+            }
+
           </button>
 
-          <p class="small" style="margin-top:15px">
-            By continuing, you agree to use Marvel Chat responsibly.
+
+          <p
+            class="small"
+            style="margin-top:15px"
+          >
+            Marvel Chat uses Firebase Authentication
+            to protect your account.
           </p>
+
         </div>
+
       </div>
+
     `;
 
-    document.getElementById("authSubmit")?.addEventListener("click",async()=>{
-      const email = document.getElementById("authEmail")?.value.trim();
-      const password = document.getElementById("authPassword")?.value;
 
-      if(!email || !password){
-        renderAuth(mode,"Please enter your email and password.");
-        return;
-      }
+    document
+      .getElementById("authSubmit")
+      ?.addEventListener(
+        "click",
+        async () => {
 
-      try{
-        setLoading(true);
+          const email =
+            document
+              .getElementById("authEmail")
+              ?.value
+              .trim();
 
-        if(mode === "login"){
-          await signInWithEmailAndPassword(auth,email,password);
-        }else{
-          const username = document.getElementById("authUsername")?.value.trim();
-          const phone = document.getElementById("authPhone")?.value.trim();
+          const password =
+            document
+              .getElementById("authPassword")
+              ?.value;
 
-          if(!username){
-            renderAuth(mode,"Username is required.");
+
+          if(!email || !password){
+
+            renderAuth(
+              mode,
+              "Please enter your email and password."
+            );
+
             return;
           }
 
-          if(!phone){
-            renderAuth(mode,"Phone number is required.");
-            return;
+
+          try{
+
+            if(mode === "login"){
+
+              await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+              );
+
+            }else{
+
+              const username =
+                document
+                  .getElementById("authUsername")
+                  ?.value
+                  .trim();
+
+              const phone =
+                document
+                  .getElementById("authPhone")
+                  ?.value
+                  .trim();
+
+
+              if(!username){
+
+                renderAuth(
+                  mode,
+                  "Username is required."
+                );
+
+                return;
+              }
+
+
+              if(!phone){
+
+                renderAuth(
+                  mode,
+                  "Phone number is required."
+                );
+
+                return;
+              }
+
+
+              if(username.length < 3){
+
+                renderAuth(
+                  mode,
+                  "Username must be at least 3 characters."
+                );
+
+                return;
+              }
+
+
+              const credential =
+                await createUserWithEmailAndPassword(
+                  auth,
+                  email,
+                  password
+                );
+
+
+              await updateProfile(
+                credential.user,
+                {
+                  displayName:username
+                }
+              );
+
+
+              /*
+               * IMPORTANT:
+               *
+               * timeBalance is included because
+               * the Firestore rules expect it.
+               */
+
+              await setDoc(
+                doc(
+                  db,
+                  "users",
+                  credential.user.uid
+                ),
+                {
+
+                  uid:
+                    credential.user.uid,
+
+                  username,
+
+                  displayName:
+                    username,
+
+                  email,
+
+                  phone,
+
+                  country:null,
+
+                  onboardingComplete:false,
+
+                  timeBalance:0,
+
+                  createdAt:
+                    serverTimestamp(),
+
+                  updatedAt:
+                    serverTimestamp()
+
+                },
+                {
+                  merge:true
+                }
+              );
+
+            }
+
+          }catch(error){
+
+            console.error(
+              "Authentication error:",
+              error
+            );
+
+            renderAuth(
+              mode,
+              friendlyFirebaseError(error)
+            );
+
           }
 
-          const credential =
-            await createUserWithEmailAndPassword(auth,email,password);
-
-          await updateProfile(credential.user,{
-            displayName:username
-          });
-
-          await setDoc(
-            doc(db,"users",credential.user.uid),
-            {
-              uid:credential.user.uid,
-              username,
-              displayName:username,
-              email,
-              phone,
-              country:null,
-              onboardingComplete:false,
-              createdAt:serverTimestamp(),
-              updatedAt:serverTimestamp()
-            },
-            {merge:true}
-          );
         }
-      }catch(error){
-        console.error(error);
-        renderAuth(mode,friendlyFirebaseError(error));
-      }finally{
-        setLoading(false);
-      }
-    });
+      );
 
-    document.getElementById("authSwitch")?.addEventListener("click",()=>{
-      renderAuth(mode === "login" ? "register" : "login");
-    });
+
+    document
+      .getElementById("authSwitch")
+      ?.addEventListener(
+        "click",
+        () => {
+
+          renderAuth(
+            mode === "login"
+              ? "register"
+              : "login"
+          );
+
+        }
+      );
+
   }
+
+
+  /* ============================================================
+     LOAD PROFILE
+  ============================================================ */
 
   async function loadProfile(user){
-    const ref = doc(db,"users",user.uid);
-    const snap = await getDoc(ref);
+
+    const ref =
+      doc(
+        db,
+        "users",
+        user.uid
+      );
+
+
+    const snap =
+      await getDoc(ref);
+
 
     if(snap.exists()){
+
       state.profile = {
+
         uid:user.uid,
+
         ...snap.data()
-      };
-    }else{
-      state.profile = {
-        uid:user.uid,
-        username:user.displayName || "User",
-        displayName:user.displayName || "User",
-        email:user.email || "",
-        phone:"",
-        country:null,
-        onboardingComplete:false
+
       };
 
-      await setDoc(ref,{
-        ...state.profile,
-        createdAt:serverTimestamp(),
-        updatedAt:serverTimestamp()
-      },{merge:true});
+    }else{
+
+      /*
+       * This also makes sure a profile exists
+       * for an authenticated Firebase user.
+       */
+
+      state.profile = {
+
+        uid:user.uid,
+
+        username:
+          user.displayName ||
+          "User",
+
+        displayName:
+          user.displayName ||
+          "User",
+
+        email:
+          user.email ||
+          "",
+
+        phone:"",
+
+        country:null,
+
+        onboardingComplete:false,
+
+        timeBalance:0
+
+      };
+
+
+      await setDoc(
+        ref,
+        {
+
+          ...state.profile,
+
+          createdAt:
+            serverTimestamp(),
+
+          updatedAt:
+            serverTimestamp()
+
+        },
+        {
+          merge:true
+        }
+      );
+
     }
+
   }
 
+
+  /* ============================================================
+     ONBOARDING
+  ============================================================ */
+
   function renderOnboarding(){
-    const selected = state.profile?.country || "";
+
+    const selected =
+      state.profile?.country ||
+      "";
+
 
     root.innerHTML = `
-      <div class="auth-shell">
-        <div class="auth-card">
-          <div class="auth-logo">M</div>
 
-          <h1>Welcome to Marvel Chat</h1>
+      <div class="auth-shell">
+
+        <div class="auth-card">
+
+          <div class="auth-logo">
+            M
+          </div>
+
+          <h1>
+            Welcome to Marvel Chat
+          </h1>
 
           <p>
-            One more step. Select your country so we can personalize your
+            One more step. Select your country
+            so we can personalize your
             Marvel Chat experience.
           </p>
 
+
           <div class="country-grid">
-            ${countries.map(([code,label])=>`
-              <button
-                class="country-option ${selected === code ? "selected" : ""}"
-                data-country="${code}"
-              >
-                ${label}
-              </button>
-            `).join("")}
+
+            ${
+              countries
+                .map(
+                  ([code,label]) => `
+
+                    <button
+                      class="
+                        country-option
+                        ${
+                          selected === code
+                            ? "selected"
+                            : ""
+                        }
+                      "
+                      data-country="${code}"
+                    >
+
+                      ${label}
+
+                    </button>
+
+                  `
+                )
+                .join("")
+            }
+
           </div>
 
+
           <div style="height:14px"></div>
+
 
           <button
             class="btn btn-primary btn-block"
@@ -1217,1566 +2279,4808 @@
             Continue
           </button>
 
+
           <div style="height:8px"></div>
 
-          <button class="btn btn-ghost btn-block" id="signOutOnboarding">
+
+          <button
+            class="btn btn-ghost btn-block"
+            id="signOutOnboarding"
+          >
             Sign out
           </button>
+
         </div>
+
       </div>
+
     `;
 
-    document.querySelectorAll("[data-country]").forEach(button=>{
-      button.addEventListener("click",()=>{
-        state.profile.country = button.dataset.country;
 
-        document.querySelectorAll("[data-country]").forEach(x=>{
-          x.classList.toggle(
-            "selected",
-            x.dataset.country === state.profile.country
-          );
-        });
+    document
+      .querySelectorAll("[data-country]")
+      .forEach(button => {
 
-        document.getElementById("finishOnboarding").disabled = false;
+        button.addEventListener(
+          "click",
+          () => {
+
+            state.profile.country =
+              button.dataset.country;
+
+
+            document
+              .querySelectorAll(
+                "[data-country]"
+              )
+              .forEach(item => {
+
+                item.classList.toggle(
+                  "selected",
+                  item.dataset.country ===
+                    state.profile.country
+                );
+
+              });
+
+
+            document
+              .getElementById(
+                "finishOnboarding"
+              )
+              .disabled = false;
+
+          }
+        );
+
       });
-    });
 
-    document.getElementById("finishOnboarding")?.addEventListener("click",async()=>{
-      if(!state.profile.country) return;
 
-      try{
-        await updateDoc(doc(db,"users",state.user.uid),{
-          country:state.profile.country,
-          onboardingComplete:true,
-          updatedAt:serverTimestamp()
-        });
+    document
+      .getElementById(
+        "finishOnboarding"
+      )
+      ?.addEventListener(
+        "click",
+        async () => {
 
-        state.profile.onboardingComplete = true;
-        render();
-      }catch(error){
-        console.error(error);
-        toast("Could not save your country.");
-      }
-    });
+          if(
+            !state.profile.country
+          ){
+            return;
+          }
 
-    document.getElementById("signOutOnboarding")?.addEventListener("click",()=>{
-      signOut(auth);
-    });
+
+          try{
+
+            /*
+             * This update is compatible with
+             * the users/{uid} rule because
+             * email and timeBalance already
+             * exist in the profile.
+             */
+
+            await updateDoc(
+              doc(
+                db,
+                "users",
+                state.user.uid
+              ),
+              {
+
+                country:
+                  state.profile.country,
+
+                onboardingComplete:true,
+
+                updatedAt:
+                  serverTimestamp()
+
+              }
+            );
+
+
+            state.profile.onboardingComplete =
+              true;
+
+
+            render();
+
+          }catch(error){
+
+            console.error(error);
+
+            toast(
+              friendlyFirebaseError(error)
+            );
+
+          }
+
+        }
+      );
+
+
+    document
+      .getElementById(
+        "signOutOnboarding"
+      )
+      ?.addEventListener(
+        "click",
+        () => signOut(auth)
+      );
+
   }
+
+
+  /* ============================================================
+     NAVIGATION
+  ============================================================ */
+
+  function navButton(
+    page,
+    icon,
+    label
+  ){
+
+    return `
+
+      <button
+        class="
+          nav-btn
+          ${
+            state.page === page
+              ? "active"
+              : ""
+          }
+        "
+        data-nav="${page}"
+      >
+
+        <span class="nav-icon">
+          ${icon}
+        </span>
+
+        <span>
+          ${label}
+        </span>
+
+      </button>
+
+    `;
+
+  }
+
 
   function layout(content){
+
     const displayName =
+
       state.profile?.displayName ||
+
       state.profile?.username ||
+
       state.user?.displayName ||
+
       "User";
 
+
     root.innerHTML = `
+
       <div class="app">
+
+
         <header class="topbar">
+
           <div class="brand">
-            <div class="brand-logo">M</div>
+
+            <div class="brand-logo">
+              M
+            </div>
+
 
             <div>
-              <div class="brand-name">Marvel Chat</div>
-              <div class="brand-sub">
-                ${navigator.onLine
-                  ? `<span class="online"></span> Online`
-                  : `<span class="offline"></span> Offline`}
+
+              <div class="brand-name">
+                Marvel Chat
               </div>
+
+              <div class="brand-sub">
+
+                ${
+                  navigator.onLine
+
+                    ? `
+                      <span class="online"></span>
+                      Online
+                    `
+
+                    : `
+                      <span class="offline"></span>
+                      Offline
+                    `
+                }
+
+              </div>
+
             </div>
+
           </div>
+
 
           <div class="top-actions">
-            <button class="icon-btn" id="searchBtn" title="Search">⌕</button>
-            <button class="icon-btn" id="notifyBtn" title="Notifications">🔔</button>
-            <button class="icon-btn" id="profileQuickBtn" title="Profile">
-              ${escapeHtml(initials(displayName))}
+
+            <button
+              class="icon-btn"
+              id="searchBtn"
+              title="Search"
+            >
+              ⌕
             </button>
+
+
+            <button
+              class="icon-btn"
+              id="notifyBtn"
+              title="Notifications"
+            >
+              🔔
+            </button>
+
+
+            <button
+              class="icon-btn"
+              id="profileQuickBtn"
+              title="Profile"
+            >
+              ${escapeHtml(
+                initials(displayName)
+              )}
+            </button>
+
           </div>
+
         </header>
 
+
         <main class="main">
+
           ${content}
+
         </main>
 
+
         <nav class="bottom-nav">
+
           <div class="bottom-inner">
-            ${navButton("home","⌂","Home")}
-            ${navButton("chat","💬","Chat")}
-            ${navButton("timetrust","⏱","TimeTrust")}
-            ${navButton("market","🛍","Market")}
-            ${navButton("profile","👤","Profile")}
+
+            ${navButton(
+              "home",
+              "⌂",
+              "Home"
+            )}
+
+            ${navButton(
+              "chat",
+              "💬",
+              "Chat"
+            )}
+
+            ${navButton(
+              "timetrust",
+              "⏱",
+              "TimeTrust"
+            )}
+
+            ${navButton(
+              "market",
+              "🛍",
+              "Market"
+            )}
+
+            ${navButton(
+              "profile",
+              "👤",
+              "Profile"
+            )}
+
           </div>
+
         </nav>
+
       </div>
+
     `;
 
-    document.querySelectorAll("[data-nav]").forEach(button=>{
-      button.addEventListener("click",()=>{
-        state.page = button.dataset.nav;
-        render();
+
+    /*
+     * IMPORTANT FIX:
+     *
+     * The previous version rendered the UI
+     * but did not always attach the page events.
+     */
+
+    document
+      .querySelectorAll("[data-nav]")
+      .forEach(button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            state.page =
+              button.dataset.nav;
+
+            render();
+
+          }
+        );
+
       });
-    });
 
-    document.getElementById("searchBtn")?.addEventListener("click",showSearch);
-    document.getElementById("notifyBtn")?.addEventListener("click",showNotifications);
 
-    document.getElementById("profileQuickBtn")?.addEventListener("click",()=>{
-      state.page = "profile";
-      render();
-    });
+    document
+      .getElementById("searchBtn")
+      ?.addEventListener(
+        "click",
+        showSearch
+      );
+
+
+    document
+      .getElementById("notifyBtn")
+      ?.addEventListener(
+        "click",
+        showNotifications
+      );
+
+
+    document
+      .getElementById(
+        "profileQuickBtn"
+      )
+      ?.addEventListener(
+        "click",
+        () => {
+
+          state.page = "profile";
+
+          render();
+
+        }
+      );
+
+
+    attachPageEvents();
+
   }
 
-  function navButton(page,icon,label){
-    return `
-      <button class="nav-btn ${state.page === page ? "active" : ""}" data-nav="${page}">
-        <span class="nav-icon">${icon}</span>
-        <span>${label}</span>
-      </button>
-    `;
-  }
+
+  /* ============================================================
+     MAIN RENDER
+  ============================================================ */
 
   function render(){
+
     if(!state.user){
+
       renderAuth();
+
       return;
     }
 
-    if(!state.profile?.onboardingComplete){
+
+    if(
+      !state.profile?.onboardingComplete
+    ){
+
       renderOnboarding();
+
       return;
     }
+
 
     let content = "";
 
+
     switch(state.page){
+
       case "chat":
-        content = renderChatPage();
+
+        content =
+          renderChatPage();
+
         break;
+
 
       case "timetrust":
-        content = renderTimeTrustPage();
+
+        content =
+          renderTimeTrustPage();
+
         break;
+
 
       case "market":
-        content = renderMarketPage();
+
+        content =
+          renderMarketPage();
+
         break;
+
 
       case "profile":
-        content = renderProfilePage();
+
+        content =
+          renderProfilePage();
+
         break;
+
 
       case "home":
+
       default:
-        content = renderHomePage();
+
+        content =
+          renderHomePage();
+
         break;
+
     }
+
 
     layout(content);
+
   }
+
+
+  /* ============================================================
+     HOME
+  ============================================================ */
 
   function renderHomePage(){
+
     const name =
+
       state.profile?.displayName ||
+
       state.profile?.username ||
+
       "there";
 
+
     return `
-      <section class="hero">
-        <h1>Hello, ${escapeHtml(name)} 👋</h1>
-        <p>
-          Welcome back to Marvel Chat. Connect, communicate,
-          trade your time and discover your community.
-        </p>
-      </section>
 
-      <div class="grid grid-3">
-        <div class="stat">
-          <strong>${state.posts.length}</strong>
-          <span class="small">Visible posts</span>
+      <div class="page">
+
+
+        <section class="hero">
+
+          <h1>
+            Hello, ${escapeHtml(name)} 👋
+          </h1>
+
+          <p>
+            Welcome back to Marvel Chat.
+            Connect, communicate, trade your
+            time and discover your community.
+          </p>
+
+        </section>
+
+
+        <div class="grid grid-3">
+
+          <div class="stat">
+
+            <strong>
+              ${state.posts.length}
+            </strong>
+
+            <span class="small">
+              Community posts
+            </span>
+
+          </div>
+
+
+          <div class="stat">
+
+            <strong>
+              ${state.conversations.length}
+            </strong>
+
+            <span class="small">
+              Your conversations
+            </span>
+
+          </div>
+
+
+          <div class="stat">
+
+            <strong>
+              ${escapeHtml(
+                state.profile?.country || "—"
+              )}
+            </strong>
+
+            <span class="small">
+              Country
+            </span>
+
+          </div>
+
         </div>
 
-        <div class="stat">
-          <strong>${state.chats.length}</strong>
-          <span class="small">Your chats</span>
+
+        <div class="section-title">
+
+          <h2>
+            Community
+          </h2>
+
+          <button
+            class="btn btn-secondary"
+            id="createPostBtn"
+          >
+            + Post
+          </button>
+
         </div>
 
-        <div class="stat">
-          <strong>${state.profile?.country || "—"}</strong>
-          <span class="small">Country</span>
+
+        <div id="feed">
+
+          ${renderPosts()}
+
         </div>
+
       </div>
 
-      <div class="section-title">
-        <h2>Community</h2>
-        <button class="btn btn-secondary" id="createPostBtn">
-          + Post
-        </button>
-      </div>
-
-      <div id="feed">
-        ${renderPosts()}
-      </div>
     `;
+
   }
+
 
   function renderPosts(){
+
     if(!state.posts.length){
+
       return `
+
         <div class="card empty">
-          <div style="font-size:30px">💬</div>
-          <h3>No posts yet</h3>
-          <p>Be the first person to start a conversation.</p>
-          <button class="btn btn-primary" id="emptyCreatePost">
+
+          <div style="font-size:30px">
+            💬
+          </div>
+
+          <h3>
+            No posts yet
+          </h3>
+
+          <p>
+            Be the first person to start
+            a conversation.
+          </p>
+
+          <button
+            class="btn btn-primary"
+            id="emptyCreatePost"
+          >
             Create a post
           </button>
+
         </div>
+
       `;
+
     }
 
-    return state.posts.map(post=>`
-      <article class="card post">
-        <div class="post-head">
-          <div class="avatar">${escapeHtml(initials(post.username))}</div>
 
-          <div class="profile-meta">
-            <strong>${escapeHtml(post.username || "User")}</strong>
-            <span class="small">${escapeHtml(formatDate(post.createdAt))}</span>
-          </div>
-        </div>
+    return state.posts
+      .map(post => {
 
-        <div class="post-body">
-          ${escapeHtml(post.text || "")}
-        </div>
-
-        <div class="post-actions">
-          <button
-            class="action ${post.likedBy?.includes(state.user.uid) ? "active" : ""}"
-            data-like="${post.id}"
-          >
-            ❤️ ${post.likes || 0}
-          </button>
-
-          <button class="action" data-comment="${post.id}">
-            💬 ${post.comments || 0}
-          </button>
-
-          <button class="action" data-share="${post.id}">
-            ↗ Share
-          </button>
-
-          <button class="action" data-save="${post.id}">
-            🔖 Save
-          </button>
-        </div>
-      </article>
-    `).join("");
-  }
-
-  function attachHomeEvents(){
-    document.getElementById("createPostBtn")?.addEventListener("click",showCreatePost);
-    document.getElementById("emptyCreatePost")?.addEventListener("click",showCreatePost);
-
-    document.querySelectorAll("[data-like]").forEach(button=>{
-      button.addEventListener("click",()=>toggleLike(button.dataset.like));
-    });
-
-    document.querySelectorAll("[data-comment]").forEach(button=>{
-      button.addEventListener("click",()=>showComments(button.dataset.comment));
-    });
-
-    document.querySelectorAll("[data-share]").forEach(button=>{
-      button.addEventListener("click",()=>sharePost(button.dataset.share));
-    });
-
-    document.querySelectorAll("[data-save]").forEach(button=>{
-      button.addEventListener("click",()=>savePost(button.dataset.save));
-    });
-  }
-
-  function showCreatePost(){
-    showModal("Create a post",`
-      <div class="field">
-        <label>What's on your mind?</label>
-        <textarea
-          id="postText"
-          class="textarea"
-          maxlength="2000"
-          placeholder="Write something..."
-        ></textarea>
-      </div>
-
-      <button class="btn btn-primary btn-block" id="publishPost">
-        Publish
-      </button>
-    `);
-
-    document.getElementById("publishPost")?.addEventListener("click",async()=>{
-      const text = document.getElementById("postText")?.value.trim();
-
-      if(!text){
-        toast("Write something first.");
-        return;
-      }
-
-      try{
-        await addDoc(collection(db,"posts"),{
-          uid:state.user.uid,
-          username:
-            state.profile.displayName ||
-            state.profile.username ||
-            "User",
-          text,
-          likes:0,
-          comments:0,
-          likedBy:[],
-          createdAt:serverTimestamp()
-        });
-
-        closeModal();
-        toast("Post published.");
-      }catch(error){
-        console.error(error);
-        toast("Could not publish your post.");
-      }
-    });
-  }
-
-  async function toggleLike(postId){
-    try{
-      const post = state.posts.find(x=>x.id === postId);
-      if(!post) return;
-
-      const likedBy = Array.isArray(post.likedBy)
-        ? [...post.likedBy]
-        : [];
-
-      const index = likedBy.indexOf(state.user.uid);
-
-      if(index >= 0){
-        likedBy.splice(index,1);
-      }else{
-        likedBy.push(state.user.uid);
-      }
-
-      await updateDoc(doc(db,"posts",postId),{
-        likedBy,
-        likes:likedBy.length
-      });
-    }catch(error){
-      console.error(error);
-      toast("Could not update like.");
-    }
-  }
-
-  async function savePost(postId){
-    try{
-      await setDoc(
-        doc(db,"users",state.user.uid,"savedPosts",postId),
-        {
-          postId,
-          savedAt:serverTimestamp()
-        },
-        {merge:true}
-      );
-
-      toast("Post saved.");
-    }catch(error){
-      console.error(error);
-      toast("Could not save post.");
-    }
-  }
-
-  async function sharePost(postId){
-    const url = `${location.origin}${location.pathname}#post=${postId}`;
-
-    try{
-      if(navigator.share){
-        await navigator.share({
-          title:"Marvel Chat",
-          text:"Check this post on Marvel Chat.",
-          url
-        });
-      }else{
-        await navigator.clipboard.writeText(url);
-        toast("Post link copied.");
-      }
-    }catch(error){
-      if(error?.name !== "AbortError"){
-        toast("Could not share post.");
-      }
-    }
-  }
-
-  async function showComments(postId){
-    const commentsQuery = query(
-      collection(db,"posts",postId,"comments"),
-      orderBy("createdAt","asc"),
-      limit(50)
-    );
-
-    try{
-      const snap = await getDocs(commentsQuery);
-
-      const comments = snap.docs.map(d=>({
-        id:d.id,
-        ...d.data()
-      }));
-
-      showModal("Comments",`
-        <div class="list" style="margin-bottom:15px">
-          ${
-            comments.length
-            ? comments.map(comment=>`
-              <div class="list-item">
-                <strong>${escapeHtml(comment.username || "User")}</strong>
-                <div>${escapeHtml(comment.text || "")}</div>
-                <div class="small">${escapeHtml(formatDate(comment.createdAt))}</div>
-              </div>
-            `).join("")
-            : `<div class="empty">No comments yet.</div>`
-          }
-        </div>
-
-        <div class="field">
-          <textarea
-            id="commentText"
-            class="textarea"
-            placeholder="Write a comment..."
-          ></textarea>
-        </div>
-
-        <button class="btn btn-primary btn-block" id="sendComment">
-          Comment
-        </button>
-      `);
-
-      document.getElementById("sendComment")?.addEventListener("click",async()=>{
-        const text = document.getElementById("commentText")?.value.trim();
-
-        if(!text) return;
-
-        try{
-          await addDoc(
-            collection(db,"posts",postId,"comments"),
-            {
-              uid:state.user.uid,
-              username:
-                state.profile.displayName ||
-                state.profile.username ||
-                "User",
-              text,
-              createdAt:serverTimestamp()
-            }
+        const liked =
+          Array.isArray(
+            post.likedBy
+          ) &&
+          post.likedBy.includes(
+            state.user.uid
           );
 
-          await updateDoc(doc(db,"posts",postId),{
-            comments:increment(1)
-          });
 
-          closeModal();
-          toast("Comment added.");
-        }catch(error){
-          console.error(error);
-          toast("Could not add comment.");
-        }
-      });
-    }catch(error){
-      console.error(error);
-      toast("Could not load comments.");
-    }
-  }
+        return `
 
-  function renderChatPage(){
-    if(state.activeChat){
-      return renderConversation();
-    }
+          <article class="card post">
 
-    return `
-      <div class="section-title">
-        <h2>Chat</h2>
-        <button class="btn btn-primary" id="newChatBtn">+ New chat</button>
-      </div>
+            <div class="post-head">
 
-      <div class="card">
-        <div class="search">
-          <input
-            id="chatSearch"
-            class="input"
-            placeholder="Search people..."
-          >
-        </div>
+              <div class="avatar">
 
-        <div class="chat-list" id="chatList">
-          ${renderChatList()}
-        </div>
-      </div>
-    `;
-  }
+                ${escapeHtml(
+                  initials(
+                    post.username
+                  )
+                )}
 
-  function renderChatList(){
-    if(!state.chats.length){
-      return `
-        <div class="empty">
-          <div style="font-size:30px">💬</div>
-          <p>No conversations yet.</p>
-          <button class="btn btn-secondary" id="newChatEmpty">
-            Start a chat
-          </button>
-        </div>
-      `;
-    }
-
-    return state.chats.map(chat=>{
-      const otherUid =
-        chat.members?.find(uid=>uid !== state.user.uid) || "";
-
-      const otherName =
-        chat.memberNames?.[otherUid] ||
-        "Chat";
-
-      return `
-        <div class="chat-item" data-chat="${chat.id}">
-          <div class="avatar">${escapeHtml(initials(otherName))}</div>
-
-          <div class="chat-content">
-            <strong>${escapeHtml(otherName)}</strong>
-            <p>${escapeHtml(chat.lastMessage || "Start chatting")}</p>
-          </div>
-
-          <span class="small">
-            ${escapeHtml(formatDate(chat.updatedAt))}
-          </span>
-        </div>
-      `;
-    }).join("");
-  }
-
-  function attachChatEvents(){
-    document.getElementById("newChatBtn")?.addEventListener("click",showNewChat);
-    document.getElementById("newChatEmpty")?.addEventListener("click",showNewChat);
-
-    document.querySelectorAll("[data-chat]").forEach(item=>{
-      item.addEventListener("click",()=>{
-        openChat(item.dataset.chat);
-      });
-    });
-
-    document.getElementById("chatSearch")?.addEventListener("input",e=>{
-      state.search = e.target.value.toLowerCase();
-      renderChatSearch();
-    });
-  }
-
-  function renderChatSearch(){
-    const list = document.getElementById("chatList");
-    if(!list) return;
-
-    const filtered = state.chats.filter(chat=>{
-      const names = Object.values(chat.memberNames || {}).join(" ");
-      return names.toLowerCase().includes(state.search);
-    });
-
-    list.innerHTML = filtered.length
-      ? filtered.map(chat=>{
-          const otherUid =
-            chat.members?.find(uid=>uid !== state.user.uid) || "";
-
-          const otherName =
-            chat.memberNames?.[otherUid] || "Chat";
-
-          return `
-            <div class="chat-item" data-chat="${chat.id}">
-              <div class="avatar">${escapeHtml(initials(otherName))}</div>
-              <div class="chat-content">
-                <strong>${escapeHtml(otherName)}</strong>
-                <p>${escapeHtml(chat.lastMessage || "Start chatting")}</p>
               </div>
-            </div>
-          `;
-        }).join("")
-      : `<div class="empty">No matching chats.</div>`;
 
-    list.querySelectorAll("[data-chat]").forEach(item=>{
-      item.addEventListener("click",()=>openChat(item.dataset.chat));
-    });
-  }
 
-  async function showNewChat(){
-    showModal("Start a new chat",`
-      <div class="field">
-        <label>User email</label>
-        <input
-          id="newChatEmail"
-          class="input"
-          type="email"
-          placeholder="friend@example.com"
-        >
-      </div>
-
-      <button class="btn btn-primary btn-block" id="findChatUser">
-        Find user
-      </button>
-
-      <div id="chatUserResult" style="margin-top:12px"></div>
-    `);
-
-    document.getElementById("findChatUser")?.addEventListener("click",async()=>{
-      const email = document.getElementById("newChatEmail")?.value.trim();
-
-      if(!email) return;
-
-      try{
-        const q = query(
-          collection(db,"users"),
-          where("email","==",email),
-          limit(1)
-        );
-
-        const snap = await getDocs(q);
-
-        if(snap.empty){
-          document.getElementById("chatUserResult").innerHTML =
-            `<div class="status error">No user found.</div>`;
-          return;
-        }
-
-        const other = snap.docs[0].data();
-
-        if(other.uid === state.user.uid){
-          document.getElementById("chatUserResult").innerHTML =
-            `<div class="status error">You cannot chat with yourself.</div>`;
-          return;
-        }
-
-        document.getElementById("chatUserResult").innerHTML = `
-          <div class="list-item">
-            <div class="profile-row">
-              <div class="avatar">${escapeHtml(initials(other.displayName || other.username))}</div>
               <div class="profile-meta">
-                <strong>${escapeHtml(other.displayName || other.username || "User")}</strong>
-                <span class="small">${escapeHtml(other.email || "")}</span>
+
+                <strong>
+                  ${escapeHtml(
+                    post.username ||
+                    "User"
+                  )}
+                </strong>
+
+                <span class="small">
+
+                  ${escapeHtml(
+                    formatDate(
+                      post.createdAt
+                    )
+                  )}
+
+                </span>
+
               </div>
+
             </div>
 
-            <div style="height:10px"></div>
 
-            <button class="btn btn-primary btn-block" id="startChat">
-              Start chat
-            </button>
-          </div>
+            <div class="post-body">
+
+              ${escapeHtml(
+                post.text || ""
+              )}
+
+            </div>
+
+
+            <div class="post-actions">
+
+              <button
+                class="
+                  action
+                  ${
+                    liked
+                      ? "active"
+                      : ""
+                  }
+                "
+                data-like="${post.id}"
+              >
+
+                ❤️
+                ${post.likesCount || 0}
+
+              </button>
+
+
+              <button
+                class="action"
+                data-comment="${post.id}"
+              >
+
+                💬
+                ${post.commentsCount || 0}
+
+              </button>
+
+
+              <button
+                class="action"
+                data-share="${post.id}"
+              >
+
+                ↗ Share
+
+              </button>
+
+
+              <button
+                class="action"
+                data-save="${post.id}"
+              >
+
+                🔖 Save
+
+              </button>
+
+            </div>
+
+          </article>
+
         `;
 
-        document.getElementById("startChat")?.addEventListener("click",async()=>{
-          await createOrOpenChat(other);
-        });
+      })
+      .join("");
 
-      }catch(error){
-        console.error(error);
-        toast("Could not search for user.");
-      }
-    });
   }
 
-  async function createOrOpenChat(other){
-    const members = [state.user.uid,other.uid].sort();
 
-    try{
-      const q = query(
-        collection(db,"chats"),
-        where("members","==",members),
-        limit(1)
+  /* ============================================================
+     CREATE POST
+  ============================================================ */
+
+  function showCreatePost(){
+
+    showModal(
+      "Create a post",
+      `
+
+        <div class="field">
+
+          <label>
+            What's on your mind?
+          </label>
+
+          <textarea
+            id="postText"
+            class="textarea"
+            maxlength="3000"
+            placeholder="Write something..."
+          ></textarea>
+
+        </div>
+
+
+        <button
+          class="btn btn-primary btn-block"
+          id="publishPost"
+        >
+          Publish
+        </button>
+
+      `
+    );
+
+
+    document
+      .getElementById("publishPost")
+      ?.addEventListener(
+        "click",
+        async () => {
+
+          const text =
+            document
+              .getElementById("postText")
+              ?.value
+              .trim();
+
+
+          if(!text){
+
+            toast(
+              "Write something first."
+            );
+
+            return;
+          }
+
+
+          try{
+
+            await addDoc(
+              collection(
+                db,
+                "posts"
+              ),
+              {
+
+                /*
+                 * EXACTLY matches rules:
+                 */
+
+                authorId:
+                  state.user.uid,
+
+                username:
+                  state.profile.displayName ||
+                  state.profile.username ||
+                  "User",
+
+                text,
+
+                likesCount:0,
+
+                commentsCount:0,
+
+                likedBy:[],
+
+                createdAt:
+                  serverTimestamp()
+
+              }
+            );
+
+
+            closeModal();
+
+            toast(
+              "Post published."
+            );
+
+          }catch(error){
+
+            console.error(error);
+
+            toast(
+              friendlyFirebaseError(error)
+            );
+
+          }
+
+        }
       );
 
-      const snap = await getDocs(q);
+  }
 
-      if(!snap.empty){
-        closeModal();
-        await openChat(snap.docs[0].id);
+
+  /* ============================================================
+     LIKE POST
+  ============================================================ */
+
+  async function toggleLike(postId){
+
+    try{
+
+      const post =
+        state.posts.find(
+          x =>
+            x.id === postId
+        );
+
+
+      if(!post){
         return;
       }
 
-      const memberNames = {
-        [state.user.uid]:
-          state.profile.displayName ||
-          state.profile.username ||
-          "User",
-        [other.uid]:
-          other.displayName ||
-          other.username ||
-          "User"
-      };
 
-      const ref = await addDoc(collection(db,"chats"),{
-        members,
-        memberNames,
-        lastMessage:"",
-        createdAt:serverTimestamp(),
-        updatedAt:serverTimestamp()
-      });
+      const liked =
+        Array.isArray(
+          post.likedBy
+        ) &&
+        post.likedBy.includes(
+          state.user.uid
+        );
 
-      closeModal();
-      await openChat(ref.id);
+
+      if(liked){
+
+        await updateDoc(
+          doc(
+            db,
+            "posts",
+            postId
+          ),
+          {
+
+            likedBy:
+              arrayRemove(
+                state.user.uid
+              ),
+
+            likesCount:
+              increment(-1)
+
+          }
+        );
+
+      }else{
+
+        await updateDoc(
+          doc(
+            db,
+            "posts",
+            postId
+          ),
+          {
+
+            likedBy:
+              arrayUnion(
+                state.user.uid
+              ),
+
+            likesCount:
+              increment(1)
+
+          }
+        );
+
+      }
+
     }catch(error){
+
       console.error(error);
-      toast("Could not create chat.");
+
+      toast(
+        "Could not update like."
+      );
+
     }
+
   }
 
-  async function openChat(chatId){
-    state.activeChat = chatId;
+
+  /* ============================================================
+     SAVE POST
+  ============================================================ */
+
+  async function savePost(postId){
+
+    try{
+
+      await setDoc(
+
+        doc(
+          db,
+          "users",
+          state.user.uid,
+          "savedPosts",
+          postId
+        ),
+
+        {
+
+          postId,
+
+          savedAt:
+            serverTimestamp()
+
+        },
+
+        {
+          merge:true
+        }
+
+      );
+
+
+      toast(
+        "Post saved."
+      );
+
+    }catch(error){
+
+      console.error(error);
+
+      toast(
+        friendlyFirebaseError(error)
+      );
+
+    }
+
+  }
+
+
+  /* ============================================================
+     SHARE
+  ============================================================ */
+
+  async function sharePost(postId){
+
+    const url =
+      `${location.origin}${location.pathname}#post=${postId}`;
+
+
+    try{
+
+      if(navigator.share){
+
+        await navigator.share({
+
+          title:
+            "Marvel Chat",
+
+          text:
+            "Check this post on Marvel Chat.",
+
+          url
+
+        });
+
+      }else{
+
+        await navigator.clipboard
+          .writeText(url);
+
+        toast(
+          "Post link copied."
+        );
+
+      }
+
+    }catch(error){
+
+      if(
+        error?.name !==
+        "AbortError"
+      ){
+
+        toast(
+          "Could not share post."
+        );
+
+      }
+
+    }
+
+  }
+
+
+  /* ============================================================
+     COMMENTS
+  ============================================================ */
+
+  async function showComments(
+    postId
+  ){
+
+    try{
+
+      const commentsQuery =
+        query(
+
+          collection(
+            db,
+            "posts",
+            postId,
+            "comments"
+          ),
+
+          orderBy(
+            "createdAt",
+            "asc"
+          ),
+
+          limit(50)
+
+        );
+
+
+      const snap =
+        await getDocs(
+          commentsQuery
+        );
+
+
+      const comments =
+        snap.docs.map(
+          d => ({
+            id:d.id,
+            ...d.data()
+          })
+        );
+
+
+      showModal(
+        "Comments",
+        `
+
+          <div
+            class="list"
+            style="margin-bottom:15px"
+          >
+
+            ${
+              comments.length
+
+                ? comments
+                    .map(
+                      comment => `
+
+                        <div class="list-item">
+
+                          <strong>
+                            ${escapeHtml(
+                              comment.username ||
+                              "User"
+                            )}
+                          </strong>
+
+                          <div>
+                            ${escapeHtml(
+                              comment.text ||
+                              ""
+                            )}
+                          </div>
+
+                          <div class="small">
+                            ${escapeHtml(
+                              formatDate(
+                                comment.createdAt
+                              )
+                            )}
+                          </div>
+
+                        </div>
+
+                      `
+                    )
+                    .join("")
+
+                : `
+                    <div class="empty">
+                      No comments yet.
+                    </div>
+                  `
+            }
+
+          </div>
+
+
+          <div class="field">
+
+            <textarea
+              id="commentText"
+              class="textarea"
+              maxlength="2000"
+              placeholder="Write a comment..."
+            ></textarea>
+
+          </div>
+
+
+          <button
+            class="btn btn-primary btn-block"
+            id="sendComment"
+          >
+            Comment
+          </button>
+
+        `
+      );
+
+
+      document
+        .getElementById(
+          "sendComment"
+        )
+        ?.addEventListener(
+          "click",
+          async () => {
+
+            const text =
+              document
+                .getElementById(
+                  "commentText"
+                )
+                ?.value
+                .trim();
+
+
+            if(!text){
+              return;
+            }
+
+
+            try{
+
+              await addDoc(
+
+                collection(
+                  db,
+                  "posts",
+                  postId,
+                  "comments"
+                ),
+
+                {
+
+                  /*
+                   * EXACTLY matches
+                   * your comment rules.
+                   */
+
+                  authorId:
+                    state.user.uid,
+
+                  username:
+                    state.profile.displayName ||
+                    state.profile.username ||
+                    "User",
+
+                  text,
+
+                  createdAt:
+                    serverTimestamp()
+
+                }
+
+              );
+
+
+              await updateDoc(
+
+                doc(
+                  db,
+                  "posts",
+                  postId
+                ),
+
+                {
+
+                  commentsCount:
+                    increment(1)
+
+                }
+
+              );
+
+
+              closeModal();
+
+              toast(
+                "Comment added."
+              );
+
+            }catch(error){
+
+              console.error(error);
+
+              toast(
+                friendlyFirebaseError(error)
+              );
+
+            }
+
+          }
+        );
+
+    }catch(error){
+
+      console.error(error);
+
+      toast(
+        "Could not load comments."
+      );
+
+    }
+
+  }
+
+
+  /* ============================================================
+     CHAT PAGE
+  ============================================================ */
+
+  function renderChatPage(){
+
+    if(
+      state.activeConversation
+    ){
+
+      return renderConversation();
+
+    }
+
+
+    return `
+
+      <div class="page">
+
+        <div class="section-title">
+
+          <h2>
+            Chat
+          </h2>
+
+          <button
+            class="btn btn-primary"
+            id="newChatBtn"
+          >
+            + New chat
+          </button>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="search">
+
+            <input
+              id="chatSearch"
+              class="input"
+              placeholder="Search your conversations..."
+            >
+
+          </div>
+
+
+          <div
+            class="chat-list"
+            id="chatList"
+          >
+
+            ${renderConversationList()}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  function renderConversationList(){
+
+    if(
+      !state.conversations.length
+    ){
+
+      return `
+
+        <div class="empty">
+
+          <div style="font-size:30px">
+            💬
+          </div>
+
+          <p>
+            No conversations yet.
+          </p>
+
+          <button
+            class="btn btn-secondary"
+            id="newChatEmpty"
+          >
+            Start a chat
+          </button>
+
+        </div>
+
+      `;
+
+    }
+
+
+    return state.conversations
+      .map(
+        conversation => {
+
+          const otherUid =
+            conversation.participants
+              ?.find(
+                uid =>
+                  uid !==
+                  state.user.uid
+              ) || "";
+
+
+          const otherName =
+            conversation
+              .participantProfiles
+              ?.[otherUid]
+              ?.displayName ||
+
+            conversation
+              .participantProfiles
+              ?.[otherUid]
+              ?.username ||
+
+            "User";
+
+
+          return `
+
+            <div
+              class="chat-item"
+              data-conversation="${conversation.id}"
+            >
+
+              <div class="avatar">
+
+                ${escapeHtml(
+                  initials(
+                    otherName
+                  )
+                )}
+
+              </div>
+
+
+              <div class="chat-content">
+
+                <strong>
+                  ${escapeHtml(
+                    otherName
+                  )}
+                </strong>
+
+                <p>
+                  ${
+                    conversation.lastMessage
+                      ? escapeHtml(
+                          conversation.lastMessage
+                        )
+                      : "Start chatting"
+                  }
+                </p>
+
+              </div>
+
+
+              <span class="small">
+
+                ${escapeHtml(
+                  formatDate(
+                    conversation.updatedAt
+                  )
+                )}
+
+              </span>
+
+            </div>
+
+          `;
+
+        }
+      )
+      .join("");
+
+  }
+
+
+  /* ============================================================
+     NEW CHAT
+  ============================================================ */
+
+  function showNewChat(){
+
+    showModal(
+      "Start a new chat",
+      `
+
+        <div class="field">
+
+          <label>
+            User email
+          </label>
+
+          <input
+            id="newChatEmail"
+            class="input"
+            type="email"
+            placeholder="friend@example.com"
+          >
+
+        </div>
+
+
+        <button
+          class="btn btn-primary btn-block"
+          id="findChatUser"
+        >
+          Find user
+        </button>
+
+
+        <div
+          id="chatUserResult"
+          style="margin-top:12px"
+        ></div>
+
+      `
+    );
+
+
+    document
+      .getElementById(
+        "findChatUser"
+      )
+      ?.addEventListener(
+        "click",
+        async () => {
+
+          const email =
+            document
+              .getElementById(
+                "newChatEmail"
+              )
+              ?.value
+              .trim()
+              .toLowerCase();
+
+
+          if(!email){
+            return;
+          }
+
+
+          try{
+
+            const q =
+              query(
+
+                collection(
+                  db,
+                  "users"
+                ),
+
+                where(
+                  "email",
+                  "==",
+                  email
+                ),
+
+                limit(1)
+
+              );
+
+
+            const snap =
+              await getDocs(q);
+
+
+            if(snap.empty){
+
+              document
+                .getElementById(
+                  "chatUserResult"
+                )
+                .innerHTML = `
+
+                  <div class="status error">
+                    No user found.
+                  </div>
+
+                `;
+
+              return;
+
+            }
+
+
+            const other =
+              snap.docs[0].data();
+
+
+            if(
+              other.uid ===
+              state.user.uid
+            ){
+
+              document
+                .getElementById(
+                  "chatUserResult"
+                )
+                .innerHTML = `
+
+                  <div class="status error">
+                    You cannot chat with yourself.
+                  </div>
+
+                `;
+
+              return;
+
+            }
+
+
+            document
+              .getElementById(
+                "chatUserResult"
+              )
+              .innerHTML = `
+
+                <div class="list-item">
+
+                  <div class="profile-row">
+
+                    <div class="avatar">
+
+                      ${escapeHtml(
+                        initials(
+                          other.displayName ||
+                          other.username
+                        )
+                      )}
+
+                    </div>
+
+
+                    <div class="profile-meta">
+
+                      <strong>
+                        ${escapeHtml(
+                          other.displayName ||
+                          other.username ||
+                          "User"
+                        )}
+                      </strong>
+
+                      <span class="small">
+                        ${escapeHtml(
+                          other.email ||
+                          ""
+                        )}
+                      </span>
+
+                    </div>
+
+                  </div>
+
+
+                  <div style="height:10px"></div>
+
+
+                  <button
+                    class="btn btn-primary btn-block"
+                    id="startChat"
+                  >
+                    Start chat
+                  </button>
+
+                </div>
+
+              `;
+
+
+            document
+              .getElementById(
+                "startChat"
+              )
+              ?.addEventListener(
+                "click",
+                async () => {
+
+                  await createOrOpenConversation(
+                    other
+                  );
+
+                }
+              );
+
+          }catch(error){
+
+            console.error(error);
+
+            toast(
+              friendlyFirebaseError(error)
+            );
+
+          }
+
+        }
+      );
+
+  }
+
+
+  /* ============================================================
+     CREATE / OPEN CONVERSATION
+  ============================================================ */
+
+  async function createOrOpenConversation(
+    other
+  ){
+
+    const participants = [
+
+      state.user.uid,
+
+      other.uid
+
+    ].sort();
+
+
+    try{
+
+      const q =
+        query(
+
+          collection(
+            db,
+            "conversations"
+          ),
+
+          where(
+            "participants",
+            "==",
+            participants
+          ),
+
+          limit(1)
+
+        );
+
+
+      const snap =
+        await getDocs(q);
+
+
+      if(!snap.empty){
+
+        closeModal();
+
+        await openConversation(
+          snap.docs[0].id
+        );
+
+        return;
+
+      }
+
+
+      const participantProfiles = {
+
+        [state.user.uid]:{
+
+          username:
+            state.profile.username ||
+            "User",
+
+          displayName:
+            state.profile.displayName ||
+            state.profile.username ||
+            "User"
+
+        },
+
+
+        [other.uid]:{
+
+          username:
+            other.username ||
+            "User",
+
+          displayName:
+            other.displayName ||
+            other.username ||
+            "User"
+
+        }
+
+      };
+
+
+      const ref =
+        await addDoc(
+
+          collection(
+            db,
+            "conversations"
+          ),
+
+          {
+
+            /*
+             * EXACTLY matches
+             * your conversation rules.
+             */
+
+            participants,
+
+            participantProfiles,
+
+            lastMessage:"",
+
+            createdAt:
+              serverTimestamp(),
+
+            updatedAt:
+              serverTimestamp()
+
+          }
+
+        );
+
+
+      closeModal();
+
+      await openConversation(
+        ref.id
+      );
+
+    }catch(error){
+
+      console.error(error);
+
+      toast(
+        friendlyFirebaseError(error)
+      );
+
+    }
+
+  }
+
+
+  /* ============================================================
+     OPEN CONVERSATION
+  ============================================================ */
+
+  async function openConversation(
+    conversationId
+  ){
+
+    state.activeConversation =
+      conversationId;
+
     state.messages = [];
 
-    if(state.unsubscribeMessages){
+
+    if(
+      state.unsubscribeMessages
+    ){
+
       state.unsubscribeMessages();
-      state.unsubscribeMessages = null;
+
+      state.unsubscribeMessages =
+        null;
+
     }
+
 
     render();
 
-    const messagesQuery = query(
-      collection(db,"chats",chatId,"messages"),
-      orderBy("createdAt","asc"),
-      limit(200)
-    );
 
-    state.unsubscribeMessages = onSnapshot(
-      messagesQuery,
-      snap=>{
-        state.messages = snap.docs.map(d=>({
-          id:d.id,
-          ...d.data()
-        }));
+    const messagesQuery =
+      query(
 
-        renderConversationOnly();
-      },
-      error=>{
-        console.error(error);
-        toast("Could not load messages.");
-      }
-    );
-  }
+        collection(
+          db,
+          "conversations",
+          conversationId,
+          "messages"
+        ),
 
-  function renderConversation(){
-    return `
-      <div class="section-title">
-        <button class="btn btn-secondary" id="backChats">
-          ← Chats
-        </button>
+        orderBy(
+          "createdAt",
+          "asc"
+        ),
 
-        <h2 style="flex:1;text-align:center">Conversation</h2>
+        limit(200)
 
-        <span></span>
-      </div>
-
-      <div class="card">
-        <div id="messages" class="messages">
-          ${renderMessages()}
-        </div>
-
-        <div class="message-box">
-          <input
-            id="messageInput"
-            class="input"
-            maxlength="4000"
-            placeholder="Write a message..."
-          >
-
-          <button class="btn btn-primary" id="sendMessage">
-            Send
-          </button>
-        </div>
-      </div>
-    `;
-  }
-
-  function renderMessages(){
-    if(!state.messages.length){
-      return `<div class="empty">Start the conversation.</div>`;
-    }
-
-    return state.messages.map(message=>{
-      const mine = message.uid === state.user.uid;
-
-      return `
-        <div class="bubble ${mine ? "mine" : ""}">
-          <div>${escapeHtml(message.text || "")}</div>
-          <div class="bubble-time">
-            ${escapeHtml(formatDate(message.createdAt))}
-          </div>
-        </div>
-      `;
-    }).join("");
-  }
-
-  function renderConversationOnly(){
-    const messages = document.getElementById("messages");
-
-    if(messages){
-      messages.innerHTML = renderMessages();
-      messages.scrollTop = messages.scrollHeight;
-    }
-  }
-
-  async function sendMessage(){
-    const input = document.getElementById("messageInput");
-    const text = input?.value.trim();
-
-    if(!text || !state.activeChat) return;
-
-    try{
-      input.value = "";
-
-      await addDoc(
-        collection(db,"chats",state.activeChat,"messages"),
-        {
-          uid:state.user.uid,
-          text,
-          createdAt:serverTimestamp()
-        }
       );
 
-      await updateDoc(doc(db,"chats",state.activeChat),{
-        lastMessage:text,
-        updatedAt:serverTimestamp()
-      });
+
+    state.unsubscribeMessages =
+      onSnapshot(
+
+        messagesQuery,
+
+        snap => {
+
+          state.messages =
+            snap.docs.map(
+              d => ({
+
+                id:d.id,
+
+                ...d.data()
+
+              })
+            );
+
+
+          renderConversationOnly();
+
+        },
+
+        error => {
+
+          console.error(
+            "Messages:",
+            error
+          );
+
+          toast(
+            friendlyFirebaseError(
+              error
+            )
+          );
+
+        }
+
+      );
+
+  }
+
+
+  /* ============================================================
+     CONVERSATION UI
+  ============================================================ */
+
+  function renderConversation(){
+
+    return `
+
+      <div class="page">
+
+        <div class="section-title">
+
+          <button
+            class="btn btn-secondary"
+            id="backChats"
+          >
+            ← Chats
+          </button>
+
+
+          <h2
+            style="
+              flex:1;
+              text-align:center
+            "
+          >
+            Conversation
+          </h2>
+
+
+          <span></span>
+
+        </div>
+
+
+        <div class="card">
+
+          <div
+            id="messages"
+            class="messages"
+          >
+
+            ${renderMessages()}
+
+          </div>
+
+
+          <div class="message-box">
+
+            <input
+              id="messageInput"
+              class="input"
+              maxlength="5000"
+              placeholder="Write a message..."
+            >
+
+
+            <button
+              class="btn btn-primary"
+              id="sendMessage"
+            >
+              Send
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  function renderMessages(){
+
+    if(
+      !state.messages.length
+    ){
+
+      return `
+
+        <div class="empty">
+          Start the conversation.
+        </div>
+
+      `;
+
+    }
+
+
+    return state.messages
+      .map(
+        message => {
+
+          const mine =
+            message.senderId ===
+            state.user.uid;
+
+
+          return `
+
+            <div
+              class="
+                bubble
+                ${
+                  mine
+                    ? "mine"
+                    : ""
+                }
+              "
+            >
+
+              <div>
+                ${escapeHtml(
+                  message.text ||
+                  ""
+                )}
+              </div>
+
+
+              <div class="bubble-time">
+
+                ${escapeHtml(
+                  formatDate(
+                    message.createdAt
+                  )
+                )}
+
+              </div>
+
+            </div>
+
+          `;
+
+        }
+      )
+      .join("");
+
+  }
+
+
+  function renderConversationOnly(){
+
+    const messages =
+      document.getElementById(
+        "messages"
+      );
+
+
+    if(messages){
+
+      messages.innerHTML =
+        renderMessages();
+
+
+      messages.scrollTop =
+        messages.scrollHeight;
+
+    }
+
+  }
+
+
+  /* ============================================================
+     SEND MESSAGE
+  ============================================================ */
+
+  async function sendMessage(){
+
+    const input =
+      document.getElementById(
+        "messageInput"
+      );
+
+
+    const text =
+      input?.value.trim();
+
+
+    if(
+      !text ||
+      !state.activeConversation
+    ){
+
+      return;
+
+    }
+
+
+    try{
+
+      input.value = "";
+
+
+      await addDoc(
+
+        collection(
+
+          db,
+
+          "conversations",
+
+          state.activeConversation,
+
+          "messages"
+
+        ),
+
+        {
+
+          /*
+           * EXACTLY matches
+           * your message rules.
+           */
+
+          senderId:
+            state.user.uid,
+
+          text,
+
+          createdAt:
+            serverTimestamp()
+
+        }
+
+      );
+
+
+      await updateDoc(
+
+        doc(
+
+          db,
+
+          "conversations",
+
+          state.activeConversation
+
+        ),
+
+        {
+
+          lastMessage:text,
+
+          updatedAt:
+            serverTimestamp()
+
+        }
+
+      );
+
 
     }catch(error){
+
       console.error(error);
-      toast("Could not send message.");
+
+      toast(
+        friendlyFirebaseError(error)
+      );
+
     }
+
   }
+
+
+  /* ============================================================
+     TIMETRUST
+  ============================================================ */
 
   function renderTimeTrustPage(){
+
     return `
-      <section class="hero">
-        <h1>TimeTrust ⏱</h1>
-        <p>
-          Exchange skills and time with people in your community.
-        </p>
-      </section>
 
-      <div class="grid grid-2">
-        <div class="card">
-          <h3>Offer a skill</h3>
-          <p class="small">
-            Tell people what you can help them learn or do.
+      <div class="page">
+
+
+        <section class="hero">
+
+          <h1>
+            TimeTrust ⏱
+          </h1>
+
+          <p>
+            Exchange skills and time with
+            people in your community.
           </p>
-          <button class="btn btn-primary" id="offerSkillBtn">
-            Offer skill
-          </button>
+
+        </section>
+
+
+        <div class="grid grid-2">
+
+
+          <div class="card">
+
+            <h3>
+              Offer a skill
+            </h3>
+
+            <p class="small">
+              Tell people what you can
+              help them learn or do.
+            </p>
+
+            <button
+              class="btn btn-primary"
+              id="offerSkillBtn"
+            >
+              Offer skill
+            </button>
+
+          </div>
+
+
+          <div class="card">
+
+            <h3>
+              Request help
+            </h3>
+
+            <p class="small">
+              Ask the community for a
+              skill or service.
+            </p>
+
+            <button
+              class="btn btn-secondary"
+              id="requestSkillBtn"
+            >
+              Request help
+            </button>
+
+          </div>
+
         </div>
+
+
+        <div class="section-title">
+
+          <h2>
+            TimeTrust
+          </h2>
+
+        </div>
+
 
         <div class="card">
-          <h3>Request help</h3>
-          <p class="small">
-            Ask the community for a skill or service.
-          </p>
-          <button class="btn btn-secondary" id="requestSkillBtn">
-            Request help
-          </button>
+
+          <div class="list">
+
+
+            <div class="list-item">
+
+              <strong>
+                1 hour = 1 time credit
+              </strong>
+
+              <span class="small">
+                Keep exchanges simple
+                and community-focused.
+              </span>
+
+            </div>
+
+
+            <div class="list-item">
+
+              <strong>
+                Offer useful skills
+              </strong>
+
+              <span class="small">
+                Share skills you can
+                genuinely provide.
+              </span>
+
+            </div>
+
+
+            <div class="list-item">
+
+              <strong>
+                Request help
+              </strong>
+
+              <span class="small">
+                Find people who can help
+                you learn or complete a task.
+              </span>
+
+            </div>
+
+          </div>
+
         </div>
+
       </div>
 
-      <div class="section-title">
-        <h2>TimeTrust activity</h2>
-      </div>
-
-      <div class="card">
-        <div class="list">
-          <div class="list-item">
-            <strong>1 hour = 1 time credit</strong>
-            <span class="small">
-              Keep exchanges simple and community-focused.
-            </span>
-          </div>
-
-          <div class="list-item">
-            <strong>Be respectful</strong>
-            <span class="small">
-              Only offer services you are genuinely able to provide.
-            </span>
-          </div>
-
-          <div class="list-item">
-            <strong>Keep communication inside Marvel Chat</strong>
-            <span class="small">
-              Use chat to agree on the time and details.
-            </span>
-          </div>
-        </div>
-      </div>
     `;
+
   }
 
-  function showSkillModal(type){
+
+  /* ============================================================
+     SKILL MODAL
+  ============================================================ */
+
+  function showSkillModal(
+    type
+  ){
+
     const title =
       type === "offer"
         ? "Offer a skill"
         : "Request help";
 
-    showModal(title,`
-      <div class="field">
-        <label>Title</label>
-        <input id="skillTitle" class="input" placeholder="e.g. Mathematics help">
-      </div>
 
-      <div class="field">
-        <label>Description</label>
-        <textarea
-          id="skillDescription"
-          class="textarea"
-          placeholder="Explain what you can offer or what you need."
-        ></textarea>
-      </div>
+    showModal(
+      title,
+      `
 
-      <div class="field">
-        <label>Time in hours</label>
-        <input
-          id="skillHours"
-          class="input"
-          type="number"
-          min="1"
-          max="100"
-          value="1"
+        <div class="field">
+
+          <label>
+            Title
+          </label>
+
+          <input
+            id="skillTitle"
+            class="input"
+            maxlength="100"
+            placeholder="e.g. Mathematics help"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Description
+          </label>
+
+          <textarea
+            id="skillDescription"
+            class="textarea"
+            maxlength="2000"
+            placeholder="Explain what you can offer or what you need."
+          ></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Time in hours
+          </label>
+
+          <input
+            id="skillHours"
+            class="input"
+            type="number"
+            min="1"
+            max="100"
+            value="1"
+          >
+
+        </div>
+
+
+        <button
+          class="btn btn-primary btn-block"
+          id="publishSkill"
         >
-      </div>
+          Publish
+        </button>
 
-      <button class="btn btn-primary btn-block" id="publishSkill">
-        Publish
-      </button>
-    `);
+      `
+    );
 
-    document.getElementById("publishSkill")?.addEventListener("click",async()=>{
-      const title = document.getElementById("skillTitle")?.value.trim();
-      const description = document.getElementById("skillDescription")?.value.trim();
-      const hours = Number(document.getElementById("skillHours")?.value || 1);
 
-      if(!title || !description){
-        toast("Complete the form first.");
-        return;
-      }
+    document
+      .getElementById(
+        "publishSkill"
+      )
+      ?.addEventListener(
+        "click",
+        async () => {
 
-      try{
-        await addDoc(collection(db,"timetrust"),{
-          uid:state.user.uid,
-          username:
-            state.profile.displayName ||
-            state.profile.username ||
-            "User",
-          type,
-          title,
-          description,
-          hours,
-          country:state.profile.country || null,
-          status:"open",
-          createdAt:serverTimestamp()
-        });
+          const title =
+            document
+              .getElementById(
+                "skillTitle"
+              )
+              ?.value
+              .trim();
 
-        closeModal();
-        toast("TimeTrust listing published.");
-      }catch(error){
-        console.error(error);
-        toast("Could not publish listing.");
-      }
-    });
+
+          const description =
+            document
+              .getElementById(
+                "skillDescription"
+              )
+              ?.value
+              .trim();
+
+
+          const hours =
+            Number(
+              document
+                .getElementById(
+                  "skillHours"
+                )
+                ?.value || 1
+            );
+
+
+          if(
+            !title ||
+            !description
+          ){
+
+            toast(
+              "Complete the form first."
+            );
+
+            return;
+
+          }
+
+
+          if(
+            !Number.isFinite(hours) ||
+            hours <= 0
+          ){
+
+            toast(
+              "Hours must be greater than 0."
+            );
+
+            return;
+
+          }
+
+
+          try{
+
+            if(type === "offer"){
+
+              /*
+               * EXACTLY matches
+               * skills rules.
+               */
+
+              await addDoc(
+
+                collection(
+                  db,
+                  "skills"
+                ),
+
+                {
+
+                  ownerId:
+                    state.user.uid,
+
+                  username:
+                    state.profile.displayName ||
+                    state.profile.username ||
+                    "User",
+
+                  title,
+
+                  description,
+
+                  hours,
+
+                  country:
+                    state.profile.country ||
+                    null,
+
+                  status:"active",
+
+                  createdAt:
+                    serverTimestamp()
+
+                }
+
+              );
+
+            }else{
+
+              /*
+               * EXACTLY matches
+               * skillRequests rules.
+               */
+
+              await addDoc(
+
+                collection(
+                  db,
+                  "skillRequests"
+                ),
+
+                {
+
+                  requesterId:
+                    state.user.uid,
+
+                  username:
+                    state.profile.displayName ||
+                    state.profile.username ||
+                    "User",
+
+                  title,
+
+                  description,
+
+                  hours,
+
+                  country:
+                    state.profile.country ||
+                    null,
+
+                  createdAt:
+                    serverTimestamp()
+
+                }
+
+              );
+
+            }
+
+
+            closeModal();
+
+            toast(
+              type === "offer"
+                ? "Skill published."
+                : "Request published."
+            );
+
+          }catch(error){
+
+            console.error(error);
+
+            toast(
+              friendlyFirebaseError(
+                error
+              )
+            );
+
+          }
+
+        }
+      );
+
   }
+
+
+  /* ============================================================
+     MARKETPLACE
+  ============================================================ */
 
   function renderMarketPage(){
+
     return `
-      <section class="hero">
-        <h1>Market 🛍</h1>
-        <p>
-          Discover products and services shared by the community.
-        </p>
-      </section>
 
-      <div class="card">
-        <div class="search">
-          <input
-            id="marketSearch"
-            class="input"
-            placeholder="Search marketplace..."
-          >
-          <button class="btn btn-primary" id="sellBtn">
-            + Sell
-          </button>
-        </div>
+      <div class="page">
 
-        <div id="marketItems">
-          <div class="empty">
-            Marketplace listings will appear here.
+
+        <section class="hero">
+
+          <h1>
+            Market 🛍
+          </h1>
+
+          <p>
+            Discover products and services
+            shared by the community.
+          </p>
+
+        </section>
+
+
+        <div class="card">
+
+          <div class="search">
+
+            <input
+              id="marketSearch"
+              class="input"
+              placeholder="Search marketplace..."
+            >
+
+
+            <button
+              class="btn btn-primary"
+              id="sellBtn"
+            >
+              + Sell
+            </button>
+
           </div>
+
+
+          <div id="marketItems">
+
+            ${
+              state.listings.length
+                ? renderListings()
+                : `
+                  <div class="empty">
+                    No marketplace listings yet.
+                  </div>
+                `
+            }
+
+          </div>
+
         </div>
+
       </div>
+
     `;
+
   }
+
+
+  function renderListings(){
+
+    const term =
+      state.search
+        .toLowerCase();
+
+
+    const listings =
+      state.listings.filter(
+        listing => {
+
+          const combined =
+            `${listing.title || ""}
+             ${listing.description || ""}
+             ${listing.username || ""}`
+              .toLowerCase();
+
+          return combined.includes(
+            term
+          );
+
+        }
+      );
+
+
+    if(!listings.length){
+
+      return `
+
+        <div class="empty">
+          No matching listings.
+        </div>
+
+      `;
+
+    }
+
+
+    return `
+
+      <div class="list">
+
+        ${
+          listings
+            .map(
+              listing => `
+
+                <div class="list-item">
+
+                  <strong>
+                    ${escapeHtml(
+                      listing.title
+                    )}
+                  </strong>
+
+                  <p class="small">
+
+                    ${escapeHtml(
+                      listing.description
+                    )}
+
+                  </p>
+
+
+                  <div
+                    style="
+                      display:flex;
+                      justify-content:space-between;
+                      gap:10px;
+                      align-items:center
+                    "
+                  >
+
+                    <span class="badge">
+
+                      ${escapeHtml(
+                        listing.country ||
+                        "Community"
+                      )}
+
+                    </span>
+
+
+                    <strong>
+
+                      ${escapeHtml(
+                        String(
+                          listing.price ??
+                          0
+                        )
+                      )}
+
+                    </strong>
+
+                  </div>
+
+                </div>
+
+              `
+            )
+            .join("")
+        }
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* ============================================================
+     SELL
+  ============================================================ */
 
   function showSellModal(){
-    showModal("Create marketplace listing",`
-      <div class="field">
-        <label>Product or service</label>
-        <input id="marketTitle" class="input" placeholder="What are you offering?">
-      </div>
 
-      <div class="field">
-        <label>Description</label>
-        <textarea id="marketDescription" class="textarea"></textarea>
-      </div>
+    showModal(
+      "Create marketplace listing",
+      `
 
-      <div class="field">
-        <label>Price</label>
-        <input
-          id="marketPrice"
-          class="input"
-          type="number"
-          min="0"
-          placeholder="0"
+        <div class="field">
+
+          <label>
+            Product or service
+          </label>
+
+          <input
+            id="marketTitle"
+            class="input"
+            maxlength="120"
+            placeholder="What are you offering?"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Description
+          </label>
+
+          <textarea
+            id="marketDescription"
+            class="textarea"
+            maxlength="3000"
+            placeholder="Describe your product or service."
+          ></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Price
+          </label>
+
+          <input
+            id="marketPrice"
+            class="input"
+            type="number"
+            min="0"
+            placeholder="0"
+          >
+
+        </div>
+
+
+        <button
+          class="btn btn-primary btn-block"
+          id="publishMarket"
         >
-      </div>
+          Publish listing
+        </button>
 
-      <button class="btn btn-primary btn-block" id="publishMarket">
-        Publish listing
-      </button>
-    `);
+      `
+    );
 
-    document.getElementById("publishMarket")?.addEventListener("click",async()=>{
-      const title = document.getElementById("marketTitle")?.value.trim();
-      const description = document.getElementById("marketDescription")?.value.trim();
-      const price = Number(document.getElementById("marketPrice")?.value || 0);
 
-      if(!title || !description){
-        toast("Complete the listing.");
-        return;
-      }
+    document
+      .getElementById(
+        "publishMarket"
+      )
+      ?.addEventListener(
+        "click",
+        async () => {
 
-      try{
-        await addDoc(collection(db,"marketplace"),{
-          uid:state.user.uid,
-          username:
-            state.profile.displayName ||
-            state.profile.username ||
-            "User",
-          title,
-          description,
-          price,
-          country:state.profile.country || null,
-          status:"active",
-          createdAt:serverTimestamp()
-        });
+          const title =
+            document
+              .getElementById(
+                "marketTitle"
+              )
+              ?.value
+              .trim();
 
-        closeModal();
-        toast("Listing published.");
-      }catch(error){
-        console.error(error);
-        toast("Could not publish listing.");
-      }
-    });
+
+          const description =
+            document
+              .getElementById(
+                "marketDescription"
+              )
+              ?.value
+              .trim();
+
+
+          const price =
+            Number(
+              document
+                .getElementById(
+                  "marketPrice"
+                )
+                ?.value || 0
+            );
+
+
+          if(
+            !title ||
+            !description
+          ){
+
+            toast(
+              "Complete the listing."
+            );
+
+            return;
+
+          }
+
+
+          try{
+
+            /*
+             * EXACTLY matches
+             * listings rules.
+             */
+
+            await addDoc(
+
+              collection(
+                db,
+                "listings"
+              ),
+
+              {
+
+                sellerId:
+                  state.user.uid,
+
+                username:
+                  state.profile.displayName ||
+                  state.profile.username ||
+                  "User",
+
+                title,
+
+                description,
+
+                price,
+
+                country:
+                  state.profile.country ||
+                  null,
+
+                status:"active",
+
+                createdAt:
+                  serverTimestamp()
+
+              }
+
+            );
+
+
+            closeModal();
+
+            toast(
+              "Listing published."
+            );
+
+          }catch(error){
+
+            console.error(error);
+
+            toast(
+              friendlyFirebaseError(
+                error
+              )
+            );
+
+          }
+
+        }
+      );
+
   }
+
+
+  /* ============================================================
+     PROFILE
+  ============================================================ */
 
   function renderProfilePage(){
+
     const name =
+
       state.profile?.displayName ||
+
       state.profile?.username ||
+
       "User";
 
+
     return `
-      <section class="hero">
-        <div class="profile-row">
-          <div class="avatar avatar-lg">
-            ${escapeHtml(initials(name))}
-          </div>
 
-          <div>
-            <h1>${escapeHtml(name)}</h1>
-            <p>
-              ${escapeHtml(state.user?.email || "")}
-            </p>
-          </div>
-        </div>
-      </section>
+      <div class="page">
 
-      <div class="grid grid-2">
-        <div class="card">
-          <h3>Account</h3>
 
-          <div class="list">
-            <div class="list-item">
-              <strong>Username</strong>
-              <span class="small">
-                ${escapeHtml(state.profile?.username || "—")}
-              </span>
+        <section class="hero">
+
+          <div class="profile-row">
+
+            <div class="avatar avatar-lg">
+
+              ${escapeHtml(
+                initials(name)
+              )}
+
             </div>
 
-            <div class="list-item">
-              <strong>Phone</strong>
-              <span class="small">
-                ${escapeHtml(state.profile?.phone || "—")}
-              </span>
+
+            <div>
+
+              <h1>
+                ${escapeHtml(name)}
+              </h1>
+
+              <p>
+                ${escapeHtml(
+                  state.user?.email ||
+                  ""
+                )}
+              </p>
+
             </div>
 
-            <div class="list-item">
-              <strong>Country</strong>
-              <span class="small">
-                ${escapeHtml(state.profile?.country || "—")}
-              </span>
-            </div>
           </div>
-        </div>
 
-        <div class="card">
-          <h3>Settings</h3>
+        </section>
 
-          <button class="btn btn-secondary btn-block" id="editProfileBtn">
-            Edit profile
-          </button>
 
-          <div style="height:8px"></div>
+        <div class="grid grid-2">
 
-          <button class="btn btn-secondary btn-block" id="settingsBtn">
-            App settings
-          </button>
 
-          <div style="height:8px"></div>
+          <div class="card">
 
-          <button class="btn btn-danger btn-block" id="logoutBtn">
-            Sign out
-          </button>
-        </div>
-      </div>
-    `;
-  }
+            <h3>
+              Account
+            </h3>
 
-  function showEditProfile(){
-    showModal("Edit profile",`
-      <div class="field">
-        <label>Display name</label>
-        <input
-          id="editName"
-          class="input"
-          value="${escapeHtml(
-            state.profile.displayName ||
-            state.profile.username ||
-            ""
-          )}"
-        >
-      </div>
 
-      <div class="field">
-        <label>Phone</label>
-        <input
-          id="editPhone"
-          class="input"
-          value="${escapeHtml(state.profile.phone || "")}"
-        >
-      </div>
+            <div class="list">
 
-      <button class="btn btn-primary btn-block" id="saveProfile">
-        Save changes
-      </button>
-    `);
 
-    document.getElementById("saveProfile")?.addEventListener("click",async()=>{
-      const displayName = document.getElementById("editName")?.value.trim();
-      const phone = document.getElementById("editPhone")?.value.trim();
+              <div class="list-item">
 
-      if(!displayName){
-        toast("Display name cannot be empty.");
-        return;
-      }
+                <strong>
+                  Username
+                </strong>
 
-      try{
-        await updateProfile(auth.currentUser,{displayName});
+                <span class="small">
+                  ${escapeHtml(
+                    state.profile?.username ||
+                    "—"
+                  )}
+                </span>
 
-        await updateDoc(doc(db,"users",state.user.uid),{
-          displayName,
-          phone,
-          updatedAt:serverTimestamp()
-        });
+              </div>
 
-        state.profile.displayName = displayName;
-        state.profile.phone = phone;
 
-        closeModal();
-        render();
-        toast("Profile updated.");
-      }catch(error){
-        console.error(error);
-        toast("Could not update profile.");
-      }
-    });
-  }
+              <div class="list-item">
 
-  function showSettings(){
-    showModal("Settings",`
-      <div class="list">
-        <div class="list-item">
-          <strong>Theme</strong>
+                <strong>
+                  Phone
+                </strong>
 
-          <div style="display:flex;gap:8px;margin-top:9px">
-            <button
-              class="btn ${state.theme === "light" ? "btn-primary" : "btn-secondary"}"
-              id="lightTheme"
-            >
-              Light
-            </button>
+                <span class="small">
+                  ${escapeHtml(
+                    state.profile?.phone ||
+                    "—"
+                  )}
+                </span>
+
+              </div>
+
+
+              <div class="list-item">
+
+                <strong>
+                  Country
+                </strong>
+
+                <span class="small">
+                  ${escapeHtml(
+                    state.profile?.country ||
+                    "—"
+                  )}
+                </span>
+
+              </div>
+
+
+              <div class="list-item">
+
+                <strong>
+                  Time balance
+                </strong>
+
+                <span class="small">
+
+                  ${escapeHtml(
+                    String(
+                      state.profile
+                        ?.timeBalance ??
+                      0
+                    )
+                  )}
+                  credits
+
+                </span>
+
+              </div>
+
+
+            </div>
+
+          </div>
+
+
+          <div class="card">
+
+            <h3>
+              Settings
+            </h3>
+
 
             <button
-              class="btn ${state.theme === "dark" ? "btn-primary" : "btn-secondary"}"
-              id="darkTheme"
+              class="btn btn-secondary btn-block"
+              id="editProfileBtn"
             >
-              Dark
+              Edit profile
             </button>
-          </div>
-        </div>
 
-        <div class="list-item">
-          <strong>Low-data mode</strong>
-
-          <p class="small">
-            Reduces unnecessary background activity.
-          </p>
-
-          <button class="btn btn-secondary" id="lowDataToggle">
-            ${state.lowData ? "Disable" : "Enable"}
-          </button>
-        </div>
-
-        <div class="list-item">
-          <strong>PWA</strong>
-          <p class="small">
-            manifest.json + serviceworker.js
-          </p>
-        </div>
-      </div>
-    `);
-
-    document.getElementById("lightTheme")?.addEventListener("click",()=>{
-      saveTheme("light");
-      closeModal();
-    });
-
-    document.getElementById("darkTheme")?.addEventListener("click",()=>{
-      saveTheme("dark");
-      closeModal();
-    });
-
-    document.getElementById("lowDataToggle")?.addEventListener("click",()=>{
-      saveLowData(!state.lowData);
-      closeModal();
-      toast(state.lowData ? "Low-data mode enabled." : "Low-data mode disabled.");
-    });
-  }
-
-  function showSearch(){
-    showModal("Search Marvel Chat",`
-      <div class="field">
-        <input
-          id="globalSearch"
-          class="input"
-          placeholder="Search people, posts, marketplace..."
-        >
-      </div>
-
-      <button class="btn btn-primary btn-block" id="runSearch">
-        Search
-      </button>
-
-      <div id="searchResults" style="margin-top:15px"></div>
-    `);
-
-    document.getElementById("runSearch")?.addEventListener("click",async()=>{
-      const term =
-        document.getElementById("globalSearch")?.value.trim().toLowerCase();
-
-      if(!term){
-        return;
-      }
-
-      const results = state.posts.filter(post =>
-        String(post.text || "").toLowerCase().includes(term) ||
-        String(post.username || "").toLowerCase().includes(term)
-      );
-
-      document.getElementById("searchResults").innerHTML =
-        results.length
-        ? results.map(post=>`
-            <div class="list-item">
-              <strong>${escapeHtml(post.username || "User")}</strong>
-              <div>${escapeHtml(post.text || "")}</div>
-            </div>
-          `).join("")
-        : `<div class="empty">No matching posts found.</div>`;
-    });
-  }
-
-  function showNotifications(){
-    showModal("Notifications",`
-      <div class="empty">
-        <div style="font-size:30px">🔔</div>
-        <p>No new notifications.</p>
-      </div>
-    `);
-  }
-
-  function attachPageEvents(){
-    if(state.page === "home"){
-      attachHomeEvents();
-    }
-
-    if(state.page === "chat"){
-      if(state.activeChat){
-        document.getElementById("backChats")?.addEventListener("click",()=>{
-          if(state.unsubscribeMessages){
-            state.unsubscribeMessages();
-            state.unsubscribeMessages = null;
-          }
-
-          state.activeChat = null;
-          state.messages = [];
-          render();
-        });
-
-        document.getElementById("sendMessage")?.addEventListener("click",sendMessage);
-
-        document.getElementById("messageInput")?.addEventListener("keydown",e=>{
-          if(e.key === "Enter"){
-            e.preventDefault();
-            sendMessage();
-          }
-        });
-      }else{
-        attachChatEvents();
-      }
-    }
-
-    if(state.page === "timetrust"){
-      document.getElementById("offerSkillBtn")?.addEventListener(
-        "click",
-        ()=>showSkillModal("offer")
-      );
-
-      document.getElementById("requestSkillBtn")?.addEventListener(
-        "click",
-        ()=>showSkillModal("request")
-      );
-    }
-
-    if(state.page === "market"){
-      document.getElementById("sellBtn")?.addEventListener(
-        "click",
-        showSellModal
-      );
-    }
-
-    if(state.page === "profile"){
-      document.getElementById("editProfileBtn")?.addEventListener(
-        "click",
-        showEditProfile
-      );
-
-      document.getElementById("settingsBtn")?.addEventListener(
-        "click",
-        showSettings
-      );
-
-      document.getElementById("logoutBtn")?.addEventListener(
-        "click",
-        ()=>signOut(auth)
-      );
-    }
-  }
-
-  function subscribePosts(){
-    if(state.unsubscribePosts){
-      state.unsubscribePosts();
-      state.unsubscribePosts = null;
-    }
-
-    const postsQuery = query(
-      collection(db,"posts"),
-      orderBy("createdAt","desc"),
-      limit(50)
-    );
-
-    state.unsubscribePosts = onSnapshot(
-      postsQuery,
-      snap=>{
-        state.posts = snap.docs.map(d=>({
-          id:d.id,
-          ...d.data()
-        }));
-
-        if(state.user && state.profile?.onboardingComplete){
-          if(state.page === "home"){
-            render();
-          }
-        }
-      },
-      error=>{
-        console.error("Posts listener:",error);
-      }
-    );
-  }
-
-  function subscribeChats(){
-    if(state.unsubscribeChats){
-      state.unsubscribeChats();
-      state.unsubscribeChats = null;
-    }
-
-    if(!state.user) return;
-
-    const chatsQuery = query(
-      collection(db,"chats"),
-      where("members","array-contains",state.user.uid),
-      orderBy("updatedAt","desc"),
-      limit(50)
-    );
-
-    state.unsubscribeChats = onSnapshot(
-      chatsQuery,
-      snap=>{
-        state.chats = snap.docs.map(d=>({
-          id:d.id,
-          ...d.data()
-        }));
-
-        if(state.page === "chat" && !state.activeChat){
-          render();
-        }
-      },
-      error=>{
-        console.error("Chats listener:",error);
-      }
-    );
-  }
-
-  async function startApplication(user){
-    state.user = user;
-
-    try{
-      await loadProfile(user);
-
-      subscribePosts();
-      subscribeChats();
-
-      render();
-    }catch(error){
-      console.error(error);
-
-      root.innerHTML = `
-        <div class="auth-shell">
-          <div class="auth-card">
-            <div class="auth-logo">!</div>
-
-            <h1>Connection problem</h1>
-
-            <p>
-              Marvel Chat could not load your profile.
-              Please check your internet connection and Firebase configuration.
-            </p>
-
-            <button class="btn btn-primary btn-block" id="retryApp">
-              Retry
-            </button>
 
             <div style="height:8px"></div>
 
-            <button class="btn btn-danger btn-block" id="retryLogout">
+
+            <button
+              class="btn btn-secondary btn-block"
+              id="settingsBtn"
+            >
+              App settings
+            </button>
+
+
+            <div style="height:8px"></div>
+
+
+            <button
+              class="btn btn-danger btn-block"
+              id="logoutBtn"
+            >
               Sign out
             </button>
+
           </div>
+
+
         </div>
-      `;
 
-      document.getElementById("retryApp")?.addEventListener(
-        "click",
-        ()=>startApplication(user)
-      );
+      </div>
 
-      document.getElementById("retryLogout")?.addEventListener(
-        "click",
-        ()=>signOut(auth)
-      );
-    }
+    `;
+
   }
 
-  onAuthStateChanged(auth,async user=>{
-    state.user = user;
 
-    if(!user){
-      state.profile = null;
-      state.posts = [];
-      state.chats = [];
-      state.activeChat = null;
+  /* ============================================================
+     EDIT PROFILE
+  ============================================================ */
 
-      if(state.unsubscribePosts){
-        state.unsubscribePosts();
-        state.unsubscribePosts = null;
+  function showEditProfile(){
+
+    showModal(
+      "Edit profile",
+      `
+
+        <div class="field">
+
+          <label>
+            Display name
+          </label>
+
+          <input
+            id="editName"
+            class="input"
+            maxlength="60"
+            value="${escapeHtml(
+              state.profile.displayName ||
+              state.profile.username ||
+              ""
+            )}"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Phone
+          </label>
+
+          <input
+            id="editPhone"
+            class="input"
+            value="${escapeHtml(
+              state.profile.phone ||
+              ""
+            )}"
+          >
+
+        </div>
+
+
+        <button
+          class="btn btn-primary btn-block"
+          id="saveProfile"
+        >
+          Save changes
+        </button>
+
+      `
+    );
+
+
+    document
+      .getElementById(
+        "saveProfile"
+      )
+      ?.addEventListener(
+        "click",
+        async () => {
+
+          const displayName =
+            document
+              .getElementById(
+                "editName"
+              )
+              ?.value
+              .trim();
+
+
+          const phone =
+            document
+              .getElementById(
+                "editPhone"
+              )
+              ?.value
+              .trim();
+
+
+          if(!displayName){
+
+            toast(
+              "Display name cannot be empty."
+            );
+
+            return;
+
+          }
+
+
+          try{
+
+            await updateProfile(
+              auth.currentUser,
+              {
+                displayName
+              }
+            );
+
+
+            await updateDoc(
+
+              doc(
+                db,
+                "users",
+                state.user.uid
+              ),
+
+              {
+
+                displayName,
+
+                phone,
+
+                updatedAt:
+                  serverTimestamp()
+
+              }
+
+            );
+
+
+            state.profile.displayName =
+              displayName;
+
+            state.profile.phone =
+              phone;
+
+
+            closeModal();
+
+            render();
+
+            toast(
+              "Profile updated."
+            );
+
+          }catch(error){
+
+            console.error(error);
+
+            toast(
+              friendlyFirebaseError(
+                error
+              )
+            );
+
+          }
+
+        }
+      );
+
+  }
+
+
+  /* ============================================================
+     SETTINGS
+  ============================================================ */
+
+  function showSettings(){
+
+    showModal(
+      "Settings",
+      `
+
+        <div class="list">
+
+
+          <div class="list-item">
+
+            <strong>
+              Theme
+            </strong>
+
+
+            <div
+              style="
+                display:flex;
+                gap:8px;
+                margin-top:9px
+              "
+            >
+
+              <button
+                class="
+                  btn
+                  ${
+                    state.theme === "light"
+                      ? "btn-primary"
+                      : "btn-secondary"
+                  }
+                "
+                id="lightTheme"
+              >
+                Light
+              </button>
+
+
+              <button
+                class="
+                  btn
+                  ${
+                    state.theme === "dark"
+                      ? "btn-primary"
+                      : "btn-secondary"
+                  }
+                "
+                id="darkTheme"
+              >
+                Dark
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="list-item">
+
+            <strong>
+              Low-data mode
+            </strong>
+
+            <p class="small">
+              Reduces unnecessary background activity.
+            </p>
+
+            <button
+              class="btn btn-secondary"
+              id="lowDataToggle"
+            >
+
+              ${
+                state.lowData
+                  ? "Disable"
+                  : "Enable"
+              }
+
+            </button>
+
+          </div>
+
+
+          <div class="list-item">
+
+            <strong>
+              Marvel Chat PWA
+            </strong>
+
+            <p class="small">
+              Marvel Chat is designed to work
+              as an installable web app.
+            </p>
+
+          </div>
+
+
+        </div>
+
+      `
+    );
+
+
+    document
+      .getElementById(
+        "lightTheme"
+      )
+      ?.addEventListener(
+        "click",
+        () => saveTheme("light")
+      );
+
+
+    document
+      .getElementById(
+        "darkTheme"
+      )
+      ?.addEventListener(
+        "click",
+        () => saveTheme("dark")
+      );
+
+
+    document
+      .getElementById(
+        "lowDataToggle"
+      )
+      ?.addEventListener(
+        "click",
+        () => {
+
+          saveLowData(
+            !state.lowData
+          );
+
+          closeModal();
+
+          toast(
+            state.lowData
+              ? "Low-data mode enabled."
+              : "Low-data mode disabled."
+          );
+
+        }
+      );
+
+  }
+
+
+  /* ============================================================
+     GLOBAL SEARCH
+  ============================================================ */
+
+  function showSearch(){
+
+    showModal(
+      "Search Marvel Chat",
+      `
+
+        <div class="field">
+
+          <input
+            id="globalSearch"
+            class="input"
+            placeholder="Search posts..."
+          >
+
+        </div>
+
+
+        <button
+          class="btn btn-primary btn-block"
+          id="runSearch"
+        >
+          Search
+        </button>
+
+
+        <div
+          id="searchResults"
+          style="margin-top:15px"
+        ></div>
+
+      `
+    );
+
+
+    document
+      .getElementById(
+        "runSearch"
+      )
+      ?.addEventListener(
+        "click",
+        () => {
+
+          const term =
+            document
+              .getElementById(
+                "globalSearch"
+              )
+              ?.value
+              .trim()
+              .toLowerCase();
+
+
+          if(!term){
+            return;
+          }
+
+
+          const results =
+            state.posts.filter(
+              post =>
+
+                String(
+                  post.text || ""
+                )
+                  .toLowerCase()
+                  .includes(term)
+
+                ||
+
+                String(
+                  post.username || ""
+                )
+                  .toLowerCase()
+                  .includes(term)
+
+            );
+
+
+          document
+            .getElementById(
+              "searchResults"
+            )
+            .innerHTML =
+
+            results.length
+
+              ? results
+                  .map(
+                    post => `
+
+                      <div class="list-item">
+
+                        <strong>
+                          ${escapeHtml(
+                            post.username ||
+                            "User"
+                          )}
+                        </strong>
+
+                        <div>
+                          ${escapeHtml(
+                            post.text ||
+                            ""
+                          )}
+                        </div>
+
+                      </div>
+
+                    `
+                  )
+                  .join("")
+
+              : `
+
+                  <div class="empty">
+                    No matching posts found.
+                  </div>
+
+                `;
+
+        }
+      );
+
+  }
+
+
+  /* ============================================================
+     NOTIFICATIONS
+  ============================================================ */
+
+  async function showNotifications(){
+
+    showModal(
+      "Notifications",
+      `
+
+        <div
+          id="notificationContent"
+          class="empty"
+        >
+          Loading notifications…
+        </div>
+
+      `
+    );
+
+
+    try{
+
+      const q =
+        query(
+
+          collection(
+            db,
+            "users",
+            state.user.uid,
+            "notifications"
+          ),
+
+          orderBy(
+            "createdAt",
+            "desc"
+          ),
+
+          limit(30)
+
+        );
+
+
+      const snap =
+        await getDocs(q);
+
+
+      const notifications =
+        snap.docs.map(
+          d => ({
+            id:d.id,
+            ...d.data()
+          })
+        );
+
+
+      const content =
+        document.getElementById(
+          "notificationContent"
+        );
+
+
+      if(!content){
+        return;
       }
 
-      if(state.unsubscribeChats){
-        state.unsubscribeChats();
-        state.unsubscribeChats = null;
+
+      content.className =
+        notifications.length
+          ? "list"
+          : "empty";
+
+
+      content.innerHTML =
+        notifications.length
+
+          ? notifications
+              .map(
+                notification => `
+
+                  <div class="list-item">
+
+                    <strong>
+                      ${escapeHtml(
+                        notification.title ||
+                        "Notification"
+                      )}
+                    </strong>
+
+                    <div>
+                      ${escapeHtml(
+                        notification.message ||
+                        ""
+                      )}
+                    </div>
+
+                    <div class="small">
+
+                      ${escapeHtml(
+                        formatDate(
+                          notification.createdAt
+                        )
+                      )}
+
+                    </div>
+
+                  </div>
+
+                `
+              )
+              .join("")
+
+          : `
+
+              <div style="font-size:30px">
+                🔔
+              </div>
+
+              <p>
+                No new notifications.
+              </p>
+
+            `;
+
+    }catch(error){
+
+      console.error(error);
+
+      const content =
+        document.getElementById(
+          "notificationContent"
+        );
+
+
+      if(content){
+
+        content.innerHTML = `
+
+          <div class="status error">
+
+            Could not load notifications.
+
+          </div>
+
+        `;
+
       }
 
-      if(state.unsubscribeMessages){
-        state.unsubscribeMessages();
-        state.unsubscribeMessages = null;
+    }
+
+  }
+
+
+  /* ============================================================
+     PAGE EVENTS
+  ============================================================ */
+
+  function attachPageEvents(){
+
+    /* HOME */
+
+    if(
+      state.page === "home"
+    ){
+
+      document
+        .getElementById(
+          "createPostBtn"
+        )
+        ?.addEventListener(
+          "click",
+          showCreatePost
+        );
+
+
+      document
+        .getElementById(
+          "emptyCreatePost"
+        )
+        ?.addEventListener(
+          "click",
+          showCreatePost
+        );
+
+
+      document
+        .querySelectorAll(
+          "[data-like]"
+        )
+        .forEach(button => {
+
+          button.addEventListener(
+            "click",
+            () =>
+              toggleLike(
+                button.dataset.like
+              )
+          );
+
+        });
+
+
+      document
+        .querySelectorAll(
+          "[data-comment]"
+        )
+        .forEach(button => {
+
+          button.addEventListener(
+            "click",
+            () =>
+              showComments(
+                button.dataset.comment
+              )
+          );
+
+        });
+
+
+      document
+        .querySelectorAll(
+          "[data-share]"
+        )
+        .forEach(button => {
+
+          button.addEventListener(
+            "click",
+            () =>
+              sharePost(
+                button.dataset.share
+              )
+          );
+
+        });
+
+
+      document
+        .querySelectorAll(
+          "[data-save]"
+        )
+        .forEach(button => {
+
+          button.addEventListener(
+            "click",
+            () =>
+              savePost(
+                button.dataset.save
+              )
+          );
+
+        });
+
+    }
+
+
+    /* CHAT */
+
+    if(
+      state.page === "chat"
+    ){
+
+      if(
+        state.activeConversation
+      ){
+
+        document
+          .getElementById(
+            "backChats"
+          )
+          ?.addEventListener(
+            "click",
+            () => {
+
+              if(
+                state.unsubscribeMessages
+              ){
+
+                state.unsubscribeMessages();
+
+                state.unsubscribeMessages =
+                  null;
+
+              }
+
+
+              state.activeConversation =
+                null;
+
+              state.messages = [];
+
+              render();
+
+            }
+          );
+
+
+        document
+          .getElementById(
+            "sendMessage"
+          )
+          ?.addEventListener(
+            "click",
+            sendMessage
+          );
+
+
+        document
+          .getElementById(
+            "messageInput"
+          )
+          ?.addEventListener(
+            "keydown",
+            event => {
+
+              if(
+                event.key ===
+                "Enter"
+              ){
+
+                event.preventDefault();
+
+                sendMessage();
+
+              }
+
+            }
+          );
+
+      }else{
+
+        document
+          .getElementById(
+            "newChatBtn"
+          )
+          ?.addEventListener(
+            "click",
+            showNewChat
+          );
+
+
+        document
+          .getElementById(
+            "newChatEmpty"
+          )
+          ?.addEventListener(
+            "click",
+            showNewChat
+          );
+
+
+        document
+          .querySelectorAll(
+            "[data-conversation]"
+          )
+          .forEach(item => {
+
+            item.addEventListener(
+              "click",
+              () =>
+                openConversation(
+                  item.dataset
+                    .conversation
+                )
+            );
+
+          });
+
+
+        document
+          .getElementById(
+            "chatSearch"
+          )
+          ?.addEventListener(
+            "input",
+            event => {
+
+              state.search =
+                event.target.value
+                  .toLowerCase();
+
+              renderChatSearch();
+
+            }
+          );
+
       }
 
-      renderAuth();
+    }
+
+
+    /* TIMETRUST */
+
+    if(
+      state.page ===
+      "timetrust"
+    ){
+
+      document
+        .getElementById(
+          "offerSkillBtn"
+        )
+        ?.addEventListener(
+          "click",
+          () =>
+            showSkillModal(
+              "offer"
+            )
+        );
+
+
+      document
+        .getElementById(
+          "requestSkillBtn"
+        )
+        ?.addEventListener(
+          "click",
+          () =>
+            showSkillModal(
+              "request"
+            )
+        );
+
+    }
+
+
+    /* MARKET */
+
+    if(
+      state.page ===
+      "market"
+    ){
+
+      document
+        .getElementById(
+          "sellBtn"
+        )
+        ?.addEventListener(
+          "click",
+          showSellModal
+        );
+
+
+      document
+        .getElementById(
+          "marketSearch"
+        )
+        ?.addEventListener(
+          "input",
+          event => {
+
+            state.search =
+              event.target.value;
+
+            const marketItems =
+              document.getElementById(
+                "marketItems"
+              );
+
+
+            if(marketItems){
+
+              marketItems.innerHTML =
+                renderListings();
+
+            }
+
+          }
+        );
+
+    }
+
+
+    /* PROFILE */
+
+    if(
+      state.page ===
+      "profile"
+    ){
+
+      document
+        .getElementById(
+          "editProfileBtn"
+        )
+        ?.addEventListener(
+          "click",
+          showEditProfile
+        );
+
+
+      document
+        .getElementById(
+          "settingsBtn"
+        )
+        ?.addEventListener(
+          "click",
+          showSettings
+        );
+
+
+      document
+        .getElementById(
+          "logoutBtn"
+        )
+        ?.addEventListener(
+          "click",
+          () =>
+            signOut(auth)
+        );
+
+    }
+
+  }
+
+
+  function renderChatSearch(){
+
+    const list =
+      document.getElementById(
+        "chatList"
+      );
+
+
+    if(!list){
       return;
     }
 
-    await startApplication(user);
-  });
 
-  window.addEventListener("online",()=>{
-    if(state.user){
-      toast("You are back online.");
-      render();
-    }
-  });
+    const filtered =
+      state.conversations.filter(
+        conversation => {
 
-  window.addEventListener("offline",()=>{
-    if(state.user){
-      toast("You are offline. Some features may be unavailable.");
-      render();
-    }
-  });
+          const profiles =
+            Object.values(
+              conversation
+                .participantProfiles ||
+              {}
+            );
 
-  /*
-   * Register the existing PWA service worker.
-   * No Storage dependency is involved.
-   */
-  if("serviceWorker" in navigator){
-    window.addEventListener("load",()=>{
-      navigator.serviceWorker
-        .register("./serviceworker.js",{scope:"./"})
-        .then(registration=>{
-          console.log(
-            "Marvel Chat service worker registered:",
-            registration.scope
-          );
-        })
-        .catch(error=>{
-          console.warn(
-            "Service worker registration failed:",
-            error
-          );
-        });
-    });
+
+          const names =
+            profiles
+              .map(
+                profile =>
+                  `${profile.displayName || ""}
+                   ${profile.username || ""}`
+              )
+              .join(" ");
+
+
+          return names
+            .toLowerCase()
+            .includes(
+              state.search
+            );
+
+        }
+      );
+
+
+    list.innerHTML =
+      filtered.length
+
+        ? filtered
+            .map(
+              conversation => {
+
+                const otherUid =
+                  conversation
+                    .participants
+                    ?.find(
+                      uid =>
+                        uid !==
+                        state.user.uid
+                    ) || "";
+
+
+                const profile =
+                  conversation
+                    .participantProfiles
+                    ?.[otherUid] ||
+                  {};
+
+
+                const otherName =
+                  profile.displayName ||
+                  profile.username ||
+                  "User";
+
+
+                return `
+
+                  <div
+                    class="chat-item"
+                    data-conversation="${conversation.id}"
+                  >
+
+                    <div class="avatar">
+
+                      ${escapeHtml(
+                        initials(
+                          otherName
+                        )
+                      )}
+
+                    </div>
+
+
+                    <div class="chat-content">
+
+                      <strong>
+                        ${escapeHtml(
+                          otherName
+                        )}
+                      </strong>
+
+                      <p>
+                        ${
+                          conversation.lastMessage
+                            ? escapeHtml(
+                                conversation.lastMessage
+                              )
+                            : "Start chatting"
+                        }
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                `;
+
+              }
+            )
+            .join("")
+
+        : `
+
+            <div class="empty">
+              No matching conversations.
+            </div>
+
+          `;
+
+
+    list
+      .querySelectorAll(
+        "[data-conversation]"
+      )
+      .forEach(item => {
+
+        item.addEventListener(
+          "click",
+          () =>
+            openConversation(
+              item.dataset
+                .conversation
+            )
+        );
+
+      });
+
   }
 
-  /*
-   * Initial render while Firebase Auth is resolving.
-   */
+
+  /* ============================================================
+     FIRESTORE LISTENERS
+  ============================================================ */
+
+  function subscribePosts(){
+
+    if(
+      state.unsubscribePosts
+    ){
+
+      state.unsubscribePosts();
+
+      state.unsubscribePosts =
+        null;
+
+    }
+
+
+    const postsQuery =
+      query(
+
+        collection(
+          db,
+          "posts"
+        ),
+
+        orderBy(
+          "createdAt",
+          "desc"
+        ),
+
+        limit(50)
+
+      );
+
+
+    state.unsubscribePosts =
+      onSnapshot(
+
+        postsQuery,
+
+        snap => {
+
+          state.posts =
+            snap.docs.map(
+              d => ({
+
+                id:d.id,
+
+                ...d.data()
+
+              })
+            );
+
+
+          if(
+            state.user &&
+            state.profile
+              ?.onboardingComplete
+          ){
+
+            if(
+              state.page === "home"
+            ){
+
+              render();
+
+            }
+
+          }
+
+        },
+
+        error => {
+
+          console.error(
+            "Posts listener:",
+            error
+          );
+
+        }
+
+      );
+
+  }
+
+
+  function subscribeConversations(){
+
+    if(
+      state.unsubscribeConversations
+    ){
+
+      state.unsubscribeConversations();
+
+      state.unsubscribeConversations =
+        null;
+
+    }
+
+
+    if(!state.user){
+      return;
+    }
+
+
+    const conversationsQuery =
+      query(
+
+        collection(
+          db,
+          "conversations"
+        ),
+
+        where(
+          "participants",
+          "array-contains",
+          state.user.uid
+        ),
+
+        orderBy(
+          "updatedAt",
+          "desc"
+        ),
+
+        limit(50)
+
+      );
+
+
+    state.unsubscribeConversations =
+      onSnapshot(
+
+        conversationsQuery,
+
+        snap => {
+
+          state.conversations =
+            snap.docs.map(
+              d => ({
+
+                id:d.id,
+
+                ...d.data()
+
+              })
+            );
+
+
+          if(
+            state.page === "chat" &&
+            !state.activeConversation
+          ){
+
+            render();
+
+          }
+
+        },
+
+        error => {
+
+          console.error(
+            "Conversation listener:",
+            error
+          );
+
+        }
+
+      );
+
+  }
+
+
+  function subscribeListings(){
+
+    if(
+      state.unsubscribeListings
+    ){
+
+      state.unsubscribeListings();
+
+      state.unsubscribeListings =
+        null;
+
+    }
+
+
+    const listingsQuery =
+      query(
+
+        collection(
+          db,
+          "listings"
+        ),
+
+        where(
+          "status",
+          "==",
+          "active"
+        ),
+
+        orderBy(
+          "createdAt",
+          "desc"
+        ),
+
+        limit(50)
+
+      );
+
+
+    state.unsubscribeListings =
+      onSnapshot(
+
+        listingsQuery,
+
+        snap => {
+
+          state.listings =
+            snap.docs.map(
+              d => ({
+
+                id:d.id,
+
+                ...d.data()
+
+              })
+            );
+
+
+          if(
+            state.page ===
+            "market"
+          ){
+
+            render();
+
+          }
+
+        },
+
+        error => {
+
+          console.error(
+            "Listings listener:",
+            error
+          );
+
+        }
+
+      );
+
+  }
+
+
+  /* ============================================================
+     START APPLICATION
+  ============================================================ */
+
+  async function startApplication(
+    user
+  ){
+
+    state.user =
+      user;
+
+
+    try{
+
+      await loadProfile(
+        user
+      );
+
+
+      subscribePosts();
+
+      subscribeConversations();
+
+      subscribeListings();
+
+
+      render();
+
+    }catch(error){
+
+      console.error(
+        "Application startup:",
+        error
+      );
+
+
+      root.innerHTML = `
+
+        <div class="auth-shell">
+
+          <div class="auth-card">
+
+            <div class="auth-logo">
+              !
+            </div>
+
+
+            <h1>
+              Connection problem
+            </h1>
+
+
+            <p>
+              Marvel Chat could not load
+              your profile. Please check
+              your internet connection and
+              Firebase configuration.
+            </p>
+
+
+            <div class="status error">
+
+              ${escapeHtml(
+                friendlyFirebaseError(
+                  error
+                )
+              )}
+
+            </div>
+
+
+            <button
+              class="btn btn-primary btn-block"
+              id="retryApp"
+            >
+              Retry
+            </button>
+
+
+            <div style="height:8px"></div>
+
+
+            <button
+              class="btn btn-danger btn-block"
+              id="retryLogout"
+            >
+              Sign out
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      document
+        .getElementById(
+          "retryApp"
+        )
+        ?.addEventListener(
+          "click",
+          () =>
+            startApplication(
+              user
+            )
+        );
+
+
+      document
+        .getElementById(
+          "retryLogout"
+        )
+        ?.addEventListener(
+          "click",
+          () =>
+            signOut(auth)
+        );
+
+    }
+
+  }
+
+
+  /* ============================================================
+     AUTH STATE
+  ============================================================ */
+
+  onAuthStateChanged(
+    auth,
+    async user => {
+
+      state.user =
+        user;
+
+
+      if(!user){
+
+        state.profile =
+          null;
+
+        state.posts =
+          [];
+
+        state.conversations =
+          [];
+
+        state.listings =
+          [];
+
+        state.activeConversation =
+          null;
+
+
+        if(
+          state.unsubscribePosts
+        ){
+
+          state.unsubscribePosts();
+
+          state.unsubscribePosts =
+            null;
+
+        }
+
+
+        if(
+          state.unsubscribeConversations
+        ){
+
+          state.unsubscribeConversations();
+
+          state.unsubscribeConversations =
+            null;
+
+        }
+
+
+        if(
+          state.unsubscribeListings
+        ){
+
+          state.unsubscribeListings();
+
+          state.unsubscribeListings =
+            null;
+
+        }
+
+
+        if(
+          state.unsubscribeMessages
+        ){
+
+          state.unsubscribeMessages();
+
+          state.unsubscribeMessages =
+            null;
+
+        }
+
+
+        renderAuth();
+
+        return;
+
+      }
+
+
+      await startApplication(
+        user
+      );
+
+    }
+  );
+
+
+  /* ============================================================
+     NETWORK STATUS
+  ============================================================ */
+
+  window.addEventListener(
+    "online",
+    () => {
+
+      if(state.user){
+
+        toast(
+          "You are back online."
+        );
+
+        render();
+
+      }
+
+    }
+  );
+
+
+  window.addEventListener(
+    "offline",
+    () => {
+
+      if(state.user){
+
+        toast(
+          "You are offline. Some features may be unavailable."
+        );
+
+        render();
+
+      }
+
+    }
+  );
+
+
+  /* ============================================================
+     SERVICE WORKER
+  ============================================================ */
+
+  if(
+    "serviceWorker" in navigator
+  ){
+
+    window.addEventListener(
+      "load",
+      () => {
+
+        navigator.serviceWorker
+
+          .register(
+            "./serviceworker.js",
+            {
+              scope:"./"
+            }
+          )
+
+          .then(
+            registration => {
+
+              console.log(
+                "Marvel Chat service worker registered:",
+                registration.scope
+              );
+
+            }
+          )
+
+          .catch(
+            error => {
+
+              console.warn(
+                "Service worker registration failed:",
+                error
+              );
+
+            }
+          );
+
+      }
+    );
+
+  }
+
+
+  /* ============================================================
+     INITIAL RENDER
+  ============================================================ */
+
   render();
 
 </script>
 
 </body>
-</html>
+</html>I 
