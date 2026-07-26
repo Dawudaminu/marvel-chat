@@ -1,60 +1,82 @@
-const CACHE_NAME = "marvel-chat-v4";
+const CACHE_NAME = "marvel-chat-v6";
 
 const APP_SHELL = [
-  "/marvel-chat/",
-  "/marvel-chat/index.html",
-  "/marvel-chat/firebaseConfig.js",
-  "/marvel-chat/manifest.json",
-  "/marvel-chat/serviceworker.js",
-  "/marvel-chat/icons/icon-192.png",
-  "/marvel-chat/icons/icon-512.png"
-]; 
+  "./",
+  "./index.html",
+  "./firebaseconfig.js",
+  "./manifest.json",
+  "./serviceworker.js"
+];
 
-self.addEventListener("install", (event) => {
+self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(APP_SHELL);
-    })
-  );
-
-  self.skipWaiting();
-});
-
-self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames
-          .filter((name) => name !== CACHE_NAME)
-          .map((name) => caches.delete(name))
-      );
-    }).then(() => {
-      return self.clients.claim();
-    })
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(APP_SHELL))
+      .then(() => self.skipWaiting())
   );
 });
 
-self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") {
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches.keys()
+      .then(names =>
+        Promise.all(
+          names
+            .filter(name => name !== CACHE_NAME)
+            .map(name => caches.delete(name))
+        )
+      )
+      .then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener("message", event => {
+  if(event.data?.type === "SKIP_WAITING"){
+    self.skipWaiting();
+  }
+});
+
+function isFirebaseRequest(url){
+  return (
+    url.hostname.includes("firebase") ||
+    url.hostname.includes("googleapis.com") ||
+    url.hostname.includes("gstatic.com")
+  );
+}
+
+self.addEventListener("fetch", event => {
+  if(event.request.method !== "GET") return;
+
+  const url = new URL(event.request.url);
+
+  /*
+    Never cache Firebase/Auth/Firestore/Storage
+    network traffic in this service worker.
+  */
+  if(isFirebaseRequest(url)){
+    return;
+  }
+
+  /*
+    Only handle requests belonging to this application.
+  */
+  if(url.origin !== self.location.origin){
     return;
   }
 
   event.respondWith(
     fetch(event.request)
-      .then((response) => {
+      .then(response => {
+        if(response && response.ok){
+          const copy=response.clone();
 
-        if (response && response.status === 200) {
-          const responseClone = response.clone();
-
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseClone);
-          });
+          caches.open(CACHE_NAME)
+            .then(cache => cache.put(event.request,copy))
+            .catch(()=>{});
         }
 
         return response;
       })
-      .catch(() => {
-        return caches.match(event.request);
-      })
+      .catch(() => caches.match(event.request))
   );
 }); 
