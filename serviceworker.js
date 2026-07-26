@@ -1,24 +1,22 @@
-const CACHE_NAME = "marvel-chat-v3";
+const CACHE_NAME = "marvel-chat-v4";
 
 const APP_SHELL = [
-  "./",
-  "./index.html",
-  "./manifest.json",
-  "./serviceworker.js",
-
-  // Keep your two logos
-  "./icons/icon-192.png",
-  "./icons/icon-512.png", 
+  "/marvel-chat/",
+  "/marvel-chat/index.html",
+  "/marvel-chat/manifest.json",
+  "/marvel-chat/serviceworker.js",
+  "/marvel-chat/icons/icon-192.png",
+  "/marvel-chat/icons/icon-512.png"
 ];
 
 self.addEventListener("install", (event) => {
-  self.skipWaiting();
-
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(APP_SHELL);
     })
   );
+
+  self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
@@ -29,19 +27,22 @@ self.addEventListener("activate", (event) => {
           .filter((name) => name !== CACHE_NAME)
           .map((name) => caches.delete(name))
       );
-    }).then(() => self.clients.claim())
+    }).then(() => {
+      return self.clients.claim();
+    })
   );
 });
 
 self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET") {
+    return;
+  }
+
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        if (
-          response &&
-          response.status === 200 &&
-          event.request.method === "GET"
-        ) {
+
+        if (response && response.status === 200) {
           const responseClone = response.clone();
 
           caches.open(CACHE_NAME).then((cache) => {
@@ -55,4 +56,4 @@ self.addEventListener("fetch", (event) => {
         return caches.match(event.request);
       })
   );
-});
+}); 
