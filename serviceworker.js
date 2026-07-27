@@ -1,4 +1,4 @@
-const CACHE_NAME = "marvel-chat-v2"; 
+const CACHE_NAME = "marvel-chat-v3";
 
 const APP_SHELL = [
   "./",
@@ -31,12 +31,12 @@ self.addEventListener("activate", event => {
 });
 
 self.addEventListener("message", event => {
-  if(event.data?.type === "SKIP_WAITING"){
+  if (event.data?.type === "SKIP_WAITING") {
     self.skipWaiting();
   }
 });
 
-function isFirebaseRequest(url){
+function isFirebaseRequest(url) {
   return (
     url.hostname.includes("firebase") ||
     url.hostname.includes("googleapis.com") ||
@@ -45,34 +45,27 @@ function isFirebaseRequest(url){
 }
 
 self.addEventListener("fetch", event => {
-  if(event.request.method !== "GET") return;
+  if (event.request.method !== "GET") return;
 
   const url = new URL(event.request.url);
 
-  /*
-    Never cache Firebase/Auth/Firestore/Storage
-    network traffic in this service worker.
-  */
-  if(isFirebaseRequest(url)){
+  if (isFirebaseRequest(url)) {
     return;
   }
 
-  /*
-    Only handle requests belonging to this application.
-  */
-  if(url.origin !== self.location.origin){
+  if (url.origin !== self.location.origin) {
     return;
   }
 
   event.respondWith(
     fetch(event.request)
       .then(response => {
-        if(response && response.ok){
-          const copy=response.clone();
+        if (response && response.ok) {
+          const copy = response.clone();
 
           caches.open(CACHE_NAME)
-            .then(cache => cache.put(event.request,copy))
-            .catch(()=>{});
+            .then(cache => cache.put(event.request, copy))
+            .catch(() => {});
         }
 
         return response;
