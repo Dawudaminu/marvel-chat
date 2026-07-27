@@ -1,4 +1,4 @@
-const CACHE_NAME = "marvel-chat-v3";
+const CACHE_NAME = "marvel-chat-9999";
 
 const APP_SHELL = [
   "./",
@@ -21,9 +21,12 @@ self.addEventListener("activate", event => {
     caches.keys()
       .then(names =>
         Promise.all(
-          names
-            .filter(name => name !== CACHE_NAME)
-            .map(name => caches.delete(name))
+          names.map(name => {
+            if (name !== CACHE_NAME) {
+              return caches.delete(name);
+            }
+            return Promise.resolve();
+          })
         )
       )
       .then(() => self.clients.claim())
@@ -49,16 +52,20 @@ self.addEventListener("fetch", event => {
 
   const url = new URL(event.request.url);
 
+  // Never cache Firebase/Google requests.
   if (isFirebaseRequest(url)) {
     return;
   }
 
+  // Only handle files from this GitHub Pages site.
   if (url.origin !== self.location.origin) {
     return;
   }
 
   event.respondWith(
-    fetch(event.request)
+    fetch(event.request, {
+      cache: "no-store"
+    })
       .then(response => {
         if (response && response.ok) {
           const copy = response.clone();
@@ -70,6 +77,8 @@ self.addEventListener("fetch", event => {
 
         return response;
       })
-      .catch(() => caches.match(event.request))
+      .catch(() => {
+        return caches.match(event.request);
+      })
   );
-}); 
+});
