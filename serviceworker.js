@@ -1,4 +1,4 @@
-const CACHE_NAME = "marvel-chat-v6";
+const CACHE_NAME = "marvel-chat-v2"; 
 
 const APP_SHELL = [
   "./",
