@@ -5027,12 +5027,15 @@ if("serviceWorker" in navigator){
     ()=>{
       navigator.serviceWorker
         .register(
-          "./serviceworker.js",
-          {
-            scope:"./"
-          }
-        )
-        .then(r=>{
+  "./serviceworker.js",
+  {
+    scope:"./",
+    updateViaCache:"none"
+  }
+)
+
+  
+           .then(r=>{
           console.log(
             "Service worker:",
             r.scope
