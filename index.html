@@ -1,860 +1,1519 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#6D28D9">
-<meta name="description" content="Marvel Chat — Connect. Chat. Trade your time. Discover opportunities.">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="manifest" href="./manifest.json">
-<link rel="apple-touch-icon" href="./icons/icon-192.png">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
+
+<meta
+  name="theme-color"
+  content="#6D28D9"
+>
+
+<meta
+  name="description"
+  content="Marvel Chat — Connect. Chat. Trade your time. Discover opportunities."
+>
+
+<meta
+  name="mobile-web-app-capable"
+  content="yes"
+>
+
+<meta
+  name="apple-mobile-web-app-capable"
+  content="yes"
+>
+
+<meta
+  name="apple-mobile-web-app-status-bar-style"
+  content="default"
+>
+
+<link
+  rel="manifest"
+  href="./manifest.json"
+>
+
+<link
+  rel="apple-touch-icon"
+  href="./icons/icon-192.png"
+>
+
 <title>Marvel Chat</title>
 
+
 <style>
+
 :root{
   --primary:#6d28d9;
   --primary2:#8b5cf6;
   --primary3:#a78bfa;
   --deep:#4c1d95;
+
   --bg:#f7f7fb;
   --surface:#fff;
   --surface2:#f0eef5;
   --surface3:#faf9fd;
+
   --text:#17131f;
   --muted:#756e80;
   --border:#e5e0ea;
+
   --success:#16803c;
   --danger:#c62828;
   --warning:#a16207;
   --info:#2563eb;
-  --shadow:0 10px 30px rgba(40,20,80,.08);
-  --shadow2:0 22px 65px rgba(40,20,80,.15);
+
+  --shadow:
+    0 10px 30px rgba(40,20,80,.08);
+
+  --shadow2:
+    0 22px 65px rgba(40,20,80,.15);
+
   --radius:20px;
+
   --top:68px;
   --nav:76px;
 }
 
+
 html[data-theme="dark"]{
+
   --bg:#0d0b12;
   --surface:#17141e;
   --surface2:#24202d;
   --surface3:#1d1926;
+
   --text:#f8f5fc;
   --muted:#b4acbf;
   --border:#342d3e;
-  --shadow:0 10px 30px rgba(0,0,0,.25);
-  --shadow2:0 25px 75px rgba(0,0,0,.45);
+
+  --shadow:
+    0 10px 30px rgba(0,0,0,.25);
+
+  --shadow2:
+    0 25px 75px rgba(0,0,0,.45);
 }
+
 
 *{
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
 }
 
+
 html{
   scroll-behavior:smooth;
 }
 
+
 body{
+
   margin:0;
+
   min-height:100vh;
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
   background:var(--bg);
   color:var(--text);
 }
 
-button,input,textarea,select{
+
+button,
+input,
+textarea,
+select{
   font:inherit;
 }
+
 
 button{
   cursor:pointer;
 }
+
 
 button:disabled{
   opacity:.55;
   cursor:not-allowed;
 }
 
+
 a{
   color:inherit;
   text-decoration:none;
 }
 
+
 .hidden{
   display:none!important;
 }
 
+
 .app{
+
   min-height:100vh;
+
   display:flex;
   flex-direction:column;
 }
 
+
 .topbar{
+
   position:sticky;
   top:0;
   z-index:100;
+
   height:var(--top);
-  background:color-mix(in srgb,var(--surface) 92%,transparent);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--surface) 92%,
+      transparent
+    );
+
   backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
+
+  border-bottom:
+    1px solid var(--border);
+
   display:flex;
+
   align-items:center;
   justify-content:space-between;
+
   padding:0 14px;
 }
 
+
 .brand{
+
   display:flex;
   align-items:center;
+
   gap:10px;
+
   min-width:0;
 }
 
+
 .brand-logo,
 .auth-logo{
+
   display:grid;
   place-items:center;
+
   color:#fff;
-  background:linear-gradient(135deg,var(--primary),var(--primary2));
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary2)
+    );
+
   font-weight:950;
-  box-shadow:0 10px 28px rgba(109,40,217,.3);
+
+  box-shadow:
+    0 10px 28px
+    rgba(109,40,217,.3);
 }
 
+
 .brand-logo{
+
   width:42px;
   height:42px;
+
   border-radius:14px;
 }
 
+
+.auth-logo{
+
+  width:60px;
+  height:60px;
+
+  border-radius:19px;
+
+  margin:0 auto 15px;
+
+  font-size:25px;
+}
+
+
 .brand-name{
+
   font-weight:950;
   font-size:17px;
 }
 
+
 .brand-sub{
+
   font-size:10px;
+
   color:var(--muted);
+
   margin-top:1px;
 }
 
+
 .top-actions{
+
   display:flex;
   gap:7px;
 }
 
+
 .icon-btn{
+
   width:40px;
   height:40px;
-  border:1px solid var(--border);
+
+  border:
+    1px solid var(--border);
+
   background:var(--surface);
   color:var(--text);
+
   border-radius:13px;
+
   display:grid;
   place-items:center;
 }
+
 
 .icon-btn:hover{
   background:var(--surface2);
 }
 
+
 .main{
+
   width:min(1120px,100%);
+
   margin:auto;
-  padding:18px 14px calc(var(--nav) + 35px);
+
+  padding:
+    18px
+    14px
+    calc(var(--nav) + 35px);
+
   flex:1;
 }
+
 
 .page{
   animation:in .2s ease;
 }
 
+
 @keyframes in{
+
   from{
     opacity:0;
     transform:translateY(5px);
   }
+
   to{
     opacity:1;
     transform:none;
   }
+
 }
+
 
 .hero{
+
   position:relative;
   overflow:hidden;
-  background:linear-gradient(135deg,#4c1d95,#6d28d9 50%,#8b5cf6);
+
+  background:
+    linear-gradient(
+      135deg,
+      #4c1d95,
+      #6d28d9 50%,
+      #8b5cf6
+    );
+
   color:#fff;
+
   border-radius:28px;
+
   padding:24px;
+
   margin-bottom:16px;
-  box-shadow:0 20px 55px rgba(76,29,149,.25);
+
+  box-shadow:
+    0 20px 55px
+    rgba(76,29,149,.25);
 }
+
 
 .hero:after{
+
   content:"";
+
   position:absolute;
+
   width:190px;
   height:190px;
-  border:1px solid rgba(255,255,255,.2);
+
+  border:
+    1px solid
+    rgba(255,255,255,.2);
+
   border-radius:50%;
+
   right:-55px;
   top:-80px;
+
   box-shadow:
-    0 0 0 30px rgba(255,255,255,.04),
-    0 0 0 60px rgba(255,255,255,.03);
+    0 0 0 30px
+    rgba(255,255,255,.04),
+
+    0 0 0 60px
+    rgba(255,255,255,.03);
 }
+
 
 .hero h1{
+
   margin:0 0 7px;
-  font-size:clamp(25px,6vw,40px);
+
+  font-size:
+    clamp(25px,6vw,40px);
+
   line-height:1.05;
+
   position:relative;
   z-index:1;
 }
+
 
 .hero p{
+
   margin:0;
+
   opacity:.92;
+
   line-height:1.55;
+
   position:relative;
   z-index:1;
 }
 
+
 .grid{
+
   display:grid;
   gap:14px;
 }
 
+
 .grid2{
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
 }
+
 
 .grid3{
-  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
 }
+
 
 .grid4{
-  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-columns:
+    repeat(4,minmax(0,1fr));
 }
 
+
 .card{
+
   background:var(--surface);
-  border:1px solid var(--border);
+
+  border:
+    1px solid var(--border);
+
   border-radius:var(--radius);
+
   box-shadow:var(--shadow);
+
   padding:17px;
 }
+
 
 .card h2,
 .card h3{
   margin:0 0 8px;
 }
 
+
 .small{
+
   color:var(--muted);
+
   font-size:13px;
+
   line-height:1.5;
 }
+
 
 .muted{
   color:var(--muted);
 }
 
+
 .section-title{
+
   display:flex;
+
   align-items:center;
   justify-content:space-between;
+
   gap:10px;
+
   margin:22px 0 11px;
 }
 
+
 .section-title h2{
+
   margin:0;
+
   font-size:19px;
 }
 
+
 .btn{
+
   border:0;
+
   border-radius:13px;
+
   padding:11px 15px;
+
   font-weight:850;
+
   transition:.15s;
 }
+
 
 .btn:active{
   transform:scale(.98);
 }
 
+
 .btn-primary{
+
   background:var(--primary);
+
   color:#fff;
 }
+
 
 .btn-primary:hover{
   background:var(--deep);
 }
 
+
 .btn-secondary{
-  background:color-mix(in srgb,var(--primary) 11%,var(--surface));
+
+  background:
+    color-mix(
+      in srgb,
+      var(--primary) 11%,
+      var(--surface)
+    );
+
   color:var(--deep);
 }
 
-html[data-theme=dark] .btn-secondary{
+
+html[data-theme="dark"]
+.btn-secondary{
   color:#d9c8ff;
 }
 
+
 .btn-ghost{
+
   background:transparent;
+
   color:var(--primary);
-  border:1px solid var(--border);
+
+  border:
+    1px solid var(--border);
 }
 
+
 .btn-danger{
+
   background:#fdecec;
+
   color:var(--danger);
 }
+
 
 .btn-block{
   width:100%;
 }
 
+
 .input,
 .textarea,
 .select{
+
   width:100%;
-  border:1px solid var(--border);
+
+  border:
+    1px solid var(--border);
+
   background:var(--surface);
+
   color:var(--text);
+
   border-radius:13px;
+
   padding:12px 13px;
+
   outline:none;
 }
+
 
 .input:focus,
 .textarea:focus,
 .select:focus{
+
   border-color:var(--primary2);
-  box-shadow:0 0 0 3px rgba(139,92,246,.13);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(139,92,246,.13);
 }
 
+
 .textarea{
+
   resize:vertical;
+
   min-height:105px;
 }
+
 
 .field{
   margin-bottom:13px;
 }
 
+
 .field label{
+
   display:block;
+
   font-size:13px;
+
   font-weight:850;
+
   margin-bottom:6px;
 }
 
+
 .bottom-nav{
+
   position:fixed;
+
   left:0;
   right:0;
   bottom:0;
+
   z-index:110;
+
   height:var(--nav);
-  background:color-mix(in srgb,var(--surface) 96%,transparent);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--surface) 96%,
+      transparent
+    );
+
   backdrop-filter:blur(20px);
-  border-top:1px solid var(--border);
+
+  border-top:
+    1px solid var(--border);
+
   display:flex;
+
   justify-content:center;
 }
+
 
 .bottom-inner{
+
   width:min(700px,100%);
+
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+
+  grid-template-columns:
+    repeat(5,1fr);
 }
 
+
 .nav-btn{
+
   border:0;
+
   background:transparent;
+
   color:var(--muted);
-  height:100%;
+
   display:flex;
+
   flex-direction:column;
+
   align-items:center;
   justify-content:center;
-  gap:4px;
-  font-size:10px;
+
+  gap:3px;
+
+  font-size:11px;
+
   font-weight:800;
 }
+
 
 .nav-btn.active{
   color:var(--primary);
 }
 
+
 .nav-icon{
-  font-size:21px;
-  line-height:1;
+  font-size:22px;
 }
+
 
 .auth-shell{
+
   min-height:100vh;
+
   display:grid;
+
   place-items:center;
-  padding:20px;
-  background:
-    radial-gradient(circle at top left,rgba(139,92,246,.2),transparent 40%),
-    radial-gradient(circle at bottom right,rgba(109,40,217,.16),transparent 40%),
-    var(--bg);
+
+  padding:18px;
 }
+
 
 .auth-card{
+
   width:min(480px,100%);
+
   background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:30px;
-  padding:26px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:28px;
+
   box-shadow:var(--shadow2);
+
+  padding:25px;
 }
 
-.auth-logo{
-  width:70px;
-  height:70px;
-  border-radius:23px;
-  font-size:30px;
-  margin-bottom:16px;
-}
 
 .auth-card h1{
-  margin:0 0 7px;
-  font-size:29px;
+
+  text-align:center;
+
+  margin:0 0 8px;
 }
 
-.auth-card p{
+
+.auth-card > p{
+
   color:var(--muted);
-  line-height:1.5;
+
+  line-height:1.6;
+
+  text-align:center;
 }
+
 
 .status{
-  border-radius:12px;
+
   padding:11px 13px;
-  font-size:13px;
+
+  border-radius:13px;
+
   margin:10px 0;
+
+  font-size:13px;
 }
+
 
 .status.error{
-  background:#fff0f0;
+
+  background:#fdecec;
+
   color:var(--danger);
+
+  border:
+    1px solid #f5c8c8;
 }
 
-.status.success{
-  background:#ecfdf3;
-  color:var(--success);
-}
 
 .status.info{
-  background:color-mix(in srgb,var(--primary) 10%,var(--surface));
-  color:var(--deep);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--info) 9%,
+      var(--surface)
+    );
+
+  color:var(--text);
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--info) 14%,
+      var(--border)
+    );
 }
 
+
 .profile-row{
+
   display:flex;
+
   align-items:center;
+
   gap:12px;
 }
 
+
 .avatar{
+
   width:48px;
   height:48px;
+
   border-radius:50%;
-  background:color-mix(in srgb,var(--primary) 12%,var(--surface));
+
+  background:
+    color-mix(
+      in srgb,
+      var(--primary) 12%,
+      var(--surface)
+    );
+
   color:var(--primary);
+
   display:grid;
+
   place-items:center;
+
   font-weight:950;
+
   flex:none;
 }
 
+
 .avatar-lg{
+
   width:80px;
   height:80px;
+
   font-size:25px;
 }
 
+
 .profile-meta{
+
   min-width:0;
+
   flex:1;
 }
 
+
 .profile-meta strong{
+
   display:block;
+
   overflow:hidden;
+
   text-overflow:ellipsis;
+
   white-space:nowrap;
 }
+
 
 .post{
   margin-bottom:14px;
 }
 
+
 .post-head{
+
   display:flex;
+
   align-items:center;
+
   gap:10px;
+
   margin-bottom:12px;
 }
 
+
 .post-body{
+
   line-height:1.6;
+
   white-space:pre-wrap;
+
   word-break:break-word;
 }
 
+
 .post-actions{
+
   display:flex;
+
   gap:7px;
+
   flex-wrap:wrap;
+
   margin-top:12px;
+
   padding-top:11px;
-  border-top:1px solid var(--border);
+
+  border-top:
+    1px solid var(--border);
 }
 
+
 .action{
+
   border:0;
+
   background:var(--surface2);
+
   color:var(--text);
+
   border-radius:11px;
+
   padding:8px 11px;
+
   font-size:12px;
+
   font-weight:750;
 }
 
+
 .action.active{
-  background:color-mix(in srgb,var(--primary) 14%,var(--surface));
+
+  background:
+    color-mix(
+      in srgb,
+      var(--primary) 14%,
+      var(--surface)
+    );
+
   color:var(--primary);
 }
+
 
 .stat{
+
   padding:15px;
+
   border-radius:17px;
-  background:color-mix(in srgb,var(--primary) 10%,var(--surface));
-  border:1px solid color-mix(in srgb,var(--primary) 12%,var(--border));
+
+  background:
+    color-mix(
+      in srgb,
+      var(--primary) 10%,
+      var(--surface)
+    );
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--primary) 12%,
+      var(--border)
+    );
 }
 
+
 .stat strong{
+
   display:block;
+
   font-size:25px;
+
   color:var(--primary);
 }
+
 
 .chat-list,
 .list{
+
   display:flex;
+
   flex-direction:column;
+
   gap:9px;
 }
 
+
 .chat-item{
+
   display:flex;
+
   align-items:center;
+
   gap:11px;
+
   padding:12px;
-  border:1px solid var(--border);
+
+  border:
+    1px solid var(--border);
+
   border-radius:15px;
+
   background:var(--surface);
+
   cursor:pointer;
 }
+
 
 .chat-item:hover{
   background:var(--surface2);
 }
 
+
 .chat-content{
+
   flex:1;
+
   min-width:0;
 }
 
+
 .chat-content strong,
 .chat-content p{
+
   overflow:hidden;
+
   text-overflow:ellipsis;
+
   white-space:nowrap;
+
   display:block;
 }
 
+
 .chat-content p{
+
   margin:4px 0 0;
+
   font-size:12px;
+
   color:var(--muted);
 }
 
+
 .messages{
+
   min-height:350px;
+
   max-height:60vh;
+
   overflow:auto;
+
   display:flex;
+
   flex-direction:column;
+
   gap:8px;
+
   padding:4px 0;
+
+  scroll-behavior:smooth;
 }
+
 
 .bubble{
+
   max-width:82%;
+
   padding:10px 12px;
+
   border-radius:16px;
+
   background:var(--surface);
-  border:1px solid var(--border);
+
+  border:
+    1px solid var(--border);
+
   align-self:flex-start;
+
   line-height:1.45;
+
+  word-break:break-word;
 }
 
+
 .bubble.mine{
+
   align-self:flex-end;
+
   background:var(--primary);
+
   color:#fff;
+
   border-color:var(--primary);
 }
 
+
 .bubble-time{
+
   font-size:10px;
+
   opacity:.65;
+
   margin-top:4px;
 }
 
+
 .message-box{
+
   display:flex;
+
   gap:8px;
+
   position:sticky;
+
   bottom:var(--nav);
+
   background:var(--surface);
+
   padding-top:10px;
 }
 
+
+.message-box .input{
+  min-width:0;
+}
+
+
 .list-item{
-  border:1px solid var(--border);
+
+  border:
+    1px solid var(--border);
+
   border-radius:14px;
+
   padding:13px;
+
   background:var(--surface);
 }
 
+
 .list-item strong{
+
   display:block;
+
   margin-bottom:3px;
 }
 
+
 .badge{
+
   display:inline-flex;
+
   align-items:center;
+
   gap:4px;
+
   padding:4px 8px;
+
   border-radius:999px;
-  background:color-mix(in srgb,var(--primary) 11%,var(--surface));
+
+  background:
+    color-mix(
+      in srgb,
+      var(--primary) 11%,
+      var(--surface)
+    );
+
   color:var(--deep);
+
   font-size:11px;
+
   font-weight:850;
 }
 
+
 .empty{
+
   text-align:center;
+
   padding:35px 15px;
+
   color:var(--muted);
 }
 
+
 .search{
+
   display:flex;
+
   gap:8px;
+
   margin-bottom:14px;
 }
+
 
 .search input{
   flex:1;
 }
 
+
 .quick-grid{
+
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+
+  grid-template-columns:
+    repeat(4,1fr);
+
   gap:10px;
 }
 
+
 .quick{
-  border:1px solid var(--border);
+
+  border:
+    1px solid var(--border);
+
   background:var(--surface);
+
   border-radius:17px;
+
   padding:14px;
+
   text-align:left;
+
   box-shadow:var(--shadow);
+
   transition:.15s;
 }
 
+
 .quick:hover{
+
   transform:translateY(-2px);
+
   border-color:var(--primary3);
 }
 
+
 .quick-icon{
+
   font-size:24px;
+
   margin-bottom:7px;
 }
 
+
 .quick strong{
+
   display:block;
+
   font-size:13px;
 }
 
+
 .quick span{
+
   font-size:11px;
+
   color:var(--muted);
 }
 
+
 .modal-backdrop{
+
   position:fixed;
+
   inset:0;
-  background:rgba(15,10,25,.58);
+
+  background:
+    rgba(15,10,25,.58);
+
   z-index:500;
+
   display:grid;
+
   place-items:center;
+
   padding:15px;
 }
 
+
 .modal{
+
   width:min(570px,100%);
+
   max-height:90vh;
+
   overflow:auto;
+
   background:var(--surface);
+
   color:var(--text);
+
   border-radius:25px;
+
   padding:20px;
-  box-shadow:0 30px 100px rgba(0,0,0,.3);
+
+  box-shadow:
+    0 30px 100px
+    rgba(0,0,0,.3);
 }
 
+
 .modal-head{
+
   display:flex;
+
   justify-content:space-between;
+
   gap:10px;
+
   align-items:center;
+
   margin-bottom:15px;
 }
 
+
 .modal-head h2{
+
   margin:0;
+
   font-size:20px;
 }
 
+
 .toast{
+
   position:fixed;
+
   left:50%;
+
   bottom:88px;
+
   transform:translateX(-50%);
+
   z-index:700;
+
   background:#17131f;
+
   color:#fff;
+
   border-radius:13px;
+
   padding:11px 15px;
+
   font-size:13px;
-  box-shadow:0 12px 30px rgba(0,0,0,.2);
+
+  box-shadow:
+    0 12px 30px
+    rgba(0,0,0,.2);
+
   max-width:90%;
+
   text-align:center;
 }
 
+
 .loader{
+
   width:28px;
   height:28px;
-  border:3px solid #ddd;
-  border-top-color:var(--primary);
+
+  border:
+    3px solid #ddd;
+
+  border-top-color:
+    var(--primary);
+
   border-radius:50%;
-  animation:spin .7s linear infinite;
+
+  animation:
+    spin .7s linear infinite;
+
   margin:20px auto;
 }
 
+
 @keyframes spin{
+
   to{
     transform:rotate(360deg);
   }
+
 }
 
-.online,
-.offline{
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  display:inline-block;
-}
-
-.online{
-  background:var(--success);
-}
-
-.offline{
-  background:#999;
-}
 
 .country-grid{
+
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
   gap:8px;
 }
 
+
 .country-option{
-  border:1px solid var(--border);
+
+  border:
+    1px solid var(--border);
+
   background:var(--surface);
+
   color:var(--text);
+
   border-radius:13px;
+
   padding:12px;
+
   text-align:left;
+
   font-weight:750;
 }
 
+
 .country-option.selected{
+
   border-color:var(--primary);
-  background:color-mix(in srgb,var(--primary) 11%,var(--surface));
+
+  background:
+    color-mix(
+      in srgb,
+      var(--primary) 11%,
+      var(--surface)
+    );
+
   color:var(--deep);
 }
 
+
 .feature-line{
+
   display:flex;
+
   gap:11px;
+
   align-items:flex-start;
+
   padding:11px 0;
-  border-bottom:1px solid var(--border);
+
+  border-bottom:
+    1px solid var(--border);
 }
+
 
 .feature-line:last-child{
   border-bottom:0;
 }
 
+
 .feature-icon{
+
   width:34px;
   height:34px;
+
   border-radius:11px;
-  background:color-mix(in srgb,var(--primary) 12%,var(--surface));
+
+  background:
+    color-mix(
+      in srgb,
+      var(--primary) 12%,
+      var(--surface)
+    );
+
   display:grid;
+
   place-items:center;
+
   flex:none;
 }
 
+
 .segmented{
+
   display:flex;
+
   gap:7px;
+
   overflow:auto;
+
   margin-bottom:12px;
 }
+
 
 .segmented button{
   white-space:nowrap;
 }
 
+
 .notice{
+
   padding:12px 14px;
+
   border-radius:14px;
-  background:color-mix(in srgb,var(--info) 9%,var(--surface));
+
+  background:
+    color-mix(
+      in srgb,
+      var(--info) 9%,
+      var(--surface)
+    );
+
   color:var(--text);
-  border:1px solid color-mix(in srgb,var(--info) 14%,var(--border));
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--info) 14%,
+      var(--border)
+    );
 }
 
+
 @media(max-width:700px){
+
   .grid3,
   .grid4,
   .grid2{
@@ -862,7 +1521,8 @@ html[data-theme=dark] .btn-secondary{
   }
 
   .quick-grid{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:
+      repeat(2,1fr);
   }
 
   .hero{
@@ -874,55 +1534,94 @@ html[data-theme=dark] .btn-secondary{
     padding-right:11px;
   }
 
-  .top-actions .icon-btn:nth-child(1){
+  .top-actions
+  .icon-btn:nth-child(1){
     display:none;
   }
+
 }
 
+
 @media(min-width:701px){
+
   .bottom-nav{
+
     left:14px;
     right:14px;
     bottom:12px;
-    width:calc(100% - 28px);
+
+    width:
+      calc(100% - 28px);
+
     max-width:1100px;
+
     margin:auto;
-    border:1px solid var(--border);
+
+    border:
+      1px solid var(--border);
+
     border-radius:20px;
-    box-shadow:0 15px 40px rgba(20,10,40,.12);
+
+    box-shadow:
+      0 15px 40px
+      rgba(20,10,40,.12);
+
     overflow:hidden;
   }
 
   .main{
     padding-bottom:115px;
   }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <div id="root">
+
   <div class="auth-shell">
+
     <div class="auth-card">
+
       <div class="auth-logo">M</div>
+
       <h1>Marvel Chat</h1>
-      <p id="startupStatus">Starting the future…</p>
+
+      <p id="startupStatus">
+        Starting the future…
+      </p>
+
       <div class="loader"></div>
+
     </div>
+
   </div>
+
 </div>
+
 
 <div id="modalRoot"></div>
 <div id="toastRoot"></div>
 
+
 <script type="module">
 
-import { firebaseConfig } from "./firebaseConfig.js";
+
+import {
+  firebaseConfig
+} from "./firebaseConfig.js";
+
 
 import {
   initializeApp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 
 import {
   getAuth,
@@ -932,6 +1631,7 @@ import {
   onAuthStateChanged,
   updateProfile
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 
 import {
   getFirestore,
@@ -955,45 +1655,93 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+const app=
+  initializeApp(firebaseConfig);
 
-const root = document.getElementById("root");
-const modalRoot = document.getElementById("modalRoot");
-const toastRoot = document.getElementById("toastRoot");
 
-const state = {
+const auth=
+  getAuth(app);
+
+
+const db=
+  getFirestore(app);
+
+
+const root=
+  document.getElementById("root");
+
+
+const modalRoot=
+  document.getElementById("modalRoot");
+
+
+const toastRoot=
+  document.getElementById("toastRoot");
+
+
+const state={
+
   user:null,
+
   profile:null,
+
   page:"home",
+
   posts:[],
+
   conversations:[],
+
   activeConversation:null,
+
   messages:[],
+
   skills:[],
+
   requests:[],
+
   listings:[],
+
   notifications:[],
+
   search:"",
+
   marketCategory:"all",
+
   timeTab:"offers",
-  lowData:localStorage.getItem("marvel_low_data")==="1",
-  theme:localStorage.getItem("marvel_theme")||"light",
+
+  lowData:
+    localStorage.getItem(
+      "marvel_low_data"
+    )==="1",
+
+  theme:
+    localStorage.getItem(
+      "marvel_theme"
+    )||"light",
+
   installPrompt:null,
 
   unsubs:{
+
     posts:null,
+
     conversations:null,
+
     messages:null,
+
     skills:null,
+
     requests:null,
+
     listings:null
+
   }
+
 };
 
 
-const countries = [
+const countries=[
+
   ["NG","🇳🇬 Nigeria"],
   ["GH","🇬🇭 Ghana"],
   ["KE","🇰🇪 Kenya"],
@@ -1003,9 +1751,12 @@ const countries = [
   ["CA","🇨🇦 Canada"],
   ["IN","🇮🇳 India"],
   ["OTHER","🌍 Other"]
+
 ];
 
-const categories = [
+
+const categories=[
+
   "all",
   "Electronics",
   "Fashion",
@@ -1013,91 +1764,155 @@ const categories = [
   "Services",
   "Food",
   "Other"
+
 ];
 
 
 function escapeHtml(v){
+
   return String(v ?? "")
     .replaceAll("&","&amp;")
     .replaceAll("<","&lt;")
     .replaceAll(">","&gt;")
     .replaceAll('"',"&quot;")
     .replaceAll("'","&#039;");
+
 }
 
 
 function initials(n){
+
   return String(n || "User")
     .trim()
     .split(/\s+/)
     .slice(0,2)
-    .map(x => x[0]?.toUpperCase() || "")
+    .map(
+      x=>x[0]?.toUpperCase() || ""
+    )
     .join("") || "U";
+
 }
 
 
 function formatDate(v){
-  if(!v) return "";
 
-  const d = v?.toDate
-    ? v.toDate()
-    : new Date(v);
+  if(!v)return "";
 
-  return Number.isNaN(d.getTime())
+  const d=
+    v?.toDate
+      ? v.toDate()
+      : new Date(v);
+
+  return Number.isNaN(
+    d.getTime()
+  )
     ? ""
     : d.toLocaleString([],{
+
         day:"numeric",
+
         month:"short",
+
         hour:"2-digit",
+
         minute:"2-digit"
+
       });
+
 }
 
 
 function toast(m){
-  toastRoot.innerHTML =
-    `<div class="toast">${escapeHtml(m)}</div>`;
 
-  setTimeout(()=>{
-    toastRoot.innerHTML="";
-  },2800);
+  toastRoot.innerHTML=
+    `<div class="toast">
+      ${escapeHtml(m)}
+    </div>`;
+
+  setTimeout(
+    ()=>{
+      toastRoot.innerHTML="";
+    },
+    2800
+  );
+
 }
 
 
 function showModal(title,body){
-  modalRoot.innerHTML = `
-    <div class="modal-backdrop" id="modalBackdrop">
+
+  modalRoot.innerHTML=`
+
+    <div
+      class="modal-backdrop"
+      id="modalBackdrop"
+    >
+
       <div class="modal">
+
         <div class="modal-head">
-          <h2>${escapeHtml(title)}</h2>
-          <button class="icon-btn" id="closeModal">✕</button>
+
+          <h2>
+            ${escapeHtml(title)}
+          </h2>
+
+          <button
+            class="icon-btn"
+            id="closeModal"
+          >
+            ✕
+          </button>
+
         </div>
+
         ${body}
+
       </div>
+
     </div>
+
   `;
+
 
   document
     .getElementById("closeModal")
-    ?.addEventListener("click",closeModal);
+    ?.addEventListener(
+      "click",
+      closeModal
+    );
+
 
   document
     .getElementById("modalBackdrop")
-    ?.addEventListener("click",e=>{
-      if(e.target.id==="modalBackdrop"){
-        closeModal();
+    ?.addEventListener(
+      "click",
+      e=>{
+
+        if(
+          e.target.id===
+          "modalBackdrop"
+        ){
+          closeModal();
+        }
+
       }
-    });
+    );
+
 }
 
 
 function closeModal(){
+
   modalRoot.innerHTML="";
+
 }
 
 
 function applyTheme(){
-  document.documentElement.dataset.theme=state.theme;
+
+  document.documentElement.dataset.theme=
+    state.theme;
+
 }
 
 
@@ -1106,6 +1921,7 @@ function friendly(e){
   const c=e?.code || "";
 
   const m={
+
     "auth/email-already-in-use":
       "This email is already registered.",
 
@@ -1135,43 +1951,76 @@ function friendly(e){
 
     "failed-precondition":
       "Firestore needs an index for this query. Check the Firebase console."
+
   };
+
 
   return m[c] ||
     e?.message ||
     "Something went wrong. Please try again.";
+
 }
 
 
 async function loadProfile(user){
 
-  const ref=doc(db,"users",user.uid);
-  const snap=await getDoc(ref);
+  const ref=
+    doc(
+      db,
+      "users",
+      user.uid
+    );
+
+  const snap=
+    await getDoc(ref);
+
 
   if(snap.exists()){
+
     state.profile={
       uid:user.uid,
       ...snap.data()
     };
+
     return;
+
   }
 
+
   const profile={
+
     uid:user.uid,
-    displayName:user.displayName || "User",
+
+    displayName:
+      user.displayName ||
+      "User",
+
     username:"",
-    email:user.email || "",
+
+    email:
+      user.email || "",
+
     country:"",
+
     bio:"",
-    createdAt:serverTimestamp()
+
+    createdAt:
+      serverTimestamp()
+
   };
 
-  await setDoc(ref,profile);
+
+  await setDoc(
+    ref,
+    profile
+  );
+
 
   state.profile={
     uid:user.uid,
     ...profile
   };
+
 }
 
 
@@ -1179,35 +2028,55 @@ function renderAuth(){
 
   applyTheme();
 
+
   root.innerHTML=`
+
     <div class="auth-shell">
+
       <div class="auth-card">
 
-        <div class="auth-logo">M</div>
+        <div class="auth-logo">
+          M
+        </div>
 
-        <h1>Marvel Chat</h1>
+        <h1>
+          Marvel Chat
+        </h1>
 
         <p>
-          A futuristic community for people to connect,
-          chat, exchange skills and discover opportunities.
+          A futuristic community for people
+          to connect, chat, exchange skills
+          and discover opportunities.
         </p>
 
         <div id="authMessage"></div>
 
+
         <div class="segmented">
-          <button class="btn btn-primary" id="loginTab">
+
+          <button
+            class="btn btn-primary"
+            id="loginTab"
+          >
             Sign in
           </button>
 
-          <button class="btn btn-ghost" id="signupTab">
+          <button
+            class="btn btn-ghost"
+            id="signupTab"
+          >
             Create account
           </button>
+
         </div>
+
 
         <form id="authForm">
 
           <div class="field">
+
             <label>Email</label>
+
             <input
               class="input"
               id="authEmail"
@@ -1216,10 +2085,14 @@ function renderAuth(){
               placeholder="you@example.com"
               required
             >
+
           </div>
 
+
           <div class="field">
+
             <label>Password</label>
+
             <input
               class="input"
               id="authPassword"
@@ -1229,29 +2102,46 @@ function renderAuth(){
               minlength="6"
               required
             >
+
           </div>
 
-          <div id="signupFields" class="hidden">
+
+          <div
+            id="signupFields"
+            class="hidden"
+          >
 
             <div class="field">
-              <label>Username</label>
+
+              <label>
+                Username
+              </label>
+
               <input
                 class="input"
                 id="authUsername"
                 placeholder="Choose a username"
               >
+
             </div>
 
+
             <div class="field">
-              <label>Display name</label>
+
+              <label>
+                Display name
+              </label>
+
               <input
                 class="input"
                 id="authDisplayName"
                 placeholder="Your name"
               >
+
             </div>
 
           </div>
+
 
           <button
             class="btn btn-primary btn-block"
@@ -1263,141 +2153,262 @@ function renderAuth(){
 
         </form>
 
-        <div class="notice" style="margin-top:15px">
-          🚀 Your account is powered by Firebase Authentication.
+
+        <div
+          class="notice"
+          style="margin-top:15px"
+        >
+          🚀 Your account is powered by
+          Firebase Authentication.
         </div>
 
       </div>
+
     </div>
+
   `;
+
 
   let signup=false;
 
-  const loginTab=document.getElementById("loginTab");
-  const signupTab=document.getElementById("signupTab");
-  const signupFields=document.getElementById("signupFields");
-  const submit=document.getElementById("authSubmit");
+
+  const loginTab=
+    document.getElementById(
+      "loginTab"
+    );
+
+
+  const signupTab=
+    document.getElementById(
+      "signupTab"
+    );
+
+
+  const signupFields=
+    document.getElementById(
+      "signupFields"
+    );
+
+
+  const submit=
+    document.getElementById(
+      "authSubmit"
+    );
+
 
   function setMode(v){
 
     signup=v;
 
-    loginTab.className=v
-      ? "btn btn-ghost"
-      : "btn btn-primary";
 
-    signupTab.className=v
-      ? "btn btn-primary"
-      : "btn btn-ghost";
+    loginTab.className=
+      v
+        ? "btn btn-ghost"
+        : "btn btn-primary";
 
-    signupFields.classList.toggle("hidden",!v);
 
-    submit.textContent=v
-      ? "Create account"
-      : "Sign in";
+    signupTab.className=
+      v
+        ? "btn btn-primary"
+        : "btn btn-ghost";
+
+
+    signupFields
+      .classList
+      .toggle(
+        "hidden",
+        !v
+      );
+
+
+    submit.textContent=
+      v
+        ? "Create account"
+        : "Sign in";
+
   }
 
-  loginTab.addEventListener("click",()=>{
-    setMode(false);
-  });
 
-  signupTab.addEventListener("click",()=>{
-    setMode(true);
-  });
+  loginTab.addEventListener(
+    "click",
+    ()=>{
+      setMode(false);
+    }
+  );
 
-  document.getElementById("authForm")
-    .addEventListener("submit",async e=>{
 
-      e.preventDefault();
+  signupTab.addEventListener(
+    "click",
+    ()=>{
+      setMode(true);
+    }
+  );
 
-      const email=
-        document.getElementById("authEmail").value.trim();
 
-      const password=
-        document.getElementById("authPassword").value;
+  document
+    .getElementById("authForm")
+    .addEventListener(
+      "submit",
+      async e=>{
 
-      const message=
-        document.getElementById("authMessage");
+        e.preventDefault();
 
-      submit.disabled=true;
-      submit.textContent="Connecting…";
 
-      try{
+        const email=
+          document
+            .getElementById(
+              "authEmail"
+            )
+            .value
+            .trim();
 
-        if(signup){
 
-          const username=
-            document
-              .getElementById("authUsername")
-              .value.trim();
+        const password=
+          document
+            .getElementById(
+              "authPassword"
+            )
+            .value;
 
-          const displayName=
-            document
-              .getElementById("authDisplayName")
-              .value.trim();
 
-          if(!username){
-            throw new Error("Username is required.");
-          }
+        const message=
+          document.getElementById(
+            "authMessage"
+          );
 
-          const cred=
-            await createUserWithEmailAndPassword(
+
+        submit.disabled=true;
+
+        submit.textContent=
+          "Connecting…";
+
+
+        try{
+
+          if(signup){
+
+            const username=
+              document
+                .getElementById(
+                  "authUsername"
+                )
+                .value
+                .trim();
+
+
+            const displayName=
+              document
+                .getElementById(
+                  "authDisplayName"
+                )
+                .value
+                .trim();
+
+
+            if(!username){
+
+              throw new Error(
+                "Username is required."
+              );
+
+            }
+
+
+            const cred=
+              await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+              );
+
+
+            await updateProfile(
+              cred.user,
+              {
+                displayName:
+                  displayName ||
+                  username
+              }
+            );
+
+
+            await setDoc(
+              doc(
+                db,
+                "users",
+                cred.user.uid
+              ),
+              {
+
+                uid:
+                  cred.user.uid,
+
+                displayName:
+                  displayName ||
+                  username,
+
+                username,
+
+                email,
+
+                country:"",
+
+                bio:"",
+
+                createdAt:
+                  serverTimestamp()
+
+              },
+              {
+                merge:true
+              }
+            );
+
+
+            toast(
+              "Account created successfully 🚀"
+            );
+
+          }else{
+
+            await signInWithEmailAndPassword(
               auth,
               email,
               password
             );
 
-          await updateProfile(
-            cred.user,
-            {
-              displayName:
-                displayName || username
-            }
-          );
 
-          await setDoc(
-            doc(db,"users",cred.user.uid),
-            {
-              uid:cred.user.uid,
-              displayName:displayName || username,
-              username,
-              email,
-              country:"",
-              bio:"",
-              createdAt:serverTimestamp()
-            },
-            {merge:true}
-          );
+            toast(
+              "Welcome back 👋"
+            );
 
-          toast("Account created successfully 🚀");
+          }
 
-        }else{
 
-          await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-          );
+        }catch(err){
 
-          toast("Welcome back 👋");
+          message.innerHTML=
+            `<div class="status error">
+              ${escapeHtml(
+                friendly(err)
+              )}
+            </div>`;
+
+
+        }finally{
+
+          submit.disabled=false;
+
+          submit.textContent=
+            signup
+              ? "Create account"
+              : "Sign in";
+
         }
 
-      }catch(err){
-
-        message.innerHTML=
-          `<div class="status error">
-            ${escapeHtml(friendly(err))}
-          </div>`;
-
-      }finally{
-
-        submit.disabled=false;
-        submit.textContent=
-          signup
-            ? "Create account"
-            : "Sign in";
       }
-    });
+    );
+
 }
 
 
@@ -1405,36 +2416,60 @@ function render(){
 
   applyTheme();
 
+
   if(!state.user){
+
     renderAuth();
+
     return;
+
   }
+
 
   if(!state.profile?.country){
+
     renderOnboarding();
+
     return;
+
   }
 
+
   const pages={
+
     home:renderHome,
+
     chat:renderChat,
+
     timetrust:renderTimeTrust,
+
     market:renderMarket,
+
     profile:renderProfile
+
   };
 
-  const fn=pages[state.page] || renderHome;
+
+  const fn=
+    pages[state.page] ||
+    renderHome;
+
 
   root.innerHTML=`
+
     <div class="app">
+
 
       <header class="topbar">
 
         <div class="brand">
 
-          <div class="brand-logo">M</div>
+          <div class="brand-logo">
+            M
+          </div>
 
           <div>
+
             <div class="brand-name">
               Marvel Chat
             </div>
@@ -1442,9 +2477,11 @@ function render(){
             <div class="brand-sub">
               FUTURE COMMUNITY
             </div>
+
           </div>
 
         </div>
+
 
         <div class="top-actions">
 
@@ -1452,128 +2489,240 @@ function render(){
             class="icon-btn"
             id="searchBtn"
             title="Search"
-          >⌕</button>
+          >
+            ⌕
+          </button>
+
 
           <button
             class="icon-btn"
             id="notificationBtn"
             title="Notifications"
-          >🔔</button>
+          >
+            🔔
+          </button>
+
 
           <button
             class="icon-btn"
             id="themeBtn"
             title="Theme"
           >
-            ${state.theme==="dark" ? "☀️" : "🌙"}
+            ${
+              state.theme==="dark"
+                ? "☀️"
+                : "🌙"
+            }
           </button>
 
         </div>
 
       </header>
 
+
       <main class="main">
         ${fn()}
       </main>
+
 
       <nav class="bottom-nav">
 
         <div class="bottom-inner">
 
-          ${navButton("home","⌂","Home")}
-          ${navButton("chat","💬","Chat")}
-          ${navButton("timetrust","⏱","TimeTrust")}
-          ${navButton("market","🛍","Market")}
-          ${navButton("profile","◉","Profile")}
+          ${navButton(
+            "home",
+            "⌂",
+            "Home"
+          )}
+
+          ${navButton(
+            "chat",
+            "💬",
+            "Chat"
+          )}
+
+          ${navButton(
+            "timetrust",
+            "⏱",
+            "TimeTrust"
+          )}
+
+          ${navButton(
+            "market",
+            "🛍",
+            "Market"
+          )}
+
+          ${navButton(
+            "profile",
+            "◉",
+            "Profile"
+          )}
 
         </div>
 
       </nav>
 
     </div>
+
   `;
+
 
   document
     .getElementById("searchBtn")
-    ?.addEventListener("click",showSearch);
+    ?.addEventListener(
+      "click",
+      showSearch
+    );
+
 
   document
     .getElementById("notificationBtn")
-    ?.addEventListener("click",showNotifications);
+    ?.addEventListener(
+      "click",
+      showNotifications
+    );
+
 
   document
     .getElementById("themeBtn")
-    ?.addEventListener("click",()=>{
-      state.theme=
-        state.theme==="dark"
-          ? "light"
-          : "dark";
+    ?.addEventListener(
+      "click",
+      ()=>{
 
-      localStorage.setItem(
-        "marvel_theme",
-        state.theme
-      );
+        state.theme=
+          state.theme==="dark"
+            ? "light"
+            : "dark";
 
-      render();
-    });
+
+        localStorage.setItem(
+          "marvel_theme",
+          state.theme
+        );
+
+
+        render();
+
+      }
+    );
+
 
   document
     .querySelectorAll("[data-nav]")
     .forEach(btn=>{
-      btn.addEventListener("click",()=>{
-        state.page=btn.dataset.nav;
-        state.activeConversation=null;
-        state.messages=[];
-        render();
-      });
+
+      btn.addEventListener(
+        "click",
+        ()=>{
+
+          state.page=
+            btn.dataset.nav;
+
+
+          /*
+           * Do not keep an old private
+           * conversation when switching
+           * top-level pages.
+           */
+          if(
+            state.page!=="chat" &&
+            state.activeConversation
+          ){
+
+            state.unsubs.messages?.();
+
+            state.unsubs.messages=null;
+
+            state.activeConversation=null;
+
+            state.messages=[];
+
+          }
+
+
+          render();
+
+        }
+      );
+
     });
 
+
   attachEvents();
+
 }
 
 
-function navButton(page,icon,label){
+function navButton(
+  page,
+  icon,
+  label
+){
 
   return `
+
     <button
-      class="nav-btn ${state.page===page ? "active":""}"
+      class="nav-btn ${
+        state.page===page
+          ? "active"
+          : ""
+      }"
       data-nav="${page}"
     >
-      <span class="nav-icon">${icon}</span>
-      <span>${label}</span>
+
+      <span class="nav-icon">
+        ${icon}
+      </span>
+
+      <span>
+        ${label}
+      </span>
+
     </button>
+
   `;
+
 }
 
 
 function renderOnboarding(){
 
   root.innerHTML=`
+
     <div class="auth-shell">
 
       <div class="auth-card">
 
-        <div class="auth-logo">🌍</div>
+        <div class="auth-logo">
+          🌍
+        </div>
 
-        <h1>Welcome to Marvel Chat</h1>
+        <h1>
+          Welcome to Marvel Chat
+        </h1>
 
         <p>
-          One last thing before entering the community:
-          choose your country.
+          One last thing before entering
+          the community: choose your country.
         </p>
+
 
         <div class="country-grid">
 
           ${countries.map(c=>`
+
             <button
               class="country-option"
               data-country="${c[0]}"
             >
               ${escapeHtml(c[1])}
             </button>
+
           `).join("")}
 
         </div>
+
 
         <div
           id="selectedCountry"
@@ -1583,6 +2732,7 @@ function renderOnboarding(){
           Choose one country.
         </div>
 
+
         <button
           class="btn btn-primary btn-block"
           id="continueCountry"
@@ -1590,6 +2740,7 @@ function renderOnboarding(){
         >
           Enter Marvel Chat 🚀
         </button>
+
 
         <button
           class="btn btn-ghost btn-block"
@@ -1602,69 +2753,131 @@ function renderOnboarding(){
       </div>
 
     </div>
+
   `;
+
 
   let selected="";
 
+
   document
-    .querySelectorAll("[data-country]")
+    .querySelectorAll(
+      "[data-country]"
+    )
     .forEach(btn=>{
 
-      btn.addEventListener("click",()=>{
+      btn.addEventListener(
+        "click",
+        ()=>{
 
-        selected=btn.dataset.country;
+          selected=
+            btn.dataset.country;
 
-        document
-          .querySelectorAll("[data-country]")
-          .forEach(x=>x.classList.remove("selected"));
 
-        btn.classList.add("selected");
+          document
+            .querySelectorAll(
+              "[data-country]"
+            )
+            .forEach(
+              x=>
+                x.classList.remove(
+                  "selected"
+                )
+            );
 
-        const label=
-          countries.find(x=>x[0]===selected)?.[1]
-          || selected;
 
-        document.getElementById("selectedCountry")
-          .textContent=
-            `Selected: ${label}`;
+          btn.classList.add(
+            "selected"
+          );
 
-        document.getElementById("continueCountry")
-          .disabled=false;
-      });
+
+          const label=
+            countries.find(
+              x=>x[0]===selected
+            )?.[1] ||
+            selected;
+
+
+          document
+            .getElementById(
+              "selectedCountry"
+            )
+            .textContent=
+              `Selected: ${label}`;
+
+
+          document
+            .getElementById(
+              "continueCountry"
+            )
+            .disabled=false;
+
+        }
+      );
 
     });
 
+
   document
-    .getElementById("continueCountry")
-    .addEventListener("click",async()=>{
+    .getElementById(
+      "continueCountry"
+    )
+    .addEventListener(
+      "click",
+      async()=>{
 
-      if(!selected)return;
+        if(!selected)return;
 
-      try{
 
-        await updateDoc(
-          doc(db,"users",state.user.uid),
-          {
-            country:selected
-          }
-        );
+        try{
 
-        state.profile.country=selected;
+          await updateDoc(
+            doc(
+              db,
+              "users",
+              state.user.uid
+            ),
+            {
+              country:selected
+            }
+          );
 
-        toast("Welcome to the community 🌍");
 
-        render();
+          state.profile.country=
+            selected;
 
-      }catch(e){
-        toast(friendly(e));
+
+          toast(
+            "Welcome to the community 🌍"
+          );
+
+
+          render();
+
+
+        }catch(e){
+
+          toast(
+            friendly(e)
+          );
+
+        }
+
       }
-    });
+    );
+
 
   document
-    .getElementById("onboardingLogout")
-    .addEventListener("click",()=>{
-      signOut(auth);
-    });
+    .getElementById(
+      "onboardingLogout"
+    )
+    .addEventListener(
+      "click",
+      ()=>{
+        signOut(auth);
+      }
+    );
+
 }
 
 
@@ -1675,10 +2888,15 @@ function renderHome(){
     state.profile?.username ||
     "there";
 
-  const posts=state.posts;
+
+  const posts=
+    state.posts;
+
 
   return `
+
     <div class="page">
+
 
       <section class="hero">
 
@@ -1688,42 +2906,103 @@ function renderHome(){
 
         <p>
           Welcome to your futuristic community.
-          Connect, chat, trade skills and discover what
-          people around you are building.
+          Connect, chat, trade skills and discover
+          what people around you are building.
         </p>
 
       </section>
 
+
       <div class="quick-grid">
 
-        <button class="quick" data-quick="post">
-          <div class="quick-icon">✍️</div>
-          <strong>Create post</strong>
-          <span>Share something</span>
+
+        <button
+          class="quick"
+          data-quick="post"
+        >
+
+          <div class="quick-icon">
+            ✍️
+          </div>
+
+          <strong>
+            Create post
+          </strong>
+
+          <span>
+            Share something
+          </span>
+
         </button>
 
-        <button class="quick" data-quick="chat">
-          <div class="quick-icon">💬</div>
-          <strong>Start chat</strong>
-          <span>Talk to someone</span>
+
+        <button
+          class="quick"
+          data-quick="chat"
+        >
+
+          <div class="quick-icon">
+            💬
+          </div>
+
+          <strong>
+            Start chat
+          </strong>
+
+          <span>
+            Talk to someone
+          </span>
+
         </button>
 
-        <button class="quick" data-quick="skill">
-          <div class="quick-icon">⏱️</div>
-          <strong>Offer a skill</strong>
-          <span>Trade your time</span>
+
+        <button
+          class="quick"
+          data-quick="skill"
+        >
+
+          <div class="quick-icon">
+            ⏱️
+          </div>
+
+          <strong>
+            Offer a skill
+          </strong>
+
+          <span>
+            Trade your time
+          </span>
+
         </button>
 
-        <button class="quick" data-quick="sell">
-          <div class="quick-icon">🛍️</div>
-          <strong>Sell something</strong>
-          <span>Open the market</span>
+
+        <button
+          class="quick"
+          data-quick="sell"
+        >
+
+          <div class="quick-icon">
+            🛍️
+          </div>
+
+          <strong>
+            Sell something
+          </strong>
+
+          <span>
+            Open the market
+          </span>
+
         </button>
 
       </div>
 
+
       <div class="section-title">
-        <h2>Community feed</h2>
+
+        <h2>
+          Community feed
+        </h2>
 
         <button
           class="btn btn-primary"
@@ -1731,22 +3010,32 @@ function renderHome(){
         >
           + Post
         </button>
+
       </div>
+
 
       ${
         posts.length
-          ? posts.map(renderPost).join("")
+
+          ? posts
+              .map(renderPost)
+              .join("")
+
           : `
+
             <div class="card empty">
 
               <div style="font-size:38px">
                 🌌
               </div>
 
-              <h3>The community is quiet…</h3>
+              <h3>
+                The community is quiet…
+              </h3>
 
               <p>
-                Be the first person to start the conversation.
+                Be the first person to
+                start the conversation.
               </p>
 
               <button
@@ -1757,11 +3046,15 @@ function renderHome(){
               </button>
 
             </div>
+
           `
       }
 
+
     </div>
+
   `;
+
 }
 
 
@@ -1769,55 +3062,89 @@ function renderPost(p){
 
   const liked=
     Array.isArray(p.likedBy) &&
-    p.likedBy.includes(state.user.uid);
+    p.likedBy.includes(
+      state.user.uid
+    );
+
 
   const saved=
     Array.isArray(p.savedBy) &&
-    p.savedBy.includes(state.user.uid);
+    p.savedBy.includes(
+      state.user.uid
+    );
+
 
   return `
+
     <article class="card post">
+
 
       <div class="post-head">
 
         <div class="avatar">
-          ${escapeHtml(initials(p.username))}
+
+          ${escapeHtml(
+            initials(p.username)
+          )}
+
         </div>
+
 
         <div class="profile-meta">
 
           <strong>
-            ${escapeHtml(p.username || "User")}
+            ${escapeHtml(
+              p.username ||
+              "User"
+            )}
           </strong>
 
           <span class="small">
-            ${escapeHtml(formatDate(p.createdAt))}
+            ${escapeHtml(
+              formatDate(
+                p.createdAt
+              )
+            )}
           </span>
 
         </div>
 
       </div>
 
+
       <div class="post-body">
-        ${escapeHtml(p.text || "")}
+        ${escapeHtml(
+          p.text || ""
+        )}
       </div>
+
 
       <div class="post-actions">
 
+
         <button
-          class="action ${liked ? "active":""}"
+          class="action ${
+            liked
+              ? "active"
+              : ""
+          }"
           data-like="${p.id}"
         >
           ${liked ? "❤️" : "♡"}
           ${Number(p.likes || 0)}
         </button>
 
+
         <button
           class="action"
           data-comment="${p.id}"
         >
-          💬 ${Number(p.comments || 0)}
+          💬
+          ${Number(
+            p.comments || 0
+          )}
         </button>
+
 
         <button
           class="action"
@@ -1826,28 +3153,45 @@ function renderPost(p){
           ↗ Share
         </button>
 
+
         <button
-          class="action ${saved ? "active":""}"
+          class="action ${
+            saved
+              ? "active"
+              : ""
+          }"
           data-save="${p.id}"
         >
-          ${saved ? "🔖 Saved" : "🔖 Save"}
+          ${
+            saved
+              ? "🔖 Saved"
+              : "🔖 Save"
+          }
         </button>
+
 
       </div>
 
     </article>
+
   `;
+
 }
 
 
 async function showCreatePost(){
 
   showModal(
+
     "Create a community post",
+
     `
+
       <div class="field">
 
-        <label>What's happening?</label>
+        <label>
+          What's happening?
+        </label>
 
         <textarea
           class="textarea"
@@ -1858,115 +3202,220 @@ async function showCreatePost(){
 
       </div>
 
+
       <button
         class="btn btn-primary btn-block"
         id="publishPost"
       >
         Publish 🚀
       </button>
+
     `
+
   );
 
+
   document
-    .getElementById("publishPost")
-    ?.addEventListener("click",async()=>{
+    .getElementById(
+      "publishPost"
+    )
+    ?.addEventListener(
+      "click",
+      async()=>{
 
-      const text=
-        document.getElementById("postText")
-          ?.value.trim();
+        const text=
+          document
+            .getElementById(
+              "postText"
+            )
+            ?.value
+            .trim();
 
-      if(!text){
-        toast("Write something first.");
-        return;
+
+        if(!text){
+
+          toast(
+            "Write something first."
+          );
+
+          return;
+
+        }
+
+
+        const btn=
+          document.getElementById(
+            "publishPost"
+          );
+
+
+        btn.disabled=true;
+
+        btn.textContent=
+          "Publishing…";
+
+
+        try{
+
+          await addDoc(
+            collection(
+              db,
+              "posts"
+            ),
+            {
+
+              uid:
+                state.user.uid,
+
+              username:
+                state.profile.displayName ||
+                state.profile.username ||
+                "User",
+
+              text,
+
+              likes:0,
+
+              comments:0,
+
+              likedBy:[],
+
+              savedBy:[],
+
+              createdAt:
+                serverTimestamp()
+
+            }
+          );
+
+
+          closeModal();
+
+          toast(
+            "Posted successfully 🚀"
+          );
+
+
+        }catch(e){
+
+          toast(
+            friendly(e)
+          );
+
+          btn.disabled=false;
+
+          btn.textContent=
+            "Publish 🚀";
+
+        }
+
       }
+    );
 
-      const btn=document.getElementById("publishPost");
-
-      btn.disabled=true;
-      btn.textContent="Publishing…";
-
-      try{
-
-        await addDoc(
-          collection(db,"posts"),
-          {
-            uid:state.user.uid,
-            username:
-              state.profile.displayName ||
-              state.profile.username ||
-              "User",
-            text,
-            likes:0,
-            comments:0,
-            likedBy:[],
-            savedBy:[],
-            createdAt:serverTimestamp()
-          }
-        );
-
-        closeModal();
-        toast("Posted successfully 🚀");
-
-      }catch(e){
-
-        toast(friendly(e));
-        btn.disabled=false;
-        btn.textContent="Publish 🚀";
-      }
-    });
 }
 
 
 async function toggleLike(id){
 
-  const post=state.posts.find(x=>x.id===id);
+  const post=
+    state.posts.find(
+      x=>x.id===id
+    );
+
 
   if(!post)return;
 
+
   const liked=
-    Array.isArray(post.likedBy) &&
-    post.likedBy.includes(state.user.uid);
+    Array.isArray(
+      post.likedBy
+    ) &&
+    post.likedBy.includes(
+      state.user.uid
+    );
+
 
   try{
 
     await updateDoc(
-      doc(db,"posts",id),
+      doc(
+        db,
+        "posts",
+        id
+      ),
       {
-        likes:increment(liked ? -1 : 1),
+
+        likes:
+          increment(
+            liked ? -1 : 1
+          ),
+
         likedBy:
           liked
-            ? arrayRemove(state.user.uid)
-            : arrayUnion(state.user.uid)
+            ? arrayRemove(
+                state.user.uid
+              )
+            : arrayUnion(
+                state.user.uid
+              )
+
       }
     );
 
+
   }catch(e){
-    toast(friendly(e));
+
+    toast(
+      friendly(e)
+    );
+
   }
+
 }
 
 
 async function savePost(id){
 
-  const post=state.posts.find(x=>x.id===id);
+  const post=
+    state.posts.find(
+      x=>x.id===id
+    );
+
 
   if(!post)return;
 
+
   const saved=
-    Array.isArray(post.savedBy) &&
-    post.savedBy.includes(state.user.uid);
+    Array.isArray(
+      post.savedBy
+    ) &&
+    post.savedBy.includes(
+      state.user.uid
+    );
+
 
   try{
 
     await updateDoc(
-      doc(db,"posts",id),
+      doc(
+        db,
+        "posts",
+        id
+      ),
       {
+
         savedBy:
           saved
-            ? arrayRemove(state.user.uid)
-            : arrayUnion(state.user.uid)
+            ? arrayRemove(
+                state.user.uid
+              )
+            : arrayUnion(
+                state.user.uid
+              )
+
       }
     );
+
 
     toast(
       saved
@@ -1974,68 +3423,114 @@ async function savePost(id){
         : "Saved to your vault 🔖"
     );
 
+
   }catch(e){
-    toast(friendly(e));
+
+    toast(
+      friendly(e)
+    );
+
   }
+
 }
 
 
 async function sharePost(id){
 
-  const post=state.posts.find(x=>x.id===id);
+  const post=
+    state.posts.find(
+      x=>x.id===id
+    );
+
 
   if(!post)return;
 
+
   const text=
     `${post.username || "Someone"} on Marvel Chat:\n\n${post.text}`;
+
 
   try{
 
     if(navigator.share){
 
       await navigator.share({
-        title:"Marvel Chat",
+
+        title:
+          "Marvel Chat",
+
         text
+
       });
 
     }else{
 
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(
+        text
+      );
 
-      toast("Post copied to clipboard 📋");
+      toast(
+        "Post copied to clipboard 📋"
+      );
+
     }
+
 
   }catch(e){
 
-    if(e?.name!=="AbortError"){
-      toast("Could not share this post.");
+    if(
+      e?.name!=="AbortError"
+    ){
+
+      toast(
+        "Could not share this post."
+      );
+
     }
+
   }
+
 }
 
 
 async function showComments(id){
 
-  const post=state.posts.find(x=>x.id===id);
+  const post=
+    state.posts.find(
+      x=>x.id===id
+    );
+
 
   if(!post)return;
 
+
   showModal(
+
     "Comments",
+
     `
-      <div id="commentsList" class="list">
+
+      <div
+        id="commentsList"
+        class="list"
+      >
+
         <div class="empty">
           Loading comments…
         </div>
+
       </div>
 
+
       <div style="height:14px"></div>
+
 
       <textarea
         class="textarea"
         id="commentText"
         placeholder="Write a comment…"
       ></textarea>
+
 
       <button
         class="btn btn-primary btn-block"
@@ -2044,128 +3539,1063 @@ async function showComments(id){
       >
         Add comment
       </button>
+
     `
+
   );
+
 
   try{
 
-    const snap=await getDocs(
-      query(
-        collection(db,"posts",id,"comments"),
-        orderBy("createdAt","asc"),
-        limit(50)
-      )
-    );
+    const snap=
+      await getDocs(
+        query(
+          collection(
+            db,
+            "posts",
+            id,
+            "comments"
+          ),
+          orderBy(
+            "createdAt",
+            "asc"
+          ),
+          limit(50)
+        )
+      );
+
 
     const comments=
-      snap.docs.map(d=>({
-        id:d.id,
-        ...d.data()
-      }));
+      snap.docs.map(
+        d=>({
+          id:d.id,
+          ...d.data()
+        })
+      );
 
-    const list=document.getElementById("commentsList");
 
-    list.className=comments.length
-      ? "list"
-      : "empty";
+    const list=
+      document.getElementById(
+        "commentsList"
+      );
+
+
+    list.className=
+      comments.length
+        ? "list"
+        : "empty";
+
 
     list.innerHTML=
       comments.length
-        ? comments.map(c=>`
-            <div class="list-item">
 
-              <strong>
-                ${escapeHtml(c.username || "User")}
-              </strong>
+        ? comments
+            .map(
+              c=>`
 
-              <div>
-                ${escapeHtml(c.text || "")}
-              </div>
+                <div class="list-item">
 
-              <div class="small">
-                ${escapeHtml(formatDate(c.createdAt))}
-              </div>
+                  <strong>
+                    ${escapeHtml(
+                      c.username ||
+                      "User"
+                    )}
+                  </strong>
 
-            </div>
-          `).join("")
+                  <div>
+                    ${escapeHtml(
+                      c.text || ""
+                    )}
+                  </div>
+
+                  <div class="small">
+                    ${escapeHtml(
+                      formatDate(
+                        c.createdAt
+                      )
+                    )}
+                  </div>
+
+                </div>
+
+              `
+            )
+            .join("")
+
         : "No comments yet. Start the conversation.";
+
 
   }catch(e){
 
-    document.getElementById("commentsList")
+    document
+      .getElementById(
+        "commentsList"
+      )
       .innerHTML=
         `<div class="status error">
-          ${escapeHtml(friendly(e))}
+          ${escapeHtml(
+            friendly(e)
+          )}
         </div>`;
+
   }
 
+
   document
-    .getElementById("addComment")
-    ?.addEventListener("click",async()=>{
+    .getElementById(
+      "addComment"
+    )
+    ?.addEventListener(
+      "click",
+      async()=>{
 
-      const input=document.getElementById("commentText");
-      const text=input.value.trim();
+        const input=
+          document.getElementById(
+            "commentText"
+          );
 
-      if(!text){
-        toast("Write a comment first.");
-        return;
+
+        const text=
+          input.value.trim();
+
+
+        if(!text){
+
+          toast(
+            "Write a comment first."
+          );
+
+          return;
+
+        }
+
+
+        try{
+
+          await addDoc(
+            collection(
+              db,
+              "posts",
+              id,
+              "comments"
+            ),
+            {
+
+              uid:
+                state.user.uid,
+
+              username:
+                state.profile.displayName ||
+                state.profile.username ||
+                "User",
+
+              text,
+
+              createdAt:
+                serverTimestamp()
+
+            }
+          );
+
+
+          await updateDoc(
+            doc(
+              db,
+              "posts",
+              id
+            ),
+            {
+              comments:
+                increment(1)
+            }
+          );
+
+
+          input.value="";
+
+          toast(
+            "Comment added 💬"
+          );
+
+
+          showComments(id);
+
+
+        }catch(e){
+
+          toast(
+            friendly(e)
+          );
+
+        }
+
       }
+    );
 
-      try{
+}
 
-        await addDoc(
-          collection(db,"posts",id,"comments"),
-          {
-            uid:state.user.uid,
-            username:
-              state.profile.displayName ||
-              state.profile.username ||
-              "User",
-            text,
-            createdAt:serverTimestamp()
+
+/* =========================================================
+   PRIVATE CHAT
+   ========================================================= */
+
+
+/*
+ * Search for a user and start a conversation.
+ */
+async function showNewChat(){
+
+  showModal(
+
+    "Start a new chat",
+
+    `
+
+      <div class="field">
+
+        <label>
+          Enter the person's username
+        </label>
+
+        <input
+          class="input"
+          id="chatUsername"
+          placeholder="username"
+        >
+
+      </div>
+
+
+      <button
+        class="btn btn-primary btn-block"
+        id="findChatUser"
+      >
+        Find user
+      </button>
+
+
+      <div
+        id="chatUserResult"
+        style="margin-top:14px"
+      ></div>
+
+    `
+
+  );
+
+
+  document
+    .getElementById(
+      "findChatUser"
+    )
+    ?.addEventListener(
+      "click",
+      async()=>{
+
+        const username=
+          document
+            .getElementById(
+              "chatUsername"
+            )
+            .value
+            .trim();
+
+
+        const result=
+          document.getElementById(
+            "chatUserResult"
+          );
+
+
+        if(!username){
+
+          result.innerHTML=
+            `<div class="status error">
+              Enter a username.
+            </div>`;
+
+          return;
+
+        }
+
+
+        result.innerHTML=
+          `<div class="empty">
+            Searching…
+          </div>`;
+
+
+        try{
+
+          const snap=
+            await getDocs(
+              query(
+                collection(
+                  db,
+                  "users"
+                ),
+                where(
+                  "username",
+                  "==",
+                  username
+                ),
+                limit(5)
+              )
+            );
+
+
+          if(snap.empty){
+
+            result.innerHTML=
+              `<div class="empty">
+                No user found.
+              </div>`;
+
+            return;
+
           }
+
+
+          result.innerHTML=
+            snap.docs
+              .filter(
+                d=>
+                  d.id!==state.user.uid
+              )
+              .map(
+                d=>{
+
+                  const u={
+                    id:d.id,
+                    ...d.data()
+                  };
+
+
+                  return `
+
+                    <div class="list-item">
+
+                      <div class="profile-row">
+
+                        <div class="avatar">
+
+                          ${escapeHtml(
+                            initials(
+                              u.displayName ||
+                              u.username
+                            )
+                          )}
+
+                        </div>
+
+
+                        <div class="profile-meta">
+
+                          <strong>
+                            ${escapeHtml(
+                              u.displayName ||
+                              u.username ||
+                              "User"
+                            )}
+                          </strong>
+
+                          <span class="small">
+                            @${escapeHtml(
+                              u.username ||
+                              ""
+                            )}
+                          </span>
+
+                        </div>
+
+
+                        <button
+                          class="btn btn-primary"
+                          data-start-chat="${u.id}"
+                        >
+                          Chat
+                        </button>
+
+                      </div>
+
+                    </div>
+
+                  `;
+
+                }
+              )
+              .join("");
+
+
+          result
+            .querySelectorAll(
+              "[data-start-chat]"
+            )
+            .forEach(
+              btn=>{
+
+                btn.addEventListener(
+                  "click",
+                  async()=>{
+
+                    const uid=
+                      btn.dataset.startChat;
+
+
+                    const profileSnap=
+                      await getDoc(
+                        doc(
+                          db,
+                          "users",
+                          uid
+                        )
+                      );
+
+
+                    if(
+                      !profileSnap.exists()
+                    ){
+
+                      toast(
+                        "User profile disappeared."
+                      );
+
+                      return;
+
+                    }
+
+
+                    await createConversation({
+
+                      uid,
+
+                      ...profileSnap.data()
+
+                    });
+
+                  }
+                );
+
+              }
+            );
+
+
+        }catch(e){
+
+          result.innerHTML=
+            `<div class="status error">
+              ${escapeHtml(
+                friendly(e)
+              )}
+            </div>`;
+
+        }
+
+      }
+    );
+
+}
+
+
+/*
+ * FIXED:
+ *
+ * The old code created the conversation and
+ * immediately called openConversation(ref.id).
+ *
+ * openConversation() then searched state.conversations.
+ *
+ * Firestore's conversation listener may not have
+ * received the new document yet, so the function
+ * returned without opening the chat.
+ *
+ * This version immediately creates a local
+ * conversation object and opens that object.
+ */
+async function createConversation(other){
+
+  try{
+
+    /*
+     * Find the exact two-person conversation
+     * locally first.
+     */
+    const existing=
+      state.conversations.find(
+        c=>
+
+          Array.isArray(
+            c.participants
+          ) &&
+
+          c.participants.length===2 &&
+
+          c.participants.includes(
+            state.user.uid
+          ) &&
+
+          c.participants.includes(
+            other.uid
+          )
+      );
+
+
+    if(existing){
+
+      closeModal();
+
+      await openConversation(
+        existing
+      );
+
+      return;
+
+    }
+
+
+    /*
+     * Create the Firestore conversation.
+     */
+    const ref=
+      await addDoc(
+        collection(
+          db,
+          "conversations"
+        ),
+        {
+
+          participants:[
+            state.user.uid,
+            other.uid
+          ],
+
+          participantProfiles:{
+
+            [state.user.uid]:{
+
+              displayName:
+                state.profile.displayName ||
+                state.profile.username ||
+                "User",
+
+              username:
+                state.profile.username ||
+                ""
+
+            },
+
+            [other.uid]:{
+
+              displayName:
+                other.displayName ||
+                other.username ||
+                "User",
+
+              username:
+                other.username ||
+                ""
+
+            }
+
+          },
+
+          lastMessage:"",
+
+          updatedAt:
+            serverTimestamp(),
+
+          createdAt:
+            serverTimestamp()
+
+        }
+      );
+
+
+    /*
+     * IMPORTANT FIX:
+     *
+     * Put the new conversation into local
+     * state immediately.
+     */
+    const localConversation={
+
+      id:ref.id,
+
+      participants:[
+        state.user.uid,
+        other.uid
+      ],
+
+      participantProfiles:{
+
+        [state.user.uid]:{
+
+          displayName:
+            state.profile.displayName ||
+            state.profile.username ||
+            "User",
+
+          username:
+            state.profile.username ||
+            ""
+
+        },
+
+        [other.uid]:{
+
+          displayName:
+            other.displayName ||
+            other.username ||
+            "User",
+
+          username:
+            other.username ||
+            ""
+
+        }
+
+      },
+
+      lastMessage:"",
+
+      updatedAt:null,
+
+      createdAt:null
+
+    };
+
+
+    /*
+     * Prevent duplicate local entries.
+     */
+    state.conversations=
+      [
+        localConversation,
+        ...state.conversations
+          .filter(
+            c=>c.id!==ref.id
+          )
+      ];
+
+
+    closeModal();
+
+
+    /*
+     * Open the actual conversation object,
+     * not only its ID.
+     */
+    await openConversation(
+      localConversation
+    );
+
+
+  }catch(e){
+
+    console.error(
+      "CREATE CONVERSATION ERROR:",
+      e
+    );
+
+    toast(
+      friendly(e)
+    );
+
+  }
+
+}
+
+
+/*
+ * FIXED:
+ *
+ * openConversation() now accepts either:
+ *
+ *   openConversation(id)
+ *
+ * OR
+ *
+ *   openConversation(conversationObject)
+ *
+ * This allows a newly-created conversation
+ * to open immediately.
+ */
+async function openConversation(
+  conversation
+){
+
+  let c;
+
+
+  if(
+    typeof conversation==="string"
+  ){
+
+    c=
+      state.conversations.find(
+        x=>
+          x.id===conversation
+      );
+
+  }else{
+
+    c=conversation;
+
+  }
+
+
+  if(!c){
+
+    toast(
+      "Conversation could not be opened."
+    );
+
+    console.error(
+      "Conversation not found:",
+      conversation
+    );
+
+    return;
+
+  }
+
+
+  state.activeConversation=c;
+
+  state.messages=[];
+
+
+  /*
+   * Remove previous message listener.
+   */
+  state.unsubs.messages?.();
+
+  state.unsubs.messages=null;
+
+
+  /*
+   * REAL-TIME MESSAGE LISTENER
+   *
+   * Every message added to:
+   *
+   * conversations/{id}/messages
+   *
+   * immediately reaches this listener.
+   */
+  state.unsubs.messages=
+
+    onSnapshot(
+
+      query(
+
+        collection(
+          db,
+          "conversations",
+          c.id,
+          "messages"
+        ),
+
+        orderBy(
+          "createdAt",
+          "asc"
+        ),
+
+        limit(100)
+
+      ),
+
+
+      snap=>{
+
+        state.messages=
+          snap.docs.map(
+            d=>({
+
+              id:d.id,
+
+              ...d.data()
+
+            })
+          );
+
+
+        /*
+         * Update the active conversation's
+         * local preview when the conversation
+         * listener has not caught up yet.
+         */
+        const latest=
+          state.messages[
+            state.messages.length-1
+          ];
+
+
+        if(latest){
+
+          const index=
+            state.conversations.findIndex(
+              x=>x.id===c.id
+            );
+
+
+          if(index>=0){
+
+            state.conversations[index]={
+              ...state.conversations[index],
+
+              lastMessage:
+                latest.text || "",
+
+              updatedAt:
+                latest.createdAt || null
+
+            };
+
+
+            state.activeConversation=
+              state.conversations[index];
+
+          }
+
+        }
+
+
+        /*
+         * Render the message list in real time.
+         */
+        if(
+          state.page==="chat"
+        ){
+
+          render();
+
+
+          setTimeout(
+            ()=>{
+              
+              const el=
+                document.getElementById(
+                  "messages"
+                );
+
+
+              if(el){
+
+                el.scrollTop=
+                  el.scrollHeight;
+
+              }
+
+            },
+            50
+          );
+
+        }
+
+      },
+
+
+      err=>{
+
+        console.error(
+          "MESSAGE LISTENER ERROR:",
+          err
         );
 
-        await updateDoc(
-          doc(db,"posts",id),
-          {
-            comments:increment(1)
-          }
+        toast(
+          friendly(err)
         );
 
-        input.value="";
-        toast("Comment added 💬");
-
-        showComments(id);
-
-      }catch(e){
-
-        toast(friendly(e));
       }
-    });
+
+    );
+
+
+  state.page="chat";
+
+
+  render();
+
+
+  /*
+   * Make sure the newest messages are visible
+   * immediately after opening.
+   */
+  setTimeout(
+    ()=>{
+
+      const el=
+        document.getElementById(
+          "messages"
+        );
+
+
+      if(el){
+
+        el.scrollTop=
+          el.scrollHeight;
+
+      }
+
+    },
+    50
+  );
+
+}
+
+
+/*
+ * REAL MESSAGE SENDING
+ */
+async function sendMessage(){
+
+  const input=
+    document.getElementById(
+      "messageInput"
+    );
+
+
+  const text=
+    input?.value.trim();
+
+
+  if(
+    !text ||
+    !state.activeConversation
+  ){
+
+    return;
+
+  }
+
+
+  const id=
+    state.activeConversation.id;
+
+
+  try{
+
+    input.disabled=true;
+
+
+    /*
+     * WRITE THE ACTUAL MESSAGE
+     * INTO FIRESTORE.
+     */
+    await addDoc(
+
+      collection(
+        db,
+        "conversations",
+        id,
+        "messages"
+      ),
+
+      {
+
+        uid:
+          state.user.uid,
+
+        text,
+
+        createdAt:
+          serverTimestamp()
+
+      }
+
+    );
+
+
+    /*
+     * Update the parent conversation so
+     * the conversation list has the latest
+     * preview and timestamp.
+     */
+    await updateDoc(
+
+      doc(
+        db,
+        "conversations",
+        id
+      ),
+
+      {
+
+        lastMessage:
+          text,
+
+        updatedAt:
+          serverTimestamp()
+
+      }
+
+    );
+
+
+    /*
+     * Clear the input only after both
+     * Firestore writes succeed.
+     */
+    input.value="";
+
+
+  }catch(e){
+
+    console.error(
+      "SEND MESSAGE ERROR:",
+      e
+    );
+
+    toast(
+      friendly(e)
+    );
+
+
+  }finally{
+
+    input.disabled=false;
+
+    input.focus();
+
+  }
+
 }
 
 
 function renderChat(){
 
-  if(state.activeConversation){
+  if(
+    state.activeConversation
+  ){
+
     return renderConversation();
+
   }
 
-  const conversations=state.conversations;
+
+  const conversations=
+    state.conversations;
+
 
   return `
+
     <div class="page">
+
 
       <div class="section-title">
 
         <div>
-          <h2>Messages</h2>
+
+          <h2>
+            Messages
+          </h2>
 
           <div class="small">
             Private conversations
           </div>
+
         </div>
+
 
         <button
           class="btn btn-primary"
@@ -2175,6 +4605,7 @@ function renderChat(){
         </button>
 
       </div>
+
 
       <div class="search">
 
@@ -2186,74 +4617,110 @@ function renderChat(){
 
       </div>
 
+
       ${
         conversations.length
+
           ? `
-            <div class="chat-list" id="chatList">
 
-              ${conversations.map(c=>{
+            <div
+              class="chat-list"
+              id="chatList"
+            >
 
-                const other=
-                  c.participants?.find(
-                    x=>x!==state.user.uid
-                  );
+              ${
+                conversations
+                  .map(c=>{
 
-                const profile=
-                  c.participantProfiles?.[other] || {};
+                    const other=
+                      c.participants?.find(
+                        x=>
+                          x!==state.user.uid
+                      );
 
-                const name=
-                  profile.displayName ||
-                  profile.username ||
-                  "User";
 
-                return `
-                  <div
-                    class="chat-item"
-                    data-conversation="${c.id}"
-                  >
+                    const profile=
+                      c.participantProfiles?.[
+                        other
+                      ] || {};
 
-                    <div class="avatar">
-                      ${escapeHtml(initials(name))}
-                    </div>
 
-                    <div class="chat-content">
+                    const name=
+                      profile.displayName ||
+                      profile.username ||
+                      "User";
 
-                      <strong>
-                        ${escapeHtml(name)}
-                      </strong>
 
-                      <p>
-                        ${escapeHtml(
-                          c.lastMessage ||
-                          "Start chatting"
-                        )}
-                      </p>
+                    return `
 
-                    </div>
+                      <div
+                        class="chat-item"
+                        data-conversation="${c.id}"
+                      >
 
-                    <span class="small">
-                      ${escapeHtml(formatDate(c.updatedAt))}
-                    </span>
+                        <div class="avatar">
 
-                  </div>
-                `;
+                          ${escapeHtml(
+                            initials(name)
+                          )}
 
-              }).join("")}
+                        </div>
+
+
+                        <div class="chat-content">
+
+                          <strong>
+                            ${escapeHtml(name)}
+                          </strong>
+
+
+                          <p>
+                            ${escapeHtml(
+                              c.lastMessage ||
+                              "Start chatting"
+                            )}
+                          </p>
+
+                        </div>
+
+
+                        <span class="small">
+
+                          ${escapeHtml(
+                            formatDate(
+                              c.updatedAt
+                            )
+                          )}
+
+                        </span>
+
+                      </div>
+
+                    `;
+
+                  })
+                  .join("")
+              }
 
             </div>
+
           `
+
           : `
+
             <div class="card empty">
 
               <div style="font-size:42px">
                 💬
               </div>
 
-              <h3>No conversations yet</h3>
+              <h3>
+                No conversations yet
+              </h3>
 
               <p>
-                Start a private conversation with
-                another Marvel Chat member.
+                Start a private conversation
+                with another Marvel Chat member.
               </p>
 
               <button
@@ -2264,37 +4731,51 @@ function renderChat(){
               </button>
 
             </div>
+
           `
       }
 
     </div>
+
   `;
+
 }
 
 
 function renderConversation(){
 
-  const c=state.activeConversation;
+  const c=
+    state.activeConversation;
+
 
   const other=
     c?.participants?.find(
-      x=>x!==state.user.uid
+      x=>
+        x!==state.user.uid
     );
 
+
   const profile=
-    c?.participantProfiles?.[other] || {};
+    c?.participantProfiles?.[
+      other
+    ] || {};
+
 
   const name=
     profile.displayName ||
     profile.username ||
     "User";
 
+
   return `
+
     <div class="page">
+
 
       <div class="section-title">
 
         <div class="profile-row">
+
 
           <button
             class="icon-btn"
@@ -2303,9 +4784,15 @@ function renderConversation(){
             ←
           </button>
 
+
           <div class="avatar">
-            ${escapeHtml(initials(name))}
+
+            ${escapeHtml(
+              initials(name)
+            )}
+
           </div>
+
 
           <div>
 
@@ -2323,7 +4810,9 @@ function renderConversation(){
 
       </div>
 
+
       <div class="card">
+
 
         <div
           class="messages"
@@ -2332,44 +4821,65 @@ function renderConversation(){
 
           ${
             state.messages.length
-              ? state.messages.map(m=>`
-                  <div
-                    class="bubble ${
-                      m.uid===state.user.uid
-                        ? "mine"
-                        : ""
-                    }"
-                  >
 
-                    <div>
-                      ${escapeHtml(m.text || "")}
-                    </div>
+              ? state.messages
+                  .map(
+                    m=>`
 
-                    <div class="bubble-time">
-                      ${escapeHtml(
-                        formatDate(m.createdAt)
-                      )}
-                    </div>
+                      <div
+                        class="bubble ${
+                          m.uid===
+                          state.user.uid
+                            ? "mine"
+                            : ""
+                        }"
+                      >
 
-                  </div>
-                `).join("")
+                        <div>
+                          ${escapeHtml(
+                            m.text || ""
+                          )}
+                        </div>
+
+                        <div
+                          class="bubble-time"
+                        >
+                          ${escapeHtml(
+                            formatDate(
+                              m.createdAt
+                            )
+                          )}
+                        </div>
+
+                      </div>
+
+                    `
+                  )
+                  .join("")
+
               : `
+
                 <div class="empty">
-                  👋 Say hello and start the conversation.
+                  👋 Say hello and start
+                  the conversation.
                 </div>
+
               `
           }
 
         </div>
+
 
         <div class="message-box">
 
           <input
             class="input"
             id="messageInput"
-            maxlength="2000"
+            maxlength="5000"
+            autocomplete="off"
             placeholder="Write a message…"
           >
+
 
           <button
             class="btn btn-primary"
@@ -2383,369 +4893,40 @@ function renderConversation(){
       </div>
 
     </div>
+
   `;
-}
 
-
-async function showNewChat(){
-
-  showModal(
-    "Start a new chat",
-    `
-      <div class="field">
-
-        <label>
-          Enter the person's username
-        </label>
-
-        <input
-          class="input"
-          id="chatUsername"
-          placeholder="username"
-        >
-
-      </div>
-
-      <button
-        class="btn btn-primary btn-block"
-        id="findChatUser"
-      >
-        Find user
-      </button>
-
-      <div
-        id="chatUserResult"
-        style="margin-top:14px"
-      ></div>
-    `
-  );
-
-  document
-    .getElementById("findChatUser")
-    ?.addEventListener("click",async()=>{
-
-      const username=
-        document
-          .getElementById("chatUsername")
-          .value
-          .trim();
-
-      const result=
-        document.getElementById("chatUserResult");
-
-      if(!username){
-        result.innerHTML=
-          `<div class="status error">
-            Enter a username.
-          </div>`;
-        return;
-      }
-
-      result.innerHTML=
-        `<div class="loader"></div>`;
-
-      try{
-
-        const snap=await getDocs(
-          query(
-            collection(db,"users"),
-            where("username","==",username),
-            limit(5)
-          )
-        );
-
-        if(snap.empty){
-
-          result.innerHTML=
-            `<div class="empty">
-              No user found.
-            </div>`;
-
-          return;
-        }
-
-        result.innerHTML=
-          snap.docs
-            .filter(d=>d.id!==state.user.uid)
-            .map(d=>{
-
-              const u={
-                id:d.id,
-                ...d.data()
-              };
-
-              return `
-                <div class="list-item">
-
-                  <div class="profile-row">
-
-                    <div class="avatar">
-                      ${escapeHtml(
-                        initials(
-                          u.displayName ||
-                          u.username
-                        )
-                      )}
-                    </div>
-
-                    <div class="profile-meta">
-
-                      <strong>
-                        ${escapeHtml(
-                          u.displayName ||
-                          u.username ||
-                          "User"
-                        )}
-                      </strong>
-
-                      <span class="small">
-                        @${escapeHtml(
-                          u.username || ""
-                        )}
-                      </span>
-
-                    </div>
-
-                    <button
-                      class="btn btn-primary"
-                      data-start-chat="${u.id}"
-                    >
-                      Chat
-                    </button>
-
-                  </div>
-
-                </div>
-              `;
-            })
-            .join("");
-
-        result
-          .querySelectorAll("[data-start-chat]")
-          .forEach(btn=>{
-
-            btn.addEventListener("click",async()=>{
-
-              const uid=btn.dataset.startChat;
-
-              const snap=await getDoc(
-                doc(db,"users",uid)
-              );
-
-              if(!snap.exists()){
-                toast("User profile disappeared.");
-                return;
-              }
-
-              await createConversation({
-                uid,
-                ...snap.data()
-              });
-            });
-          });
-
-      }catch(e){
-
-        result.innerHTML=
-          `<div class="status error">
-            ${escapeHtml(friendly(e))}
-          </div>`;
-      }
-    });
-}
-
-
-async function createConversation(other){
-
-  try{
-
-    const existing=
-      state.conversations.find(c=>
-        Array.isArray(c.participants) &&
-        c.participants.includes(other.uid)
-      );
-
-    if(existing){
-
-      closeModal();
-
-      openConversation(existing.id);
-
-      return;
-    }
-
-    const ref=await addDoc(
-      collection(db,"conversations"),
-      {
-        participants:[
-          state.user.uid,
-          other.uid
-        ],
-        participantProfiles:{
-          [state.user.uid]:{
-            displayName:
-              state.profile.displayName ||
-              state.profile.username ||
-              "User",
-            username:
-              state.profile.username || ""
-          },
-
-          [other.uid]:{
-            displayName:
-              other.displayName ||
-              other.username ||
-              "User",
-            username:
-              other.username || ""
-          }
-        },
-        lastMessage:"",
-        updatedAt:serverTimestamp(),
-        createdAt:serverTimestamp()
-      }
-    );
-
-    closeModal();
-
-    await openConversation(ref.id);
-
-  }catch(e){
-
-    toast(friendly(e));
-  }
-}
-
-
-async function openConversation(id){
-
-  const c=
-    state.conversations.find(x=>x.id===id);
-
-  if(!c)return;
-
-  state.activeConversation=c;
-  state.messages=[];
-
-  state.unsubs.messages?.();
-
-  state.unsubs.messages=
-    onSnapshot(
-      query(
-        collection(
-          db,
-          "conversations",
-          id,
-          "messages"
-        ),
-        orderBy("createdAt","asc"),
-        limit(100)
-      ),
-      snap=>{
-
-        state.messages=
-          snap.docs.map(d=>({
-            id:d.id,
-            ...d.data()
-          }));
-
-        if(state.page==="chat"){
-          render();
-
-          setTimeout(()=>{
-            const el=
-              document.getElementById("messages");
-
-            if(el){
-              el.scrollTop=el.scrollHeight;
-            }
-          },50);
-        }
-
-      },
-      err=>{
-        toast(friendly(err));
-      }
-    );
-
-  state.page="chat";
-
-  render();
-}
-
-
-async function sendMessage(){
-
-  const input=
-    document.getElementById("messageInput");
-
-  const text=input?.value.trim();
-
-  if(!text || !state.activeConversation){
-    return;
-  }
-
-  const id=state.activeConversation.id;
-
-  try{
-
-    input.disabled=true;
-
-    await addDoc(
-      collection(
-        db,
-        "conversations",
-        id,
-        "messages"
-      ),
-      {
-        uid:state.user.uid,
-        text,
-        createdAt:serverTimestamp()
-      }
-    );
-
-    await updateDoc(
-      doc(db,"conversations",id),
-      {
-        lastMessage:text,
-        updatedAt:serverTimestamp()
-      }
-    );
-
-    input.value="";
-
-  }catch(e){
-
-    toast(friendly(e));
-
-  }finally{
-
-    input.disabled=false;
-    input.focus();
-  }
 }
 
 
 function renderTimeTrust(){
 
   const offers=
-    state.skills.filter(x=>x.type==="offer");
+    state.skills.filter(
+      x=>x.type==="offer"
+    );
+
 
   const requests=
     state.requests;
+
 
   const items=
     state.timeTab==="offers"
       ? offers
       : requests;
 
+
   return `
+
     <div class="page">
+
 
       <section class="hero">
 
-        <h1>TimeTrust ⏱️</h1>
+        <h1>
+          TimeTrust ⏱️
+        </h1>
 
         <p>
           Your time is valuable.
@@ -2755,31 +4936,59 @@ function renderTimeTrust(){
 
       </section>
 
+
       <div class="grid grid2">
 
+
         <div class="stat">
-          <span class="small">Your time balance</span>
-          <strong>0h</strong>
+
+          <span class="small">
+            Your time balance
+          </span>
+
+          <strong>
+            0h
+          </strong>
+
           <span class="small">
             Start by helping someone.
           </span>
+
         </div>
 
+
         <div class="stat">
-          <span class="small">Community offers</span>
-          <strong>${offers.length}</strong>
+
+          <span class="small">
+            Community offers
+          </span>
+
+          <strong>
+            ${offers.length}
+          </strong>
+
           <span class="small">
             Skills available now.
           </span>
+
         </div>
 
       </div>
 
+
       <div class="section-title">
 
-        <h2>Skill exchange</h2>
+        <h2>
+          Skill exchange
+        </h2>
 
-        <div style="display:flex;gap:7px">
+
+        <div
+          style="
+            display:flex;
+            gap:7px
+          "
+        >
 
           <button
             class="btn btn-secondary"
@@ -2787,6 +4996,7 @@ function renderTimeTrust(){
           >
             + Request
           </button>
+
 
           <button
             class="btn btn-primary"
@@ -2798,6 +5008,7 @@ function renderTimeTrust(){
         </div>
 
       </div>
+
 
       <div class="segmented">
 
@@ -2812,6 +5023,7 @@ function renderTimeTrust(){
           Skill offers
         </button>
 
+
         <button
           class="btn ${
             state.timeTab==="requests"
@@ -2825,61 +5037,79 @@ function renderTimeTrust(){
 
       </div>
 
+
       ${
         items.length
+
           ? `
+
             <div class="list">
 
-              ${items.map(x=>`
+              ${
+                items
+                  .map(
+                    x=>`
 
-                <div class="list-item">
+                      <div class="list-item">
 
-                  <div class="profile-row">
+                        <div class="profile-row">
 
-                    <div class="avatar">
-                      ⏱
-                    </div>
+                          <div class="avatar">
+                            ⏱
+                          </div>
 
-                    <div class="profile-meta">
 
-                      <strong>
-                        ${escapeHtml(
-                          x.title ||
-                          x.skill ||
-                          "Skill"
-                        )}
-                      </strong>
+                          <div class="profile-meta">
 
-                      <span class="small">
-                        ${escapeHtml(
-                          x.username ||
-                          "Community member"
-                        )}
-                      </span>
+                            <strong>
+                              ${escapeHtml(
+                                x.title ||
+                                x.skill ||
+                                "Skill"
+                              )}
+                            </strong>
 
-                    </div>
 
-                    <span class="badge">
-                      ${escapeHtml(
-                        x.hours || "1 hour"
-                      )}
-                    </span>
+                            <span class="small">
+                              ${escapeHtml(
+                                x.username ||
+                                "User"
+                              )}
+                            </span>
 
-                  </div>
 
-                  <p class="small">
-                    ${escapeHtml(
-                      x.description || ""
-                    )}
-                  </p>
+                            <span class="badge">
+                              ${escapeHtml(
+                                x.hours ||
+                                "1 hour"
+                              )}
+                            </span>
 
-                </div>
+                          </div>
 
-              `).join("")}
+                        </div>
+
+
+                        <p class="small">
+                          ${escapeHtml(
+                            x.description ||
+                            ""
+                          )}
+                        </p>
+
+                      </div>
+
+                    `
+                  )
+                  .join("")
+              }
 
             </div>
+
           `
+
           : `
+
             <div class="card empty">
 
               <div style="font-size:40px">
@@ -2887,9 +5117,10 @@ function renderTimeTrust(){
               </div>
 
               <h3>
-                ${state.timeTab==="offers"
-                  ? "No skill offers yet."
-                  : "No requests yet."
+                ${
+                  state.timeTab==="offers"
+                    ? "No skill offers yet."
+                    : "No requests yet."
                 }
               </h3>
 
@@ -2898,28 +5129,41 @@ function renderTimeTrust(){
               </p>
 
             </div>
+
           `
       }
 
     </div>
+
   `;
+
 }
 
 
 function showSkillModal(type){
 
-  const isOffer=type==="offer";
+  const isOffer=
+    type==="offer";
+
 
   showModal(
+
     isOffer
       ? "Offer your skill"
       : "Request a skill",
+
     `
+
       <div class="field">
 
         <label>
-          ${isOffer ? "Skill title" : "What do you need?"}
+          ${
+            isOffer
+              ? "Skill title"
+              : "What do you need?"
+          }
         </label>
+
 
         <input
           class="input"
@@ -2933,9 +5177,13 @@ function showSkillModal(type){
 
       </div>
 
+
       <div class="field">
 
-        <label>Description</label>
+        <label>
+          Description
+        </label>
+
 
         <textarea
           class="textarea"
@@ -2945,9 +5193,13 @@ function showSkillModal(type){
 
       </div>
 
+
       <div class="field">
 
-        <label>Time</label>
+        <label>
+          Time
+        </label>
+
 
         <input
           class="input"
@@ -2957,118 +5209,194 @@ function showSkillModal(type){
 
       </div>
 
+
       <button
         class="btn btn-primary btn-block"
         id="saveSkill"
       >
-        ${isOffer ? "Publish offer" : "Publish request"}
+        ${
+          isOffer
+            ? "Publish offer"
+            : "Publish request"
+        }
       </button>
+
     `
+
   );
 
+
   document
-    .getElementById("saveSkill")
-    ?.addEventListener("click",async()=>{
+    .getElementById(
+      "saveSkill"
+    )
+    ?.addEventListener(
+      "click",
+      async()=>{
 
-      const title=
-        document
-          .getElementById("skillTitle")
-          .value.trim();
+        const title=
+          document
+            .getElementById(
+              "skillTitle"
+            )
+            .value
+            .trim();
 
-      const description=
-        document
-          .getElementById("skillDescription")
-          .value.trim();
 
-      const hours=
-        document
-          .getElementById("skillHours")
-          .value.trim() || "1 hour";
+        const description=
+          document
+            .getElementById(
+              "skillDescription"
+            )
+            .value
+            .trim();
 
-      if(!title){
-        toast("Enter a title.");
-        return;
+
+        const hours=
+          document
+            .getElementById(
+              "skillHours"
+            )
+            .value
+            .trim() ||
+          "1 hour";
+
+
+        if(!title){
+
+          toast(
+            "Enter a title."
+          );
+
+          return;
+
+        }
+
+
+        try{
+
+          const col=
+            isOffer
+              ? "skills"
+              : "skillRequests";
+
+
+          await addDoc(
+            collection(
+              db,
+              col
+            ),
+            {
+
+              uid:
+                state.user.uid,
+
+              username:
+                state.profile.displayName ||
+                state.profile.username ||
+                "User",
+
+              title,
+
+              description,
+
+              hours,
+
+              type:
+                isOffer
+                  ? "offer"
+                  : "request",
+
+              createdAt:
+                serverTimestamp()
+
+            }
+          );
+
+
+          closeModal();
+
+
+          toast(
+            isOffer
+              ? "Skill offer published ⏱️"
+              : "Skill request published ⏱️"
+          );
+
+
+        }catch(e){
+
+          toast(
+            friendly(e)
+          );
+
+        }
+
       }
+    );
 
-      try{
-
-        const col=
-          isOffer
-            ? "skills"
-            : "skillRequests";
-
-        await addDoc(
-          collection(db,col),
-          {
-            uid:state.user.uid,
-            username:
-              state.profile.displayName ||
-              state.profile.username ||
-              "User",
-            title,
-            description,
-            hours,
-            type:isOffer ? "offer" : "request",
-            createdAt:serverTimestamp()
-          }
-        );
-
-        closeModal();
-
-        toast(
-          isOffer
-            ? "Skill offer published ⏱️"
-            : "Skill request published ⏱️"
-        );
-
-      }catch(e){
-
-        toast(friendly(e));
-      }
-    });
 }
 
 
 function renderMarket(){
 
   const filtered=
-    state.listings.filter(x=>
-      (
-        `${x.title||""} ${x.description||""} ${x.username||""}`
-      )
-      .toLowerCase()
-      .includes(
-        state.search.toLowerCase()
-      )
-      &&
-      (
-        state.marketCategory==="all" ||
-        x.category===state.marketCategory
-      )
+    state.listings.filter(
+      x=>
+
+        (
+          `${x.title||""} ${
+            x.description||""
+          } ${
+            x.username||""
+          }`
+        )
+        .toLowerCase()
+        .includes(
+          state.search.toLowerCase()
+        )
+
+        &&
+
+        (
+          state.marketCategory==="all" ||
+          x.category===
+            state.marketCategory
+        )
+
     );
 
+
   return `
+
     <div class="page">
+
 
       <section class="hero">
 
-        <h1>Marvel Market 🛍️</h1>
+        <h1>
+          Marvel Market 🛍️
+        </h1>
 
         <p>
-          A community marketplace for useful products,
-          services, books and more.
+          A community marketplace for useful
+          products, services, books and more.
         </p>
 
       </section>
+
 
       <div class="search">
 
         <input
           class="input"
           id="marketSearch"
-          value="${escapeHtml(state.search)}"
+          value="${escapeHtml(
+            state.search
+          )}"
           placeholder="Search the market…"
         >
+
 
         <button
           class="btn btn-primary"
@@ -3079,98 +5407,122 @@ function renderMarket(){
 
       </div>
 
+
       <div class="segmented">
 
-        ${categories.map(c=>`
+        ${
+          categories
+            .map(
+              c=>`
 
-          <button
-            class="btn ${
-              state.marketCategory===c
-                ? "btn-primary"
-                : "btn-ghost"
-            }"
-            data-category="${escapeHtml(c)}"
-          >
-            ${escapeHtml(
-              c==="all"
-                ? "All"
-                : c
-            )}
-          </button>
+                <button
+                  class="btn ${
+                    state.marketCategory===c
+                      ? "btn-primary"
+                      : "btn-ghost"
+                  }"
+                  data-category="${escapeHtml(c)}"
+                >
+                  ${escapeHtml(
+                    c==="all"
+                      ? "All"
+                      : c
+                  )}
+                </button>
 
-        `).join("")}
+              `
+            )
+            .join("")
+        }
 
       </div>
+
 
       <div id="marketItems">
 
         ${
           filtered.length
+
             ? `
+
               <div class="list">
 
-                ${filtered.map(x=>`
+                ${
+                  filtered
+                    .map(
+                      x=>`
 
-                  <div class="list-item">
+                        <div class="list-item">
 
-                    <div class="profile-row">
+                          <div class="profile-row">
 
-                      <div class="avatar">
-                        🛍
-                      </div>
+                            <div class="avatar">
+                              🛍
+                            </div>
 
-                      <div class="profile-meta">
 
-                        <strong>
-                          ${escapeHtml(
-                            x.title
-                          )}
-                        </strong>
+                            <div class="profile-meta">
 
-                        <span class="small">
-                          ${escapeHtml(
-                            x.username ||
-                            "User"
-                          )}
-                          ·
-                          ${escapeHtml(
-                            x.country ||
-                            "Community"
-                          )}
-                        </span>
+                              <strong>
+                                ${escapeHtml(
+                                  x.title
+                                )}
+                              </strong>
 
-                      </div>
+                              <span class="small">
+                                ${escapeHtml(
+                                  x.username ||
+                                  "User"
+                                )}
+                                ·
+                                ${escapeHtml(
+                                  x.country ||
+                                  "Community"
+                                )}
+                              </span>
 
-                      <strong>
-                        ${escapeHtml(
-                          String(
-                            x.price ?? 0
-                          )
-                        )}
-                      </strong>
+                            </div>
 
-                    </div>
 
-                    <p class="small">
-                      ${escapeHtml(
-                        x.description || ""
-                      )}
-                    </p>
+                            <strong>
+                              ${escapeHtml(
+                                String(
+                                  x.price ?? 0
+                                )
+                              )}
+                            </strong>
 
-                    <span class="badge">
-                      ${escapeHtml(
-                        x.category ||
-                        "Other"
-                      )}
-                    </span>
+                          </div>
 
-                  </div>
 
-                `).join("")}
+                          <p class="small">
+                            ${escapeHtml(
+                              x.description ||
+                              ""
+                            )}
+                          </p>
+
+
+                          <span class="badge">
+                            ${escapeHtml(
+                              x.category ||
+                              "Other"
+                            )}
+                          </span>
+
+                        </div>
+
+                      `
+                    )
+                    .join("")
+                }
 
               </div>
+
             `
+
             : `
+
               <div class="card empty">
 
                 <div style="font-size:40px">
@@ -3182,28 +5534,37 @@ function renderMarket(){
                 </h3>
 
                 <p>
-                  Create the first marketplace listing.
+                  Create the first marketplace
+                  listing.
                 </p>
 
               </div>
+
             `
         }
 
       </div>
 
     </div>
+
   `;
+
 }
 
 
 function showSellModal(){
 
   showModal(
+
     "Create marketplace listing",
+
     `
+
       <div class="field">
 
-        <label>Title</label>
+        <label>
+          Title
+        </label>
 
         <input
           class="input"
@@ -3213,9 +5574,12 @@ function showSellModal(){
 
       </div>
 
+
       <div class="field">
 
-        <label>Description</label>
+        <label>
+          Description
+        </label>
 
         <textarea
           class="textarea"
@@ -3225,11 +5589,15 @@ function showSellModal(){
 
       </div>
 
+
       <div class="grid grid2">
+
 
         <div class="field">
 
-          <label>Price</label>
+          <label>
+            Price
+          </label>
 
           <input
             class="input"
@@ -3239,23 +5607,36 @@ function showSellModal(){
 
         </div>
 
+
         <div class="field">
 
-          <label>Category</label>
+          <label>
+            Category
+          </label>
 
           <select
             class="select"
             id="listingCategory"
           >
 
-            ${categories
-              .filter(x=>x!=="all")
-              .map(x=>`
-                <option value="${escapeHtml(x)}">
-                  ${escapeHtml(x)}
-                </option>
-              `)
-              .join("")}
+            ${
+              categories
+                .filter(
+                  x=>x!=="all"
+                )
+                .map(
+                  x=>`
+
+                    <option
+                      value="${escapeHtml(x)}"
+                    >
+                      ${escapeHtml(x)}
+                    </option>
+
+                  `
+                )
+                .join("")
+            }
 
           </select>
 
@@ -3263,94 +5644,162 @@ function showSellModal(){
 
       </div>
 
+
       <button
         class="btn btn-primary btn-block"
         id="publishListing"
       >
         Publish listing 🛍️
       </button>
+
     `
+
   );
 
+
   document
-    .getElementById("publishListing")
-    ?.addEventListener("click",async()=>{
+    .getElementById(
+      "publishListing"
+    )
+    ?.addEventListener(
+      "click",
+      async()=>{
 
-      const title=
-        document
-          .getElementById("listingTitle")
-          .value.trim();
+        const title=
+          document
+            .getElementById(
+              "listingTitle"
+            )
+            .value
+            .trim();
 
-      const description=
-        document
-          .getElementById("listingDescription")
-          .value.trim();
 
-      const price=
-        document
-          .getElementById("listingPrice")
-          .value.trim();
+        const description=
+          document
+            .getElementById(
+              "listingDescription"
+            )
+            .value
+            .trim();
 
-      const category=
-        document
-          .getElementById("listingCategory")
-          .value;
 
-      if(!title){
-        toast("Enter a title.");
-        return;
+        const price=
+          document
+            .getElementById(
+              "listingPrice"
+            )
+            .value
+            .trim();
+
+
+        const category=
+          document
+            .getElementById(
+              "listingCategory"
+            )
+            .value;
+
+
+        if(!title){
+
+          toast(
+            "Enter a title."
+          );
+
+          return;
+
+        }
+
+
+        try{
+
+          await addDoc(
+            collection(
+              db,
+              "listings"
+            ),
+            {
+
+              uid:
+                state.user.uid,
+
+              username:
+                state.profile.displayName ||
+                state.profile.username ||
+                "User",
+
+              country:
+                state.profile.country ||
+                "",
+
+              title,
+
+              description,
+
+              price,
+
+              category,
+
+              status:
+                "active",
+
+              createdAt:
+                serverTimestamp()
+
+            }
+          );
+
+
+          closeModal();
+
+
+          toast(
+            "Listing published 🛍️"
+          );
+
+
+        }catch(e){
+
+          toast(
+            friendly(e)
+          );
+
+        }
+
       }
+    );
 
-      try{
-
-        await addDoc(
-          collection(db,"listings"),
-          {
-            uid:state.user.uid,
-            username:
-              state.profile.displayName ||
-              state.profile.username ||
-              "User",
-            country:
-              state.profile.country || "",
-            title,
-            description,
-            price,
-            category,
-            status:"active",
-            createdAt:serverTimestamp()
-          }
-        );
-
-        closeModal();
-
-        toast("Listing published 🛍️");
-
-      }catch(e){
-
-        toast(friendly(e));
-      }
-    });
 }
 
 
 function renderProfile(){
 
-  const p=state.profile || {};
+  const p=
+    state.profile || {};
+
 
   const name=
     p.displayName ||
     p.username ||
     "User";
 
+
   const savedCount=
-    state.posts.filter(x=>
-      Array.isArray(x.savedBy) &&
-      x.savedBy.includes(state.user.uid)
+    state.posts.filter(
+      x=>
+        Array.isArray(
+          x.savedBy
+        ) &&
+        x.savedBy.includes(
+          state.user.uid
+        )
     ).length;
 
+
   return `
+
     <div class="page">
+
 
       <section class="hero">
 
@@ -3363,8 +5812,13 @@ function renderProfile(){
               color:#fff;
             "
           >
-            ${escapeHtml(initials(name))}
+
+            ${escapeHtml(
+              initials(name)
+            )}
+
           </div>
+
 
           <div>
 
@@ -3374,7 +5828,8 @@ function renderProfile(){
 
             <p>
               @${escapeHtml(
-                p.username || "user"
+                p.username ||
+                "user"
               )}
             </p>
 
@@ -3384,7 +5839,9 @@ function renderProfile(){
 
       </section>
 
+
       <div class="grid grid3">
+
 
         <div class="stat">
 
@@ -3393,14 +5850,19 @@ function renderProfile(){
           </span>
 
           <strong>
+
             ${
               state.posts.filter(
-                x=>x.uid===state.user.uid
+                x=>
+                  x.uid===
+                  state.user.uid
               ).length
             }
+
           </strong>
 
         </div>
+
 
         <div class="stat">
 
@@ -3414,6 +5876,7 @@ function renderProfile(){
 
         </div>
 
+
         <div class="stat">
 
           <span class="small">
@@ -3421,30 +5884,42 @@ function renderProfile(){
           </span>
 
           <strong>
+
             ${
               countries.find(
-                x=>x[0]===p.country
-              )?.[0] || "—"
+                x=>
+                  x[0]===
+                  p.country
+              )?.[0] ||
+              "—"
             }
+
           </strong>
 
         </div>
 
       </div>
 
+
       <div class="section-title">
 
-        <h2>Profile</h2>
+        <h2>
+          Profile
+        </h2>
 
       </div>
+
 
       <div class="card">
 
         <div class="profile-row">
 
           <div class="avatar avatar-lg">
-            ${escapeHtml(initials(name))}
+            ${escapeHtml(
+              initials(name)
+            )}
           </div>
+
 
           <div class="profile-meta">
 
@@ -3454,7 +5929,8 @@ function renderProfile(){
 
             <span class="small">
               @${escapeHtml(
-                p.username || "user"
+                p.username ||
+                "user"
               )}
             </span>
 
@@ -3468,29 +5944,41 @@ function renderProfile(){
 
         </div>
 
+
         ${
           p.bio
+
             ? `
+
               <p class="small">
                 ${escapeHtml(p.bio)}
               </p>
+
             `
+
             : `
+
               <p class="small">
                 You haven't added a bio yet.
               </p>
+
             `
         }
 
       </div>
 
+
       <div class="section-title">
 
-        <h2>Account</h2>
+        <h2>
+          Account
+        </h2>
 
       </div>
 
+
       <div class="grid">
+
 
         <button
           class="btn btn-ghost"
@@ -3499,6 +5987,7 @@ function renderProfile(){
           ✏️ Edit profile
         </button>
 
+
         <button
           class="btn btn-ghost"
           id="savedBtn"
@@ -3506,12 +5995,14 @@ function renderProfile(){
           🔖 Saved posts
         </button>
 
+
         <button
           class="btn btn-ghost"
           id="settingsBtn"
         >
           ⚙️ Settings & About
         </button>
+
 
         <button
           class="btn btn-danger"
@@ -3523,20 +6014,29 @@ function renderProfile(){
       </div>
 
     </div>
+
   `;
+
 }
 
 
 function showEditProfile(){
 
-  const p=state.profile || {};
+  const p=
+    state.profile || {};
+
 
   showModal(
+
     "Edit profile",
+
     `
+
       <div class="field">
 
-        <label>Display name</label>
+        <label>
+          Display name
+        </label>
 
         <input
           class="input"
@@ -3548,9 +6048,12 @@ function showEditProfile(){
 
       </div>
 
+
       <div class="field">
 
-        <label>Username</label>
+        <label>
+          Username
+        </label>
 
         <input
           class="input"
@@ -3562,9 +6065,12 @@ function showEditProfile(){
 
       </div>
 
+
       <div class="field">
 
-        <label>Bio</label>
+        <label>
+          Bio
+        </label>
 
         <textarea
           class="textarea"
@@ -3577,91 +6083,156 @@ function showEditProfile(){
 
       </div>
 
+
       <button
         class="btn btn-primary btn-block"
         id="saveProfile"
       >
         Save changes
       </button>
+
     `
+
   );
 
+
   document
-    .getElementById("saveProfile")
-    ?.addEventListener("click",async()=>{
+    .getElementById(
+      "saveProfile"
+    )
+    ?.addEventListener(
+      "click",
+      async()=>{
 
-      const displayName=
-        document
-          .getElementById("editDisplayName")
-          .value.trim();
+        const displayName=
+          document
+            .getElementById(
+              "editDisplayName"
+            )
+            .value
+            .trim();
 
-      const username=
-        document
-          .getElementById("editUsername")
-          .value.trim();
 
-      const bio=
-        document
-          .getElementById("editBio")
-          .value.trim();
+        const username=
+          document
+            .getElementById(
+              "editUsername"
+            )
+            .value
+            .trim();
 
-      if(!username){
-        toast("Username cannot be empty.");
-        return;
-      }
 
-      try{
+        const bio=
+          document
+            .getElementById(
+              "editBio"
+            )
+            .value
+            .trim();
 
-        await updateDoc(
-          doc(db,"users",state.user.uid),
-          {
+
+        if(!username){
+
+          toast(
+            "Username cannot be empty."
+          );
+
+          return;
+
+        }
+
+
+        try{
+
+          await updateDoc(
+            doc(
+              db,
+              "users",
+              state.user.uid
+            ),
+            {
+
+              displayName,
+
+              username,
+
+              bio
+
+            }
+          );
+
+
+          await updateProfile(
+            state.user,
+            {
+              displayName
+            }
+          );
+
+
+          state.profile={
+            ...state.profile,
+
             displayName,
+
             username,
+
             bio
-          }
-        );
 
-        await updateProfile(
-          state.user,
-          {
-            displayName
-          }
-        );
+          };
 
-        state.profile={
-          ...state.profile,
-          displayName,
-          username,
-          bio
-        };
 
-        closeModal();
+          closeModal();
 
-        toast("Profile updated ✨");
 
-        render();
+          toast(
+            "Profile updated ✨"
+          );
 
-      }catch(e){
 
-        toast(friendly(e));
+          render();
+
+
+        }catch(e){
+
+          toast(
+            friendly(e)
+          );
+
+        }
+
       }
-    });
+    );
+
 }
 
 
 function showSaved(){
 
   const saved=
-    state.posts.filter(x=>
-      Array.isArray(x.savedBy) &&
-      x.savedBy.includes(state.user.uid)
+    state.posts.filter(
+      x=>
+        Array.isArray(
+          x.savedBy
+        ) &&
+        x.savedBy.includes(
+          state.user.uid
+        )
     );
 
+
   showModal(
+
     "Saved posts",
+
     saved.length
-      ? saved.map(renderPost).join("")
+
+      ? saved
+          .map(renderPost)
+          .join("")
+
       : `
+
         <div class="empty">
 
           <div style="font-size:40px">
@@ -3673,15 +6244,20 @@ function showSaved(){
           </p>
 
         </div>
+
       `
+
   );
+
 }
 
 
 function showSettings(){
 
   showModal(
+
     "Settings & About",
+
     `
 
       <div class="feature-line">
@@ -3692,10 +6268,13 @@ function showSettings(){
 
         <div style="flex:1">
 
-          <strong>Appearance</strong>
+          <strong>
+            Appearance
+          </strong>
 
           <div class="small">
-            Switch between light and dark mode.
+            Switch between light
+            and dark mode.
           </div>
 
           <button
@@ -3723,10 +6302,13 @@ function showSettings(){
 
         <div style="flex:1">
 
-          <strong>Low-data mode</strong>
+          <strong>
+            Low-data mode
+          </strong>
 
           <div class="small">
-            Helps reduce unnecessary network usage.
+            Helps reduce unnecessary
+            network usage.
           </div>
 
           <button
@@ -3754,11 +6336,13 @@ function showSettings(){
 
         <div style="flex:1">
 
-          <strong>Install Marvel Chat</strong>
+          <strong>
+            Install Marvel Chat
+          </strong>
 
           <div class="small">
-            Install the PWA on your phone for a more
-            app-like experience.
+            Install the PWA on your phone
+            for a more app-like experience.
           </div>
 
           <button
@@ -3782,13 +6366,16 @@ function showSettings(){
 
         <div>
 
-          <strong>About Marvel Chat</strong>
+          <strong>
+            About Marvel Chat
+          </strong>
 
           <div class="small">
-            Marvel Chat is a community platform designed
-            to connect people through conversation,
-            skill exchange, opportunities and community
-            interaction.
+            Marvel Chat is a community
+            platform designed to connect
+            people through conversation,
+            skill exchange, opportunities
+            and community interaction.
           </div>
 
         </div>
@@ -3804,9 +6391,12 @@ function showSettings(){
 
         <div>
 
-          <strong>What you can do</strong>
+          <strong>
+            What you can do
+          </strong>
 
           <div class="small">
+
             • Create community posts<br>
             • Like and save posts<br>
             • Comment and share<br>
@@ -3815,6 +6405,7 @@ function showSettings(){
             • Explore the marketplace<br>
             • Manage your profile<br>
             • Install Marvel Chat as a PWA
+
           </div>
 
         </div>
@@ -3830,12 +6421,15 @@ function showSettings(){
 
         <div>
 
-          <strong>Security</strong>
+          <strong>
+            Security
+          </strong>
 
           <div class="small">
-            Authentication is handled by Firebase
-            Authentication. Community data is stored
-            through Cloud Firestore according to your
+            Authentication is handled by
+            Firebase Authentication.
+            Community data is stored through
+            Cloud Firestore according to your
             Firebase security rules.
           </div>
 
@@ -3852,15 +6446,21 @@ function showSettings(){
 
         <div>
 
-          <strong>Your country</strong>
+          <strong>
+            Your country
+          </strong>
 
           <div class="small">
+
             ${
               countries.find(
-                x=>x[0]===state.profile?.country
+                x=>
+                  x[0]===
+                  state.profile?.country
               )?.[1] ||
               "Not selected"
             }
+
           </div>
 
         </div>
@@ -3868,13 +6468,20 @@ function showSettings(){
       </div>
 
 
-      <div class="notice" style="margin-top:14px">
+      <div
+        class="notice"
+        style="margin-top:14px"
+      >
 
-        <strong>Marvel Chat</strong><br>
+        <strong>
+          Marvel Chat
+        </strong>
+
+        <br>
 
         <span class="small">
-          Version 1.0 · Built for the future of
-          community connection.
+          Version 1.0 · Built for the future
+          of community connection.
         </span>
 
       </div>
@@ -3892,51 +6499,77 @@ function showSettings(){
       </div>
 
     `
+
   );
 
-  document
-    .getElementById("settingsTheme")
-    ?.addEventListener("click",()=>{
-
-      state.theme=
-        state.theme==="dark"
-          ? "light"
-          : "dark";
-
-      localStorage.setItem(
-        "marvel_theme",
-        state.theme
-      );
-
-      closeModal();
-      render();
-    });
-
 
   document
-    .getElementById("settingsLowData")
-    ?.addEventListener("click",()=>{
+    .getElementById(
+      "settingsTheme"
+    )
+    ?.addEventListener(
+      "click",
+      ()=>{
 
-      state.lowData=!state.lowData;
+        state.theme=
+          state.theme==="dark"
+            ? "light"
+            : "dark";
 
-      localStorage.setItem(
-        "marvel_low_data",
-        state.lowData ? "1" : "0"
-      );
 
-      toast(
-        state.lowData
-          ? "Low-data mode enabled 📶"
-          : "Low-data mode disabled."
-      );
+        localStorage.setItem(
+          "marvel_theme",
+          state.theme
+        );
 
-      closeModal();
-      showSettings();
-    });
+
+        closeModal();
+
+        render();
+
+      }
+    );
 
 
   document
-    .getElementById("settingsInstall")
+    .getElementById(
+      "settingsLowData"
+    )
+    ?.addEventListener(
+      "click",
+      ()=>{
+
+        state.lowData=
+          !state.lowData;
+
+
+        localStorage.setItem(
+          "marvel_low_data",
+          state.lowData
+            ? "1"
+            : "0"
+        );
+
+
+        toast(
+          state.lowData
+            ? "Low-data mode enabled 📶"
+            : "Low-data mode disabled."
+        );
+
+
+        closeModal();
+
+        showSettings();
+
+      }
+    );
+
+
+  document
+    .getElementById(
+      "settingsInstall"
+    )
     ?.addEventListener(
       "click",
       installPwa
@@ -3944,19 +6577,25 @@ function showSettings(){
 
 
   document
-    .getElementById("reportProblemBtn")
+    .getElementById(
+      "reportProblemBtn"
+    )
     ?.addEventListener(
       "click",
       showReportProblem
     );
+
 }
 
 
 function showReportProblem(){
 
   showModal(
+
     "Report a problem",
+
     `
+
       <div class="field">
 
         <label>
@@ -3972,158 +6611,234 @@ function showReportProblem(){
 
       </div>
 
+
       <button
         class="btn btn-primary btn-block"
         id="submitProblem"
       >
         Send report
       </button>
+
     `
+
   );
 
+
   document
-    .getElementById("submitProblem")
-    ?.addEventListener("click",async()=>{
+    .getElementById(
+      "submitProblem"
+    )
+    ?.addEventListener(
+      "click",
+      async()=>{
 
-      const text=
-        document
-          .getElementById("problemText")
-          .value.trim();
+        const text=
+          document
+            .getElementById(
+              "problemText"
+            )
+            .value
+            .trim();
 
-      if(!text){
-        toast("Describe the problem first.");
-        return;
+
+        if(!text){
+
+          toast(
+            "Describe the problem first."
+          );
+
+          return;
+
+        }
+
+
+        try{
+
+          await addDoc(
+            collection(
+              db,
+              "users",
+              state.user.uid,
+              "notifications"
+            ),
+            {
+
+              title:
+                "Problem report",
+
+              message:
+                text,
+
+              createdAt:
+                serverTimestamp()
+
+            }
+          );
+
+
+          closeModal();
+
+
+          toast(
+            "Report saved. Thank you."
+          );
+
+
+        }catch(e){
+
+          toast(
+            friendly(e)
+          );
+
+        }
+
       }
+    );
 
-      try{
-
-        await addDoc(
-          collection(
-            db,
-            "users",
-            state.user.uid,
-            "notifications"
-          ),
-          {
-            title:"Problem report",
-            message:text,
-            createdAt:serverTimestamp()
-          }
-        );
-
-        closeModal();
-
-        toast(
-          "Report saved. Thank you."
-        );
-
-      }catch(e){
-
-        toast(friendly(e));
-      }
-    });
 }
 
 
 async function showNotifications(){
 
   showModal(
+
     "Notifications",
+
     `
+
       <div
         id="notificationContent"
         class="empty"
       >
         Loading notifications…
       </div>
+
     `
+
   );
+
 
   try{
 
-    const snap=await getDocs(
-      query(
-        collection(
-          db,
-          "users",
-          state.user.uid,
-          "notifications"
-        ),
-        orderBy("createdAt","desc"),
-        limit(30)
-      )
-    );
+    const snap=
+      await getDocs(
+        query(
+          collection(
+            db,
+            "users",
+            state.user.uid,
+            "notifications"
+          ),
+          orderBy(
+            "createdAt",
+            "desc"
+          ),
+          limit(30)
+        )
+      );
+
 
     const arr=
-      snap.docs.map(d=>({
-        id:d.id,
-        ...d.data()
-      }));
+      snap.docs.map(
+        d=>({
+
+          id:d.id,
+
+          ...d.data()
+
+        })
+      );
+
 
     const el=
       document.getElementById(
         "notificationContent"
       );
 
+
     if(!el)return;
+
 
     el.className=
       arr.length
         ? "list"
         : "empty";
 
+
     el.innerHTML=
       arr.length
-        ? arr.map(n=>`
-            <div class="list-item">
 
-              <strong>
-                ${escapeHtml(
-                  n.title ||
-                  "Notification"
-                )}
-              </strong>
+        ? arr
+            .map(
+              n=>`
 
-              <div>
-                ${escapeHtml(
-                  n.message || ""
-                )}
-              </div>
+                <div class="list-item">
 
-              <div class="small">
-                ${escapeHtml(
-                  formatDate(
-                    n.createdAt
-                  )
-                )}
-              </div>
+                  <strong>
+                    ${escapeHtml(
+                      n.title ||
+                      "Notification"
+                    )}
+                  </strong>
 
-            </div>
-          `).join("")
+                  <div>
+                    ${escapeHtml(
+                      n.message ||
+                      ""
+                    )}
+                  </div>
+
+                  <div class="small">
+                    ${escapeHtml(
+                      formatDate(
+                        n.createdAt
+                      )
+                    )}
+                  </div>
+
+                </div>
+
+              `
+            )
+            .join("")
+
         : `
+
           🔔
+
           <p>
             No notifications yet.
           </p>
+
         `;
+
 
   }catch(e){
 
-    document.getElementById(
-      "notificationContent"
-    ).innerHTML=
-      `<div class="status error">
-        ${escapeHtml(friendly(e))}
-      </div>`;
+    document
+      .getElementById(
+        "notificationContent"
+      )
+      .innerHTML=
+        `<div class="status error">
+          ${escapeHtml(
+            friendly(e)
+          )}
+        </div>`;
+
   }
+
 }
 
 
 function showSearch(){
 
   showModal(
+
     "Search Marvel Chat",
+
     `
+
       <div class="field">
 
         <input
@@ -4134,6 +6849,7 @@ function showSearch(){
 
       </div>
 
+
       <button
         class="btn btn-primary btn-block"
         id="runSearch"
@@ -4141,61 +6857,96 @@ function showSearch(){
         Search
       </button>
 
+
       <div
         id="searchResults"
         style="margin-top:15px"
       ></div>
+
     `
+
   );
 
+
   document
-    .getElementById("runSearch")
-    ?.addEventListener("click",()=>{
+    .getElementById(
+      "runSearch"
+    )
+    ?.addEventListener(
+      "click",
+      ()=>{
 
-      const t=
+        const t=
+          document
+            .getElementById(
+              "globalSearch"
+            )
+            ?.value
+            .trim()
+            .toLowerCase();
+
+
+        if(!t)return;
+
+
+        const r=
+          state.posts.filter(
+            p=>
+
+              `${p.text || ""} ${
+                p.username || ""
+              }`
+                .toLowerCase()
+                .includes(t)
+
+          );
+
+
         document
-          .getElementById("globalSearch")
-          ?.value
-          .trim()
-          .toLowerCase();
+          .getElementById(
+            "searchResults"
+          )
+          .innerHTML=
 
-      if(!t)return;
+            r.length
 
-      const r=
-        state.posts.filter(p=>
-          `${p.text || ""} ${p.username || ""}`
-            .toLowerCase()
-            .includes(t)
-        );
+              ? r
+                  .map(
+                    p=>`
 
-      document.getElementById(
-        "searchResults"
-      ).innerHTML=
-        r.length
-          ? r.map(p=>`
-              <div class="list-item">
+                      <div class="list-item">
 
-                <strong>
-                  ${escapeHtml(
-                    p.username ||
-                    "User"
-                  )}
-                </strong>
+                        <strong>
+                          ${escapeHtml(
+                            p.username ||
+                            "User"
+                          )}
+                        </strong>
 
-                <div>
-                  ${escapeHtml(
-                    p.text || ""
-                  )}
+                        <div>
+                          ${escapeHtml(
+                            p.text ||
+                            ""
+                          )}
+                        </div>
+
+                      </div>
+
+                    `
+                  )
+                  .join("")
+
+              : `
+
+                <div class="empty">
+                  No matching posts found.
                 </div>
 
-              </div>
-            `).join("")
-          : `
-            <div class="empty">
-              No matching posts found.
-            </div>
-          `;
-    });
+              `;
+
+      }
+    );
+
 }
 
 
@@ -4205,658 +6956,1070 @@ async function installPwa(){
 
     state.installPrompt.prompt();
 
-    const result=
-      await state.installPrompt.userChoice;
 
-    if(result.outcome==="accepted"){
-      toast("Marvel Chat installed 📲");
+    const result=
+      await state.installPrompt
+        .userChoice;
+
+
+    if(
+      result.outcome===
+      "accepted"
+    ){
+
+      toast(
+        "Marvel Chat installed 📲"
+      );
+
     }
+
 
     state.installPrompt=null;
 
     closeModal();
 
     return;
+
   }
+
 
   toast(
     "If your browser supports installation, use its browser menu and choose Install app."
   );
+
 }
 
 
 function attachEvents(){
 
-  if(state.page==="home"){
+  if(
+    state.page==="home"
+  ){
 
     document
-      .getElementById("createPostBtn")
+      .getElementById(
+        "createPostBtn"
+      )
       ?.addEventListener(
         "click",
         showCreatePost
       );
 
+
     document
-      .getElementById("emptyCreatePost")
+      .getElementById(
+        "emptyCreatePost"
+      )
       ?.addEventListener(
         "click",
         showCreatePost
       );
 
+
     document
-      .querySelectorAll("[data-like]")
-      .forEach(b=>
-        b.addEventListener(
-          "click",
-          ()=>toggleLike(
-            b.dataset.like
+      .querySelectorAll(
+        "[data-like]"
+      )
+      .forEach(
+        b=>
+
+          b.addEventListener(
+            "click",
+            ()=>toggleLike(
+              b.dataset.like
+            )
           )
-        )
       );
 
+
     document
-      .querySelectorAll("[data-comment]")
-      .forEach(b=>
-        b.addEventListener(
-          "click",
-          ()=>showComments(
-            b.dataset.comment
+      .querySelectorAll(
+        "[data-comment]"
+      )
+      .forEach(
+        b=>
+
+          b.addEventListener(
+            "click",
+            ()=>showComments(
+              b.dataset.comment
+            )
           )
-        )
       );
 
+
     document
-      .querySelectorAll("[data-share]")
-      .forEach(b=>
-        b.addEventListener(
-          "click",
-          ()=>sharePost(
-            b.dataset.share
+      .querySelectorAll(
+        "[data-share]"
+      )
+      .forEach(
+        b=>
+
+          b.addEventListener(
+            "click",
+            ()=>sharePost(
+              b.dataset.share
+            )
           )
-        )
       );
 
+
     document
-      .querySelectorAll("[data-save]")
-      .forEach(b=>
-        b.addEventListener(
-          "click",
-          ()=>savePost(
-            b.dataset.save
+      .querySelectorAll(
+        "[data-save]"
+      )
+      .forEach(
+        b=>
+
+          b.addEventListener(
+            "click",
+            ()=>savePost(
+              b.dataset.save
+            )
           )
-        )
       );
+
 
     document
-      .querySelectorAll("[data-quick]")
-      .forEach(b=>
-        b.addEventListener("click",()=>{
+      .querySelectorAll(
+        "[data-quick]"
+      )
+      .forEach(
+        b=>
 
-          const a=b.dataset.quick;
+          b.addEventListener(
+            "click",
+            ()=>{
 
-          if(a==="post"){
-            showCreatePost();
-          }
+              const a=
+                b.dataset.quick;
 
-          if(a==="chat"){
 
-            state.page="chat";
+              if(a==="post"){
 
-            render();
+                showCreatePost();
 
-            setTimeout(
-              showNewChat,
-              50
-            );
-          }
+              }
 
-          if(a==="skill"){
-            showSkillModal("offer");
-          }
 
-          if(a==="sell"){
-            showSellModal();
-          }
+              if(a==="chat"){
 
-        })
+                state.page="chat";
+
+                render();
+
+                setTimeout(
+                  showNewChat,
+                  50
+                );
+
+              }
+
+
+              if(a==="skill"){
+
+                showSkillModal(
+                  "offer"
+                );
+
+              }
+
+
+              if(a==="sell"){
+
+                showSellModal();
+
+              }
+
+            }
+          )
       );
+
   }
 
 
-  if(state.page==="chat"){
+  if(
+    state.page==="chat"
+  ){
 
-    if(state.activeConversation){
+    if(
+      state.activeConversation
+    ){
 
       document
-        .getElementById("backChats")
+        .getElementById(
+          "backChats"
+        )
         ?.addEventListener(
           "click",
           ()=>{
+
             state.unsubs.messages?.();
+
             state.unsubs.messages=null;
+
             state.activeConversation=null;
+
             state.messages=[];
+
             render();
+
           }
         );
 
+
       document
-        .getElementById("sendMessage")
+        .getElementById(
+          "sendMessage"
+        )
         ?.addEventListener(
           "click",
           sendMessage
         );
 
+
       document
-        .getElementById("messageInput")
+        .getElementById(
+          "messageInput"
+        )
         ?.addEventListener(
           "keydown",
           e=>{
-            if(e.key==="Enter"){
+
+            if(
+              e.key==="Enter"
+            ){
+
               e.preventDefault();
+
               sendMessage();
+
             }
+
           }
         );
 
     }else{
 
       document
-        .getElementById("newChatBtn")
+        .getElementById(
+          "newChatBtn"
+        )
         ?.addEventListener(
           "click",
           showNewChat
         );
 
+
       document
-        .getElementById("newChatEmpty")
+        .getElementById(
+          "newChatEmpty"
+        )
         ?.addEventListener(
           "click",
           showNewChat
         );
+
 
       document
         .querySelectorAll(
           "[data-conversation]"
         )
-        .forEach(x=>
-          x.addEventListener(
-            "click",
-            ()=>openConversation(
-              x.dataset.conversation
+        .forEach(
+          x=>
+
+            x.addEventListener(
+              "click",
+              ()=>openConversation(
+                x.dataset.conversation
+              )
             )
-          )
+
         );
 
+
       document
-        .getElementById("chatSearch")
+        .getElementById(
+          "chatSearch"
+        )
         ?.addEventListener(
           "input",
           e=>{
 
             state.search=
-              e.target.value.toLowerCase();
+              e.target.value
+                .toLowerCase();
+
 
             const list=
               document.getElementById(
                 "chatList"
               );
 
+
             const filtered=
-              state.conversations.filter(c=>
-                Object.values(
-                  c.participantProfiles || {}
-                )
-                .map(p=>
-                  `${p.displayName || ""} ${
-                    p.username || ""
-                  }`
-                )
-                .join(" ")
-                .toLowerCase()
-                .includes(
-                  state.search
-                )
+              state.conversations.filter(
+                c=>
+
+                  Object.values(
+                    c.participantProfiles ||
+                    {}
+                  )
+
+                  .map(
+                    p=>
+                      `${p.displayName || ""} ${
+                        p.username || ""
+                      }`
+                  )
+
+                  .join(" ")
+
+                  .toLowerCase()
+
+                  .includes(
+                    state.search
+                  )
+
               );
+
 
             if(!list)return;
 
+
             list.innerHTML=
               filtered.length
-                ? filtered.map(c=>{
 
-                    const o=
-                      c.participants?.find(
-                        x=>x!==state.user.uid
-                      ) || "";
+                ? filtered
+                    .map(
+                      c=>{
 
-                    const p=
-                      c.participantProfiles?.[o]
-                      || {};
+                        const o=
+                          c.participants?.find(
+                            x=>
+                              x!==state.user.uid
+                          ) || "";
 
-                    const n=
-                      p.displayName ||
-                      p.username ||
-                      "User";
 
-                    return `
-                      <div
-                        class="chat-item"
-                        data-conversation="${c.id}"
-                      >
+                        const p=
+                          c.participantProfiles?.[
+                            o
+                          ] || {};
 
-                        <div class="avatar">
-                          ${escapeHtml(
-                            initials(n)
-                          )}
-                        </div>
 
-                        <div class="chat-content">
+                        const n=
+                          p.displayName ||
+                          p.username ||
+                          "User";
 
-                          <strong>
-                            ${escapeHtml(n)}
-                          </strong>
 
-                          <p>
-                            ${escapeHtml(
-                              c.lastMessage ||
-                              "Start chatting"
-                            )}
-                          </p>
+                        return `
 
-                        </div>
+                          <div
+                            class="chat-item"
+                            data-conversation="${c.id}"
+                          >
 
-                      </div>
-                    `;
-                  }).join("")
+                            <div class="avatar">
+                              ${escapeHtml(
+                                initials(n)
+                              )}
+                            </div>
+
+
+                            <div class="chat-content">
+
+                              <strong>
+                                ${escapeHtml(n)}
+                              </strong>
+
+                              <p>
+                                ${escapeHtml(
+                                  c.lastMessage ||
+                                  "Start chatting"
+                                )}
+                              </p>
+
+                            </div>
+
+                          </div>
+
+                        `;
+
+                      }
+                    )
+                    .join("")
+
                 : `
+
                   <div class="empty">
                     No matching conversations.
                   </div>
+
                 `;
+
 
             list
               .querySelectorAll(
                 "[data-conversation]"
               )
-              .forEach(x=>
-                x.addEventListener(
-                  "click",
-                  ()=>openConversation(
-                    x.dataset.conversation
+              .forEach(
+                x=>
+
+                  x.addEventListener(
+                    "click",
+                    ()=>openConversation(
+                      x.dataset.conversation
+                    )
                   )
-                )
+
               );
+
           }
         );
+
     }
+
   }
 
 
-  if(state.page==="timetrust"){
+  if(
+    state.page==="timetrust"
+  ){
 
     document
-      .getElementById("offerSkillBtn")
+      .getElementById(
+        "offerSkillBtn"
+      )
       ?.addEventListener(
         "click",
-        ()=>showSkillModal("offer")
-      );
-
-    document
-      .getElementById("requestSkillBtn")
-      ?.addEventListener(
-        "click",
-        ()=>showSkillModal("request")
-      );
-
-    document
-      .querySelectorAll("[data-time-tab]")
-      .forEach(b=>
-        b.addEventListener(
-          "click",
-          ()=>{
-            state.timeTab=
-              b.dataset.timeTab;
-
-            render();
-          }
+        ()=>showSkillModal(
+          "offer"
         )
       );
+
+
+    document
+      .getElementById(
+        "requestSkillBtn"
+      )
+      ?.addEventListener(
+        "click",
+        ()=>showSkillModal(
+          "request"
+        )
+      );
+
+
+    document
+      .querySelectorAll(
+        "[data-time-tab]"
+      )
+      .forEach(
+        b=>
+
+          b.addEventListener(
+            "click",
+            ()=>{
+
+              state.timeTab=
+                b.dataset.timeTab;
+
+              render();
+
+            }
+          )
+
+      );
+
   }
 
 
-  if(state.page==="market"){
+  if(
+    state.page==="market"
+  ){
 
     document
-      .getElementById("sellBtn")
+      .getElementById(
+        "sellBtn"
+      )
       ?.addEventListener(
         "click",
         showSellModal
       );
 
+
     document
-      .getElementById("marketSearch")
+      .getElementById(
+        "marketSearch"
+      )
       ?.addEventListener(
         "input",
         e=>{
 
-          state.search=e.target.value;
+          state.search=
+            e.target.value;
+
 
           const el=
             document.getElementById(
               "marketItems"
             );
 
+
           if(!el)return;
 
+
           const filtered=
-            state.listings.filter(x=>
-              `${x.title || ""} ${
-                x.description || ""
-              } ${
-                x.username || ""
-              }`
-              .toLowerCase()
-              .includes(
-                state.search.toLowerCase()
-              )
-              &&
-              (
-                state.marketCategory==="all" ||
-                x.category===
-                  state.marketCategory
-              )
+            state.listings.filter(
+              x=>
+
+                `${x.title || ""} ${
+                  x.description || ""
+                } ${
+                  x.username || ""
+                }`
+
+                .toLowerCase()
+
+                .includes(
+                  state.search
+                    .toLowerCase()
+                )
+
+                &&
+
+                (
+                  state.marketCategory==="all" ||
+                  x.category===
+                    state.marketCategory
+                )
+
             );
+
 
           el.innerHTML=
             filtered.length
+
               ? `
+
                 <div class="list">
 
-                  ${filtered.map(x=>`
+                  ${
+                    filtered
+                      .map(
+                        x=>`
 
-                    <div class="list-item">
+                          <div class="list-item">
 
-                      <div class="profile-row">
+                            <div class="profile-row">
 
-                        <div class="avatar">
-                          🛍
-                        </div>
+                              <div class="avatar">
+                                🛍
+                              </div>
 
-                        <div class="profile-meta">
 
-                          <strong>
-                            ${escapeHtml(
-                              x.title
-                            )}
-                          </strong>
+                              <div class="profile-meta">
 
-                          <span class="small">
-                            ${escapeHtml(
-                              x.username ||
-                              "User"
-                            )}
-                            ·
-                            ${escapeHtml(
-                              x.country ||
-                              "Community"
-                            )}
-                          </span>
+                                <strong>
+                                  ${escapeHtml(
+                                    x.title
+                                  )}
+                                </strong>
 
-                        </div>
+                                <span class="small">
+                                  ${escapeHtml(
+                                    x.username ||
+                                    "User"
+                                  )}
+                                  ·
+                                  ${escapeHtml(
+                                    x.country ||
+                                    "Community"
+                                  )}
+                                </span>
 
-                        <strong>
-                          ${escapeHtml(
-                            String(
-                              x.price ?? 0
-                            )
-                          )}
-                        </strong>
+                              </div>
 
-                      </div>
 
-                      <p class="small">
-                        ${escapeHtml(
-                          x.description || ""
-                        )}
-                      </p>
+                              <strong>
+                                ${escapeHtml(
+                                  String(
+                                    x.price ?? 0
+                                  )
+                                )}
+                              </strong>
 
-                      <span class="badge">
-                        ${escapeHtml(
-                          x.category ||
-                          "Other"
-                        )}
-                      </span>
+                            </div>
 
-                    </div>
 
-                  `).join("")}
+                            <p class="small">
+                              ${escapeHtml(
+                                x.description ||
+                                ""
+                              )}
+                            </p>
+
+
+                            <span class="badge">
+                              ${escapeHtml(
+                                x.category ||
+                                "Other"
+                              )}
+                            </span>
+
+                          </div>
+
+                        `
+                      )
+                      .join("")
+                  }
 
                 </div>
+
               `
+
               : `
+
                 <div class="empty">
                   No matching listings.
                 </div>
+
               `;
+
         }
       );
 
-    document
-      .querySelectorAll("[data-category]")
-      .forEach(b=>
-        b.addEventListener(
-          "click",
-          ()=>{
-            state.marketCategory=
-              b.dataset.category;
 
-            render();
-          }
-        )
+    document
+      .querySelectorAll(
+        "[data-category]"
+      )
+      .forEach(
+        b=>
+
+          b.addEventListener(
+            "click",
+            ()=>{
+
+              state.marketCategory=
+                b.dataset.category;
+
+              render();
+
+            }
+          )
+
       );
+
   }
 
 
-  if(state.page==="profile"){
+  if(
+    state.page==="profile"
+  ){
 
     document
-      .getElementById("editProfileBtn")
+      .getElementById(
+        "editProfileBtn"
+      )
       ?.addEventListener(
         "click",
         showEditProfile
       );
 
+
     document
-      .getElementById("savedBtn")
+      .getElementById(
+        "savedBtn"
+      )
       ?.addEventListener(
         "click",
         showSaved
       );
 
+
     document
-      .getElementById("settingsBtn")
+      .getElementById(
+        "settingsBtn"
+      )
       ?.addEventListener(
         "click",
         showSettings
       );
 
+
     document
-      .getElementById("logoutBtn")
+      .getElementById(
+        "logoutBtn"
+      )
       ?.addEventListener(
         "click",
         ()=>signOut(auth)
       );
+
   }
+
 }
 
 
-function sub(name,q,handler){
+/*
+ * Generic real-time subscription helper.
+ */
+function sub(
+  name,
+  q,
+  handler
+){
 
   state.unsubs[name]?.();
 
+
   state.unsubs[name]=
     onSnapshot(
+
       q,
-      s=>handler(s),
+
+      s=>
+        handler(s),
+
       e=>{
+
         console.error(
           name,
           e
         );
 
-        toast(friendly(e));
+        toast(
+          friendly(e)
+        );
+
       }
+
     );
+
 }
 
 
+/*
+ * Subscribe to application-wide
+ * real-time collections.
+ */
 function subscribeAll(){
 
+  /*
+   * Posts.
+   */
   sub(
+
     "posts",
+
     query(
-      collection(db,"posts"),
-      orderBy("createdAt","desc"),
+      collection(
+        db,
+        "posts"
+      ),
+      orderBy(
+        "createdAt",
+        "desc"
+      ),
       limit(50)
     ),
-    s=>{
-      state.posts=
-        s.docs.map(d=>({
-          id:d.id,
-          ...d.data()
-        }));
 
-      if(state.page==="home"){
+    s=>{
+
+      state.posts=
+        s.docs.map(
+          d=>({
+
+            id:d.id,
+
+            ...d.data()
+
+          })
+        );
+
+
+      if(
+        state.page==="home"
+      ){
+
         render();
+
       }
+
     }
+
   );
 
 
+  /*
+   * Conversations.
+   *
+   * IMPORTANT:
+   *
+   * We keep the same Firestore structure,
+   * but do not depend on the compound
+   * array-contains + orderBy query.
+   *
+   * This means the private chat list does
+   * not fail merely because a composite index
+   * has not yet been created.
+   *
+   * We sort the returned conversations
+   * locally instead.
+   */
   sub(
+
     "conversations",
+
     query(
+
       collection(
         db,
         "conversations"
       ),
+
       where(
         "participants",
         "array-contains",
         state.user.uid
       ),
-      orderBy(
-        "updatedAt",
-        "desc"
-      ),
+
       limit(50)
+
     ),
+
     s=>{
 
       state.conversations=
-        s.docs.map(d=>({
-          id:d.id,
-          ...d.data()
-        }));
+        s.docs
+          .map(
+            d=>({
+
+              id:d.id,
+
+              ...d.data()
+
+            })
+          )
+          .sort(
+            (a,b)=>{
+
+              const aTime=
+                a.updatedAt?.toMillis
+                  ? a.updatedAt.toMillis()
+                  : 0;
+
+
+              const bTime=
+                b.updatedAt?.toMillis
+                  ? b.updatedAt.toMillis()
+                  : 0;
+
+
+              return bTime-aTime;
+
+            }
+          );
+
+
+      /*
+       * If a conversation is currently open,
+       * keep the active object synchronized
+       * with the latest Firestore conversation.
+       */
+      if(
+        state.activeConversation
+      ){
+
+        const current=
+          state.conversations.find(
+            c=>
+              c.id===
+              state.activeConversation.id
+          );
+
+
+        if(current){
+
+          state.activeConversation=
+            current;
+
+        }
+
+      }
+
 
       if(
         state.page==="chat" &&
         !state.activeConversation
       ){
+
         render();
+
       }
+
     }
+
   );
 
 
+  /*
+   * Marketplace.
+   */
   sub(
+
     "listings",
+
     query(
+
       collection(
         db,
         "listings"
       ),
+
       where(
         "status",
         "==",
         "active"
       ),
+
       orderBy(
         "createdAt",
         "desc"
       ),
+
       limit(50)
+
     ),
+
     s=>{
 
       state.listings=
-        s.docs.map(d=>({
-          id:d.id,
-          ...d.data()
-        }));
+        s.docs.map(
+          d=>({
 
-      if(state.page==="market"){
+            id:d.id,
+
+            ...d.data()
+
+          })
+        );
+
+
+      if(
+        state.page==="market"
+      ){
+
         render();
+
       }
+
     }
+
   );
 
 
+  /*
+   * TimeTrust offers.
+   */
   sub(
+
     "skills",
+
     query(
+
       collection(
         db,
         "skills"
       ),
+
       orderBy(
         "createdAt",
         "desc"
       ),
+
       limit(50)
+
     ),
+
     s=>{
 
       state.skills=
-        s.docs.map(d=>({
-          id:d.id,
-          ...d.data()
-        }));
+        s.docs.map(
+          d=>({
 
-      if(state.page==="timetrust"){
+            id:d.id,
+
+            ...d.data()
+
+          })
+        );
+
+
+      if(
+        state.page==="timetrust"
+      ){
+
         render();
+
       }
+
     }
+
   );
 
 
+  /*
+   * TimeTrust requests.
+   */
   sub(
+
     "requests",
+
     query(
+
       collection(
         db,
         "skillRequests"
       ),
+
       orderBy(
         "createdAt",
         "desc"
       ),
+
       limit(50)
+
     ),
+
     s=>{
 
       state.requests=
-        s.docs.map(d=>({
-          id:d.id,
-          ...d.data()
-        }));
+        s.docs.map(
+          d=>({
 
-      if(state.page==="timetrust"){
+            id:d.id,
+
+            ...d.data()
+
+          })
+        );
+
+
+      if(
+        state.page==="timetrust"
+      ){
+
         render();
+
       }
+
     }
+
   );
+
 }
 
 
@@ -4864,125 +8027,191 @@ async function startApplication(user){
 
   state.user=user;
 
+
   try{
 
-    await loadProfile(user);
+    await loadProfile(
+      user
+    );
+
 
     subscribeAll();
 
+
     render();
+
 
   }catch(e){
 
-    root.innerHTML=`
-      <div class="auth-shell">
+    root.innerHTML=
 
-        <div class="auth-card">
+      `
 
-          <div class="auth-logo">
-            !
+        <div class="auth-shell">
+
+          <div class="auth-card">
+
+            <div class="auth-logo">
+              !
+            </div>
+
+
+            <h1>
+              Connection problem
+            </h1>
+
+
+            <p>
+              Marvel Chat could not
+              load your profile.
+            </p>
+
+
+            <div class="status error">
+              ${escapeHtml(
+                friendly(e)
+              )}
+            </div>
+
+
+            <button
+              class="btn btn-primary btn-block"
+              id="retryApp"
+            >
+              Retry
+            </button>
+
+
+            <div
+              style="height:8px"
+            ></div>
+
+
+            <button
+              class="btn btn-danger btn-block"
+              id="retryLogout"
+            >
+              Sign out
+            </button>
+
           </div>
-
-          <h1>
-            Connection problem
-          </h1>
-
-          <p>
-            Marvel Chat could not load your profile.
-          </p>
-
-          <div class="status error">
-            ${escapeHtml(
-              friendly(e)
-            )}
-          </div>
-
-          <button
-            class="btn btn-primary btn-block"
-            id="retryApp"
-          >
-            Retry
-          </button>
-
-          <div style="height:8px"></div>
-
-          <button
-            class="btn btn-danger btn-block"
-            id="retryLogout"
-          >
-            Sign out
-          </button>
 
         </div>
 
-      </div>
-    `;
+      `;
+
 
     document
-      .getElementById("retryApp")
+      .getElementById(
+        "retryApp"
+      )
       ?.addEventListener(
         "click",
-        ()=>startApplication(user)
+        ()=>startApplication(
+          user
+        )
       );
 
+
     document
-      .getElementById("retryLogout")
+      .getElementById(
+        "retryLogout"
+      )
       ?.addEventListener(
         "click",
         ()=>signOut(auth)
       );
+
   }
+
 }
 
 
 onAuthStateChanged(
+
   auth,
+
   async user=>{
 
     state.user=user;
 
+
     if(!user){
 
       Object
-        .values(state.unsubs)
+        .values(
+          state.unsubs
+        )
         .forEach(
           fn=>fn?.()
         );
 
+
       state.unsubs={
+
         posts:null,
+
         conversations:null,
+
         messages:null,
+
         skills:null,
+
         requests:null,
+
         listings:null
+
       };
 
+
       state.profile=null;
+
       state.posts=[];
+
       state.conversations=[];
+
       state.skills=[];
+
       state.requests=[];
+
       state.listings=[];
+
       state.activeConversation=null;
+
+      state.messages=[];
+
 
       renderAuth();
 
+
       return;
+
     }
 
-    await startApplication(user);
+
+    await startApplication(
+      user
+    );
+
   }
+
 );
 
 
 window.addEventListener(
   "online",
   ()=>{
+
     if(state.user){
-      toast("Back online ⚡");
+
+      toast(
+        "Back online ⚡"
+      );
+
       render();
+
     }
+
   }
 );
 
@@ -4990,12 +8219,17 @@ window.addEventListener(
 window.addEventListener(
   "offline",
   ()=>{
+
     if(state.user){
+
       toast(
         "Offline mode. Some features may be unavailable."
       );
+
       render();
+
     }
+
   }
 );
 
@@ -5003,8 +8237,11 @@ window.addEventListener(
 window.addEventListener(
   "beforeinstallprompt",
   e=>{
+
     e.preventDefault();
+
     state.installPrompt=e;
+
   }
 );
 
@@ -5012,43 +8249,59 @@ window.addEventListener(
 window.addEventListener(
   "appinstalled",
   ()=>{
+
     state.installPrompt=null;
+
     toast(
       "Marvel Chat installed 📲"
     );
+
   }
 );
 
 
-if("serviceWorker" in navigator){
+if(
+  "serviceWorker" in navigator
+){
 
   window.addEventListener(
     "load",
     ()=>{
+
       navigator.serviceWorker
         .register(
-  "./serviceworker.js",
-  {
-    scope:"./",
-    updateViaCache:"none"
-  }
-)
+          "./serviceworker.js",
+          {
+            scope:"./",
+            updateViaCache:"none"
+          }
+        )
 
-  
-           .then(r=>{
-          console.log(
-            "Service worker:",
-            r.scope
-          );
-        })
-        .catch(e=>{
-          console.warn(
-            "Service worker:",
-            e
-          );
-        });
+        .then(
+          r=>{
+
+            console.log(
+              "Service worker:",
+              r.scope
+            );
+
+          }
+        )
+
+        .catch(
+          e=>{
+
+            console.warn(
+              "Service worker:",
+              e
+            );
+
+          }
+        );
+
     }
   );
+
 }
 
 
@@ -5057,13 +8310,17 @@ const startupStatus=
     "startupStatus"
   );
 
+
 if(startupStatus){
 
   startupStatus.textContent=
     "Initializing the Marvel Chat universe…";
+
 }
 
 </script>
 
+
 </body>
+
 </html>
