@@ -1,4 +1,4 @@
-const CACHE_NAME = "marvel-chat-9999";
+const CACHE_NAME = "marvel-chat-v10000";
 
 const APP_SHELL = [
   "./",
@@ -18,8 +18,8 @@ self.addEventListener("install", event => {
 
 self.addEventListener("activate", event => {
   event.waitUntil(
-    caches.keys()
-      .then(names =>
+    Promise.all([
+      caches.keys().then(names =>
         Promise.all(
           names.map(name => {
             if (name !== CACHE_NAME) {
@@ -28,8 +28,9 @@ self.addEventListener("activate", event => {
             return Promise.resolve();
           })
         )
-      )
-      .then(() => self.clients.claim())
+      ),
+      self.clients.claim()
+    ])
   );
 });
 
@@ -52,12 +53,12 @@ self.addEventListener("fetch", event => {
 
   const url = new URL(event.request.url);
 
-  // Never cache Firebase/Google requests.
+  // Never cache Firebase or Google requests.
   if (isFirebaseRequest(url)) {
     return;
   }
 
-  // Only handle files from this GitHub Pages site.
+  // Only handle requests from this GitHub Pages site.
   if (url.origin !== self.location.origin) {
     return;
   }
@@ -81,4 +82,4 @@ self.addEventListener("fetch", event => {
         return caches.match(event.request);
       })
   );
-});
+}); 
