@@ -1,4 +1,4 @@
-const CACHE_NAME = "marvel-chat-v10000";
+const CACHE_NAME = "marvel-chat-v10001";
 
 const APP_SHELL = [
   "./",
@@ -48,21 +48,67 @@ function isFirebaseRequest(url) {
   );
 }
 
+function isAppDocument(request) {
+  const url = new URL(request.url);
+
+  return (
+    url.pathname.endsWith("/marvel-chat/") ||
+    url.pathname.endsWith("/marvel-chat/index.html") ||
+    url.pathname.endsWith("/marvel-chat/")
+  );
+}
+
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
 
   const url = new URL(event.request.url);
 
-  // Never cache Firebase or Google requests.
+  // Never intercept Firebase / Google requests.
   if (isFirebaseRequest(url)) {
     return;
   }
 
-  // Only handle requests from this GitHub Pages site.
+  // Only handle this GitHub Pages origin.
   if (url.origin !== self.location.origin) {
     return;
   }
 
+  /*
+   * IMPORTANT:
+   * Always try the network first for the actual Marvel Chat
+   * application document.
+   *
+   * This prevents an installed PWA from unnecessarily launching
+   * an old cached index.html when the new version is available.
+   */
+  if (isAppDocument(event.request)) {
+    event.respondWith(
+      fetch(event.request, {
+        cache: "no-store"
+      })
+        .then(response => {
+          if (response && response.ok) {
+            const copy = response.clone();
+
+            caches.open(CACHE_NAME)
+              .then(cache => cache.put(event.request, copy))
+              .catch(() => {});
+          }
+
+          return response;
+        })
+        .catch(() => {
+          return caches.match(event.request);
+        })
+    );
+
+    return;
+  }
+
+  /*
+   * Other same-origin files:
+   * network first, cache as an offline fallback.
+   */
   event.respondWith(
     fetch(event.request, {
       cache: "no-store"
@@ -82,4 +128,4 @@ self.addEventListener("fetch", event => {
         return caches.match(event.request);
       })
   );
-}); 
+});
